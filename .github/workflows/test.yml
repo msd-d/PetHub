@@ -1,0 +1,31 @@
+name: Test Intergration
+
+on:
+  push: # runs on every push but master
+    branches-ignore: [ main ]
+  pull_request: # runs on every pr but master
+    branches-ignore: [ main ]
+
+jobs:
+  Run_lint_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+    - name: Get npm cache directory
+      id: npm-cache
+      run: |
+        echo "::set-output name=dir::$(npm config get cache)"
+    - uses: actions/cache@v2
+      with:
+        path: ${{ steps.npm-cache.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install node modules
+      run: |
+        npm install
+
+    - name: Run test
+      run: |
+        npm test
