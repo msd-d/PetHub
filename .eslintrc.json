@@ -5,7 +5,8 @@
 	"react-native/react-native": true
     },
     "extends": [
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-native-all"
     ],
     "parserOptions": {
         "ecmaFeatures": {

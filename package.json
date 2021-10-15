@@ -6,8 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "standard --fix",
-    "test": "standard && node my-test.js"
+    "lint": "eslint --fix",
+    "test": "eslint && node my-test.js"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.0.9",
