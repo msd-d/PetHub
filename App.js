@@ -8,20 +8,66 @@ import PostScreen from 'components/views/post';
 import SaveScreen from 'components/views/save';
 import ProfileScreen from 'components/views/profile';
 
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            switch (route.name) {
+              case 'Home':
+                iconName = focused
+                  ? 'home'
+                  : 'home-outline';
+                break;
+              case 'Search':
+                iconName = focused
+                  ? 'search'
+                  : 'search-outline';
+                break;
+              case 'Post':
+                iconName = focused
+                  ? 'add-circle'
+                  : 'add-circle-outline'
+                break;
+              case 'Save':
+                iconName = focused
+                  ? 'bookmark'
+                  : 'bookmark-outline'
+                break;
+              case 'Post':
+                iconName = focused
+                  ? 'add-circle'
+                  : 'add-circle-outline'
+                break;
+              case 'Profile':
+                iconName = focused
+                  ? 'person-circle'
+                  : 'person-circle-outline'
+                break;
+              default:
+                iconName = 'alert';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#DF7A99',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Search" component={SearchScreen} />
         <Tab.Screen name="Post" component={PostScreen} />
         <Tab.Screen name="Save" component={SaveScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
+    </NavigationContainer >
   );
 }
