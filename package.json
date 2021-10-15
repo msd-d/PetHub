@@ -6,8 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint" : "standard --fix",
-    "test" : "standard && node my-test.js"
+    "lint": "eslint --fix",
+    "test": "eslint && node my-test.js"
   },
   "dependencies": {
     "expo": "~42.0.1",
@@ -17,11 +17,13 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screen": "^1.0.1",
-    "react-native-web": "~0.13.12",
+    "react-native-web": "^0.17.5",
     "standard": "^16.0.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "eslint": "^8.0.1",
+    "eslint-plugin-react": "^7.26.1"
   },
   "private": true
 }
