@@ -20,7 +20,9 @@
     "react-native-elements": "^3.4.2",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screen": "^1.0.1",
-    "react-native-web": "^0.17.5"
+    "react-native-web": "^0.17.5",
+    "expo-linear-gradient": "~9.2.0",
+    "@react-native-masked-view/masked-view": "0.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

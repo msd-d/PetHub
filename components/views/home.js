@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, Image, FlatList, StyleSheet } from 'react-native';
 import { Chip } from 'react-native-elements';
 import config from '../config';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 const apiData = [
   {
@@ -31,6 +32,20 @@ const apiData = [
   },
 ];
 
+const GradientText = (props) => {
+  return (
+    <MaskedView maskElement={<Text {...props} />}>
+      <LinearGradient
+        colors={[ "rgba(232, 193, 171, 1)","rgba(223, 122, 153, 1)"]}
+        start={{ x: -1, y: -1 }}
+        end={{ x: 1, y: 3 }}
+      >
+        <Text {...props} style={[props.style, { opacity: 0 }]} />
+      </LinearGradient>
+    </MaskedView>
+  );
+};
+
 const renderItem = ({ item, index }) => (
   <View style={styles.card}>
     <Image
@@ -43,33 +58,20 @@ const renderItem = ({ item, index }) => (
       <Text style={styles.name}>Test</Text>
       <View style={{ display: 'flex', flexDirection: 'row' }}>
         <Chip
-          title={item.breed}
-          type='outline'
+          title={<GradientText style={styles.chipText}>{item.breed}</GradientText>}
           titleStyle={styles.chipText}
           buttonStyle={styles.tag}
         />
         <Chip
-          title={item.gender}
-          type='outline'
+          title={<GradientText style={styles.chipText}>{item.gender}</GradientText>}
           titleStyle={styles.chipText}
           buttonStyle={styles.tag}
         />
         <Chip
-          title={item.age + " years old"}
-          type='outline'
+          title={<GradientText style={styles.chipText}>{item.age + " years old"}</GradientText>}
           titleStyle={styles.chipText}
           buttonStyle={styles.tag}
         />
-      </View>
-      <LinearGradient
-        start={{ x: 0.0, y: 0.0 }}
-        end={{ x: 0.0, y: 1.0 }}
-        locations={[0.0, 1.0]}
-        colors={['#ffffff40', '#fffffff5']} //<-- last 2 chars from color control the opacity
-        useViewFrame={false}
-        style={styles.gradient}
-      />
-      <View>
       </View>
     </View>
   </View>
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 12,
-    color: 'red',
+    height: 20
   },
   gradient: {
     position: 'absolute',
