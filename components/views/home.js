@@ -4,6 +4,8 @@ import { Chip } from 'react-native-elements';
 import config from '../config';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
+import {textColors, chipColors} from '../colors/home-colors';
+import { ViewPropTypes } from 'react-native';
 
 const apiData = [
   {
@@ -16,7 +18,7 @@ const apiData = [
   },
   {
     id: 2,
-    name: "Daisy",
+    name: "Daisy2",
     breed: 'Mixed',
     gender: 'Female',
     age: 5,
@@ -33,6 +35,9 @@ const apiData = [
 ];
 
 const GradientText = (props) => {
+  GradientText.propTypes = {
+    style: ViewPropTypes.style,
+  }
   return (
     <MaskedView maskElement={<Text {...props} />}>
       <LinearGradient
@@ -40,37 +45,37 @@ const GradientText = (props) => {
         start={{ x: -1, y: -1 }}
         end={{ x: 1, y: 3 }}
       >
-        <Text {...props} style={[props.style, { opacity: 0 }]} />
+        <Text {...props} style={[props.style, styles.gradientText]} />
       </LinearGradient>
     </MaskedView>
   );
 };
 
-const renderItem = ({ item, index }) => (
+const renderItem = ({ item }) => (
   <View style={styles.card}>
     <Image
       source={item.image}
       resizeMode="cover"
       overflow='hidden'
-      style={{ width: undefined, height: '100%', overflow: 'hidden', borderRadius: 23, }}
+      style={styles.image}
     />
     <View style={styles.cardContent}>
-      <Text style={styles.name}>Test</Text>
-      <View style={{ display: 'flex', flexDirection: 'row' }}>
+      <Text style={styles.name}>{item.name}</Text>
+      <View style={styles.chipBox}>
         <Chip
           title={<GradientText style={styles.chipText}>{item.breed}</GradientText>}
           titleStyle={styles.chipText}
-          buttonStyle={styles.tag}
+          buttonStyle={styles.chip}
         />
         <Chip
           title={<GradientText style={styles.chipText}>{item.gender}</GradientText>}
           titleStyle={styles.chipText}
-          buttonStyle={styles.tag}
+          buttonStyle={styles.chip}
         />
         <Chip
           title={<GradientText style={styles.chipText}>{item.age + " years old"}</GradientText>}
           titleStyle={styles.chipText}
-          buttonStyle={styles.tag}
+          buttonStyle={styles.chip}
         />
       </View>
     </View>
@@ -91,7 +96,6 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     display: 'flex',
-    backgroundColor: 'red',
     width: config.deviceWidth * 0.9,
     marginLeft: config.deviceWidth * 0.05,
     height: config.deviceWidth * 0.9,
@@ -108,16 +112,15 @@ const styles = StyleSheet.create({
     height: 100,
   },
   name: {
-    fontFamily: 'Inter',
+    fontFamily: 'Inter_700Bold',
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 20,
-    color: 'white',
+    fontSize: 22,
+    color: textColors.cardName,
     marginBottom: 10,
   },
-  tag: {
-    backgroundColor: 'white',
-    color: 'white',
+  chip: {
+    backgroundColor: chipColors.chipBackground,
     marginRight: 10,
     borderRadius: 8
   },
@@ -128,13 +131,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     height: 20
   },
-  gradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  chipBox: { 
+    display: 'flex', 
+    flexDirection: 'row' 
   },
+  image: { 
+    width: undefined, 
+    height: '100%', 
+    overflow: 'hidden', 
+    borderRadius: 23, 
+  },
+  gradientText: { 
+    opacity: 0,
+  }
 })
 
 
