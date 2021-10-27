@@ -5,8 +5,8 @@ import { ViewPropTypes, StyleSheet, Text } from 'react-native';
 
 const GradientText = (props) => {
     GradientText.propTypes = {
-        style: ViewPropTypes.style,
-    }
+        style: Text.propTypes.style
+    };
     return (
         <MaskedView maskElement={<Text {...props} />}>
             <LinearGradient
