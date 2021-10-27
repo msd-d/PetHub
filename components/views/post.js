@@ -9,42 +9,80 @@ import GradientText from '../colors/general';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { TextInput } from 'react-native';
 
-
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 const conditions = [
   // this is the parent or 'item'
   {
-    name: 'Fruits',
+    name: 'Conditions',
     id: 0,
     // these are the children or 'sub items'
     children: [
       {
-        name: 'Apple',
-        id: 10,
+        name: 'Arthritis',
+        id: 1,
       },
       {
-        name: 'Strawberry',
-        id: 17,
+        name: 'Cancer',
+        id: 2,
       },
       {
-        name: 'Pineapple',
-        id: 13,
+        name: 'Diabetes Militus',
+        id: 3,
       },
       {
-        name: 'Banana',
-        id: 14,
+        name: 'Epilepsy',
+        id: 4,
       },
       {
-        name: 'Watermelon',
-        id: 15,
+        name: 'Gastric Dilation Volvulus',
+        id: 5,
       },
       {
-        name: 'Kiwi fruit',
-        id: 16,
+        name: 'Hypothyroidism',
+        id: 6,
       },
     ],
   },
 ];
+
+  // custom icon renderer passed to iconRenderer prop
+  // see the switch for possible icon name
+  // values
+  const icon = ({ name, size = 18, style }) => {
+    // flatten the styles
+    const flat = StyleSheet.flatten(style)
+    // remove out the keys that aren't accepted on View
+    const { color, fontSize, ...styles } = flat
+
+    let iconComponent
+    
+    switch (name) {
+      case 'search':
+        iconComponent = <Ionicons name={'search'} size={size} color={color}/>;
+        break
+      case 'keyboard-arrow-up':
+        iconComponent = <Ionicons name={'arrow-up'} size={size} color={color}/>;
+        break
+      case 'keyboard-arrow-down':
+        iconComponent = <Ionicons name={'arrow-down'} size={size} color={color}/>;
+        break
+      case 'close':
+        iconComponent = <Ionicons name={'close'} size={size} color={color}/>;
+        break
+      case 'check':
+        iconComponent = <Ionicons name={'checkmark'} size={size} color={color}/>;
+        break
+      case 'cancel':
+        iconComponent = <Ionicons name={'ban'} size={size} color={color}/>;
+        break
+      default:
+        iconComponent = null
+        break
+    }
+    return <View style={styles}>{iconComponent}</View>
+  }
+
 
 function ImageBox() {
   const [image, setImage] = useState(null);
@@ -90,6 +128,8 @@ function ImageBox() {
 
 function PostScreen() {
   const genderButtons = ['Male', 'Female']
+
+  const [selectedItems, setItems] = useState([])
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -164,6 +204,17 @@ function PostScreen() {
         </View>
       </View>
       <GradientText style={styles.chipText}>Conditions</GradientText>
+      <SectionedMultiSelect
+          items={conditions}
+          IconRenderer={icon}
+          uniqueKey="id"
+          subKey="children"
+          selectText="Choose some things..."
+          showDropDowns={true}
+          readOnlyHeadings={true}
+          onSelectedItemsChange={items => setItems(items)}
+          selectedItems={selectedItems}
+        />
     </ScrollView>
   );
 }
