@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Text, StyleSheet, Platform, ScrollView } from 'react-native';
-import { Button, ButtonGroup } from 'react-native-elements';
+import { Button, ButtonGroup, Input } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native';
 import config from '../config';
 import * as ImagePicker from 'expo-image-picker';
 import GradientText from '../colors/general';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { TextInput } from 'react-native';
 
 function ImageBox() {
   const [image, setImage] = useState(null);
@@ -82,10 +83,23 @@ function PostScreen() {
       />
       <GradientText style={styles.chipText}>Date of Birth</GradientText>
       <GradientText style={styles.chipText}>Name</GradientText>
+      <Input></Input>
       <GradientText style={styles.chipText}>Breed</GradientText>
+
       <GradientText style={styles.chipText}>Description</GradientText>
+      <TextInput 
+        editable={true}
+        maxLength={200}
+        multiline={true}
+        numberOfLines={4}
+        placeholder='Write something nice about the animal...'
+        style={{height: config.deviceWidth*0.3, marginHorizontal: config.deviceWidth*0.05, marginTop: 5, backgroundColor: 'rgba(234, 234, 234, 1)', borderRadius: 12, textAlignVertical: 'top', padding: 5}}
+      />
+
       <GradientText style={styles.chipText}>Location</GradientText>
+
       <GradientText style={styles.chipText}>Measurements</GradientText>
+      
       <GradientText style={styles.chipText}>Conditions</GradientText>
     </ScrollView>
   );
