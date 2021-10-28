@@ -10,6 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { TextInput } from 'react-native';
 
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import LocationPick from '../location';
 
 const conditions = [
   // this is the parent or 'item'
@@ -182,6 +183,7 @@ function PostScreen() {
           buttonStyle={{width: config.deviceWidth *0.1125, height: config.deviceWidth*0.1, marginLeft: config.deviceWidth * 0.05}}
         />
       </View>
+      <LocationPick></LocationPick>
       <GradientText style={styles.chipText}>Measurements</GradientText>
       <View>
         <View style={{flex: 1, flexDirection: 'row'}}>
