@@ -11,6 +11,7 @@ import { TextInput } from 'react-native';
 
 import LocationPick from '../location';
 import Conditions from '../conditions';
+import Breeds from '../breeds';
 
 function ImageBox() {
   const [image, setImage] = useState(null);
@@ -88,7 +89,7 @@ function PostScreen() {
       <GradientText style={styles.chipText}>Name</GradientText>
       <Input></Input>
       <GradientText style={styles.chipText}>Breed</GradientText>
-
+      <Breeds />
       <GradientText style={styles.chipText}>Description</GradientText>
       <TextInput
         editable={true}
@@ -115,19 +116,22 @@ function PostScreen() {
           <Text>Weight</Text>
           <TextInput style={{backgroundColor: 'rgba(234, 234, 234, 1)'}}
           placeholder={'Enter weight in kg'}
-          ></TextInput>
+          keyboardType={'decimal-pad'}
+          />
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Text>Height</Text>
           <TextInput style={{backgroundColor: 'rgba(234, 234, 234, 1)'}}
           placeholder={'Enter height in kg'}
-          ></TextInput>
+          keyboardType={'decimal-pad'}
+          />
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Text>Length</Text>
           <TextInput style={{backgroundColor: 'rgba(234, 234, 234, 1)'}}
           placeholder={'Enter length in kg'}
-          ></TextInput>
+          keyboardType={'decimal-pad'}
+          />
         </View>
       </View>
       <GradientText style={styles.chipText}>Conditions</GradientText>
