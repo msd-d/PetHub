@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, FlatList, StyleSheet } from 'react-native';
 import { Chip } from 'react-native-elements';
 import config from '../config';
-import GradientText from '../colors/general';
+import GradientText from '../colors/gradient-text';
 
 import {textColors, chipColors} from '../colors/home-colors';
 

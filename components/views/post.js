@@ -4,12 +4,11 @@ import { Button, ButtonGroup, Input } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native';
 import config from '../config';
 import * as ImagePicker from 'expo-image-picker';
-import GradientText from '../colors/general';
+import GradientText from '../colors/gradient-text';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { TextInput } from 'react-native';
 
-import LocationPick from '../location';
 import Conditions from '../conditions';
 import Breeds from '../breeds';
 
@@ -101,36 +100,30 @@ function PostScreen() {
       />
 
       <GradientText style={styles.chipText}>Location</GradientText>
-      <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: config.deviceWidth * 0.05 }}>
-        <TextInput style={{ width: config.deviceWidth * 0.725, backgroundColor: 'rgba(234, 234, 234, 1)', borderRadius: 8}}
-          placeholder={'Enter the location of your animal'}
-        ></TextInput>
-        <Button
-          buttonStyle={{width: config.deviceWidth *0.1125, height: config.deviceWidth*0.1, marginLeft: config.deviceWidth * 0.05}}
-        />
-      </View>
-      <LocationPick></LocationPick>
+      <TextInput style={{ marginHorizontal: config.deviceWidth * 0.05, backgroundColor: 'rgba(234, 234, 234, 1)', borderRadius: 8 }}
+        placeholder={'Enter the location of your animal'}
+      />
       <GradientText style={styles.chipText}>Measurements</GradientText>
       <View>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: config.deviceWidth * 0.05 }}>
           <Text>Weight</Text>
-          <TextInput style={{backgroundColor: 'rgba(234, 234, 234, 1)'}}
-          placeholder={'Enter weight in kg'}
-          keyboardType={'decimal-pad'}
+          <TextInput style={{ backgroundColor: 'rgba(234, 234, 234, 1)' }}
+            placeholder={'Enter weight in kg'}
+            keyboardType={'decimal-pad'}
           />
         </View>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: config.deviceWidth * 0.05 }}>
           <Text>Height</Text>
-          <TextInput style={{backgroundColor: 'rgba(234, 234, 234, 1)'}}
-          placeholder={'Enter height in kg'}
-          keyboardType={'decimal-pad'}
+          <TextInput style={{ backgroundColor: 'rgba(234, 234, 234, 1)' }}
+            placeholder={'Enter height in kg'}
+            keyboardType={'decimal-pad'}
           />
         </View>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: config.deviceWidth * 0.05 }}>
           <Text>Length</Text>
-          <TextInput style={{backgroundColor: 'rgba(234, 234, 234, 1)'}}
-          placeholder={'Enter length in kg'}
-          keyboardType={'decimal-pad'}
+          <TextInput style={{ backgroundColor: 'rgba(234, 234, 234, 1)' }}
+            placeholder={'Enter length in kg'}
+            keyboardType={'decimal-pad'}
           />
         </View>
       </View>
