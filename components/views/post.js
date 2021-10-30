@@ -15,53 +15,83 @@ import Breeds from '../breeds';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
-function ImageBox() {
-  const [image, setImage] = useState(null);
+const ImageBoxes = () => {
+  const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+  const ImageBox = (props) => {
+
+    useEffect(() => {
+      (async () => {
+        if (Platform.OS !== 'web') {
+          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+          }
+        }
+      })();
+    }, []);
+
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: true,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+
+      if (!result.cancelled) {
+        if (typeof images[props.number] == 'undefined') {
+          setImages(images => [...images, result.uri]);
+        } else {
+          const updatedImages = [...images];
+          updatedImages[props.number] = result.uri;
+          setImages(updatedImages);
         }
       }
-    })();
-  }, []);
+    };
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      setImage(result.uri);
+    const longPress = () => {
+      if (typeof images[props.number] !== 'undefined') {
+        setImages(images => images.filter((image, i) => i !== props.number));
+      }
     }
-  };
+
+
+    return (
+      <TouchableOpacity style={styles.button} onPress={pickImage} onLongPress={longPress}>
+        <View style={styles.icon}>
+          <Ionicons
+            name="add-circle-outline"
+            size={30}
+            color="white"
+          />
+        </View>
+        <Image source={{ uri: images[props.number] }} style={styles.image} />
+      </TouchableOpacity>
+    );
+  }
 
 
   return (
-    <TouchableOpacity style={styles.button} onPress={pickImage}>
-      <View style={styles.icon}>
-        <Ionicons
-          name="add-circle-outline"
-          size={30}
-          color="white"
-        />
-      </View>
-      <Image source={{ uri: image }} style={styles.image} />
-    </TouchableOpacity>
+    <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+      <ImageBox number={0} />
+      <ImageBox number={1} />
+      <ImageBox number={2} />
+      <ImageBox number={3} />
+      <ImageBox number={4} />
+      <ImageBox number={5} />
+    </View>
   );
 }
+
+
 
 function PostScreen() {
   const genderButtons = ['Male', 'Female']
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
-  
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
@@ -87,25 +117,18 @@ function PostScreen() {
         />
       </View>
       <GradientText style={styles.chipText}>Images</GradientText>
-      <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
-        <ImageBox />
-        <ImageBox />
-        <ImageBox />
-        <ImageBox />
-        <ImageBox />
-        <ImageBox />
-      </View>
+      <ImageBoxes />
       <GradientText style={styles.chipText}>Gender</GradientText>
       <ButtonGroup
         buttons={genderButtons}
       />
       <GradientText style={styles.chipText}>Date of Birth</GradientText>
       <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: config.deviceWidth * 0.05 }}>
-        <Button onPress={showMode} title={date.getDate()}/>
-        <Button onPress={showMode} title={date.getMonth()}/>
-        <Button onPress={showMode} title={date.getFullYear()}/>
+        <Button onPress={showMode} title={date.getDate()} />
+        <Button onPress={showMode} title={date.getMonth()} />
+        <Button onPress={showMode} title={date.getFullYear()} />
         {show && (
-          <DateTimePicker 
+          <DateTimePicker
             value={date}
             onChange={onChange}
           />
