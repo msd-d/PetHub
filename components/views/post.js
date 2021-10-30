@@ -12,6 +12,9 @@ import { TextInput } from 'react-native';
 import Conditions from '../conditions';
 import Breeds from '../breeds';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+
 function ImageBox() {
   const [image, setImage] = useState(null);
 
@@ -56,6 +59,18 @@ function ImageBox() {
 
 function PostScreen() {
   const genderButtons = ['Male', 'Female']
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [show, setShow] = useState(false);
+  
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const showMode = () => {
+    setShow(true);
+  };
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -85,6 +100,18 @@ function PostScreen() {
         buttons={genderButtons}
       />
       <GradientText style={styles.chipText}>Date of Birth</GradientText>
+      <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: config.deviceWidth * 0.05 }}>
+        <Button onPress={showMode} title={date.getDate()}/>
+        <Button onPress={showMode} title={date.getMonth()}/>
+        <Button onPress={showMode} title={date.getFullYear()}/>
+        {show && (
+          <DateTimePicker 
+            value={date}
+            onChange={onChange}
+          />
+        )}
+      </View>
+
       <GradientText style={styles.chipText}>Name</GradientText>
       <Input></Input>
       <GradientText style={styles.chipText}>Breed</GradientText>
