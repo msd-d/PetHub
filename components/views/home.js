@@ -4,8 +4,8 @@ import { Chip } from 'react-native-elements';
 import config from '../config';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
-import {textColors, chipColors} from '../colors/home-colors';
 import { ViewPropTypes } from 'react-native';
+import colors from '../colors';
 
 const apiData = [
   {
@@ -116,11 +116,11 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 22,
-    color: textColors.cardName,
+    color: colors.white,
     marginBottom: 10,
   },
   chip: {
-    backgroundColor: chipColors.chipBackground,
+    backgroundColor: colors.white,
     marginRight: 10,
     borderRadius: 8
   },
