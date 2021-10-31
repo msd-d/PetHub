@@ -13,10 +13,17 @@ export default StyleSheet.create({
       width: config.deviceWidth * 0.4, borderRadius: 99 
     },
     description:{
-      height: config.deviceWidth * 0.3, marginHorizontal: config.deviceWidth * 0.05, marginTop: 5, backgroundColor: colors.lightGray, borderRadius: 10, textAlignVertical: 'top', padding: 5 
+      height: config.deviceWidth * 0.3, 
+      marginHorizontal: config.deviceWidth * 0.05, 
+      marginTop: 5, backgroundColor: colors.lightGray, 
+      borderRadius: 10, textAlignVertical: 'top', 
+      padding: 10 
     },
     input:{
-      marginHorizontal: config.deviceWidth * 0.05, backgroundColor: colors.lightGray, borderRadius: 8 
+      marginHorizontal: config.deviceWidth * 0.05, 
+      backgroundColor: colors.lightGray, 
+      borderRadius: 8,
+      padding: 10
     },
     input2:{
       backgroundColor: colors.lightGray 
@@ -50,4 +57,12 @@ export default StyleSheet.create({
       fontSize: 25,
       height: 35,
     },
+    dateButton: {
+        backgroundColor: colors.lightGray,
+        borderRadius: 12,
+        width: config.deviceWidth * 0.25,
+    },
+    dateTitle:{
+        color: colors.gray,
+    }
   })
