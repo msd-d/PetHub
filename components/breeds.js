@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import tagSelectionStyle from './styles/tag-selection-style';
 
 const breeds = [
   // this is the parent or 'item'
@@ -104,8 +105,7 @@ export default class Breeds extends React.Component {
         selectedItems={this.state.selectedItems}
         searchPlaceholderText={'Search animals'}
         selectText={'Select an animal...'}
-        styles={styles}
-        colors={{primary: 'rgba(223, 122, 153, 1)'}}
+        styles={tagSelectionStyle}
       />
     );
   }
