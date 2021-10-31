@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { color } from "react-native-elements/dist/helpers";
 import colors from "../colors";
 import config from "../config";
 

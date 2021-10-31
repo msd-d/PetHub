@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import Ionicons from '@expo/vector-icons/Ionicons';

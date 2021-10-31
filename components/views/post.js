@@ -16,7 +16,6 @@ import PropTypes from 'prop-types';
 import generelPositioning from '../styles/generel-positioning';
 import postStyle from '../styles/post-style';
 import GradientButton from '../colors/gradient-button';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const viewText = {
   images: 'Images',
@@ -183,23 +182,32 @@ function PostScreen() {
         <View style={generelPositioning.flexRowMarginCenterItems}>
           <Text style={postStyle.whl}>Weight</Text>
           <TextInput style={postStyle.input2}
-            placeholder={'Enter weight in kg'}
-            keyboardType={'decimal-pad'}
+            placeholder={'Enter weight in g'}
+            keyboardType={'number-pad'}
+            maxLength={4}
+            textAlign={'center'}
           />
+          <Text style={postStyle.whl}>g</Text>
         </View>
         <View style={generelPositioning.flexRowMarginCenterItems}>
           <Text style={postStyle.whl}>Height</Text>
           <TextInput style={postStyle.input2}
-            placeholder={'Enter height in kg'}
-            keyboardType={'decimal-pad'}
+            placeholder={'Enter height in cm'}
+            keyboardType={'number-pad'}
+            maxLength={4}
+            textAlign={'center'}
           />
+          <Text style={postStyle.whl}>cm</Text>
         </View>
         <View style={generelPositioning.flexRowMarginCenterItems}>
           <Text style={postStyle.whl}>Length</Text>
           <TextInput style={postStyle.input2}
             placeholder={'Enter length in cm'}
-            keyboardType={'decimal-pad'}
+            keyboardType={'number-pad'}
+            maxLength={4}
+            textAlign={'center'}
           />
+          <Text style={postStyle.whl}>cm</Text>
         </View>
       </View>
       <GradientText style={postStyle.chipText}>{viewText.conditions}</GradientText>
