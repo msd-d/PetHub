@@ -19,8 +19,8 @@ export default class GradientText extends React.Component {
             <MaskedView maskElement={<Text {...this.props} />}>
                 <LinearGradient
                     colors={["rgba(232, 193, 171, 1)", "rgba(223, 122, 153, 1)"]}
-                    start={{ x: -1, y: -1 }}
-                    end={{ x: 1, y: 3 }}
+                    start={{ x: -0.9, y: 0.5}}
+                    end={{ x: 0.5, y: -0.1 }}
                 >
                     <Text {...this.props} style={[this.props.style, styles.gradientText]} />
                 </LinearGradient>

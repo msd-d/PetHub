@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import tagSelectionStyle from './styles/tag-selection-style';
 
 const conditions = [
     // this is the parent or 'item'
@@ -98,7 +99,10 @@ export default class Conditions extends React.Component {
             readOnlyHeadings={true}
             onSelectedItemsChange={this.onSelectedItemsChange}
             selectedItems={this.state.selectedItems}
+            selectText={'Select animals conditions'}
+            styles={tagSelectionStyle}
           />
         );
     }
 }
+
