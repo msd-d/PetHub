@@ -12,15 +12,15 @@ const breeds = [
     // these are the children or 'sub items'
     children: [
       {
-        name: 'Golde reciever',
+        name: 'Golden Retriever',
         id: 1,
       },
       {
-        name: 'Cancer',
+        name: 'Akita',
         id: 2,
       },
       {
-        name: 'Rat',
+        name: 'Chihuahua',
         id: 3,
       },
       {
@@ -28,11 +28,11 @@ const breeds = [
         id: 4,
       },
       {
-        name: 'Something that says woof idk',
+        name: 'Bulldog',
         id: 5,
       },
       {
-        name: 'YEP',
+        name: 'Corgi',
         id: 6,
       },
     ],
