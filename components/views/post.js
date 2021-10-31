@@ -119,8 +119,10 @@ function PostScreen() {
   };
 
   return (
-    <ScrollView style={postStyle.scrollview}>
-      <View style={generelPositioning.flexRowMargin}>
+    <ScrollView style={postStyle.scrollview}
+    contentContainerStyle={{paddingVertical: 25}}
+    >
+      <View style={generelPositioning.flexRowSpaceEvenly}>
         <Button
           buttonStyle={postStyle.postButton}
           title='Post animal'
@@ -135,22 +137,27 @@ function PostScreen() {
       <GradientText style={postStyle.chipText}>{viewText.gender}</GradientText>
       <ButtonGroup
         buttons={genderButtons}
+        containerStyle={generelPositioning.flexRowMargin}
       />
       <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
-      <View style={generelPositioning.flexRowMargin}>
-        <Button onPress={showMode} title={date.getDate()} />
-        <Button onPress={showMode} title={date.getMonth()} />
-        <Button onPress={showMode} title={date.getFullYear()} />
-        {show && (
-          <DateTimePicker
-            value={date}
-            onChange={onChange}
-          />
-        )}
+      <View>
+        <View style={generelPositioning.flexRowSpaceEvenly}>
+          <Button buttonStyle={postStyle.dateButton} titleStyle={postStyle.dateTitle} onPress={showMode} title={date.getDate()} />
+          <Button buttonStyle={postStyle.dateButton} titleStyle={postStyle.dateTitle} onPress={showMode} title={date.getUTCMonth() + 1} />
+          <Button buttonStyle={postStyle.dateButton} titleStyle={postStyle.dateTitle} onPress={showMode} title={date.getFullYear()} />
+          {show && (
+            <DateTimePicker
+              value={date}
+              onChange={onChange}
+            />
+          )}
+        </View>
       </View>
 
       <GradientText style={postStyle.chipText}>{viewText.name}</GradientText>
-      <Input></Input>
+      <TextInput style={postStyle.input}
+        placeholder={'Enter the name of your animal'}
+      />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <Breeds />
       <GradientText style={postStyle.chipText}>{viewText.description}</GradientText>
