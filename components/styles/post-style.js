@@ -37,6 +37,7 @@ export default StyleSheet.create({
         padding: 10,
         borderRadius: 8,
         width: config.deviceWidth * 0.45,
+        marginRight: config.deviceWidth * 0.025,
         marginBottom: config.deviceWidth * 0.025
     },
     image: {
