@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, Text, StyleSheet, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, Text, Platform, ScrollView, TouchableOpacity } from 'react-native';
 import { Button, ButtonGroup, Input } from 'react-native-elements';
-import config from '../config';
 import * as ImagePicker from 'expo-image-picker';
 import GradientText from '../colors/gradient-text';
 
@@ -15,6 +14,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import PropTypes from 'prop-types';
 import generelPositioning from '../styles/generel-positioning';
+import postStyle from '../styles/post-style';
 
 const viewText = {
   images: 'Images',
@@ -72,15 +72,15 @@ const ImageBoxes = () => {
 
 
     return (
-      <TouchableOpacity style={styles.button} onPress={pickImage} onLongPress={longPress}>
-        <View style={styles.icon}>
+      <TouchableOpacity style={postStyle.button} onPress={pickImage} onLongPress={longPress}>
+        <View style={postStyle.icon}>
           <Ionicons
             name="add-circle-outline"
             size={30}
             color="white"
           />
         </View>
-        <Image source={{ uri: images[props.number] }} style={styles.image} />
+        <Image source={{ uri: images[props.number] }} style={postStyle.image} />
       </TouchableOpacity>
     );
   }
@@ -119,24 +119,24 @@ function PostScreen() {
   };
 
   return (
-    <ScrollView style={styles.scrollview}>
+    <ScrollView style={postStyle.scrollview}>
       <View style={generelPositioning.flexRowMargin}>
         <Button
-          buttonStyle={styles.postButton}
+          buttonStyle={postStyle.postButton}
           title='Post animal'
         />
         <Button
-          buttonStyle={styles.cancelButton}
+          buttonStyle={postStyle.cancelButton}
           title='Cancel'
         />
       </View>
-      <GradientText style={styles.chipText}>{viewText.images}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.images}</GradientText>
       <ImageBoxes />
-      <GradientText style={styles.chipText}>{viewText.gender}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.gender}</GradientText>
       <ButtonGroup
         buttons={genderButtons}
       />
-      <GradientText style={styles.chipText}>{viewText.dob}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
       <View style={generelPositioning.flexRowMargin}>
         <Button onPress={showMode} title={date.getDate()} />
         <Button onPress={showMode} title={date.getMonth()} />
@@ -149,107 +149,52 @@ function PostScreen() {
         )}
       </View>
 
-      <GradientText style={styles.chipText}>{viewText.name}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.name}</GradientText>
       <Input></Input>
-      <GradientText style={styles.chipText}>{viewText.breed}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <Breeds />
-      <GradientText style={styles.chipText}>{viewText.description}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.description}</GradientText>
       <TextInput
         editable={true}
         maxLength={200}
         multiline={true}
         numberOfLines={4}
         placeholder='Write something nice about the animal...'
-        style={styles.description}
+        style={postStyle.description}
       />
 
-      <GradientText style={styles.chipText}>{viewText.location}</GradientText>
-      <TextInput style={styles.input}
+      <GradientText style={postStyle.chipText}>{viewText.location}</GradientText>
+      <TextInput style={postStyle.input}
         placeholder={'Enter the location of your animal'}
       />
-      <GradientText style={styles.chipText}>{viewText.measurements}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.measurements}</GradientText>
       <View>
         <View style={generelPositioning.flexRowMargin}>
           <Text>Weight</Text>
-          <TextInput style={styles.input2}
+          <TextInput style={postStyle.input2}
             placeholder={'Enter weight in kg'}
             keyboardType={'decimal-pad'}
           />
         </View>
         <View style={generelPositioning.flexRowMargin}>
           <Text>Height</Text>
-          <TextInput style={styles.input2}
+          <TextInput style={postStyle.input2}
             placeholder={'Enter height in kg'}
             keyboardType={'decimal-pad'}
           />
         </View>
         <View style={generelPositioning.flexRowMargin}>
           <Text>Length</Text>
-          <TextInput style={styles.input2}
+          <TextInput style={postStyle.input2}
             placeholder={'Enter length in kg'}
             keyboardType={'decimal-pad'}
           />
         </View>
       </View>
-      <GradientText style={styles.chipText}>{viewText.conditions}</GradientText>
+      <GradientText style={postStyle.chipText}>{viewText.conditions}</GradientText>
       <Conditions />
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  scrollview:{
-    flex: 1, backgroundColor: 'white' 
-  },
-  postButton:{
-    width: config.deviceWidth * 0.4, borderRadius: 99
-  },
-  cancelButton:{
-    width: config.deviceWidth * 0.4, borderRadius: 99 
-  },
-  description:{
-    height: config.deviceWidth * 0.3, marginHorizontal: config.deviceWidth * 0.05, marginTop: 5, backgroundColor: 'rgba(234, 234, 234, 1)', borderRadius: 10, textAlignVertical: 'top', padding: 5 
-  },
-  input:{
-    marginHorizontal: config.deviceWidth * 0.05, backgroundColor: 'rgba(234, 234, 234, 1)', borderRadius: 8 
-  },
-  input2:{
-    backgroundColor: 'rgba(234, 234, 234, 1)' 
-    },
-  image: {
-    width: undefined,
-    height: '100%',
-    overflow: 'hidden',
-    borderRadius: 12,
-  },
-  button: {
-    width: config.deviceWidth * 0.3,
-    height: config.deviceWidth * 0.3,
-    borderRadius: 12,
-    marginLeft: config.deviceWidth * 0.025,
-    marginTop: config.deviceWidth * 0.025,
-    backgroundColor: 'rgba(234, 234, 234, 1)',
-  },
-  icon: {
-    width: '100%',
-    height: '100%',
-    flex: 1,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  chipText: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 25,
-    height: 35,
-  },
-  gradientButton: {
-    width: config.deviceWidth * 0.4,
-    marginLeft: config.deviceWidth * 0.05,
-  }
-})
-
 
 export default PostScreen;
