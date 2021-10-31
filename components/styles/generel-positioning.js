@@ -26,5 +26,14 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly'
+    },
+    flexRowMarginCenterItems: { 
+        flex: 1, 
+        flexDirection: 'row',
+        marginHorizontal: config.deviceWidth * 0.05,
+        alignItems: 'center'
+    },
+    marginBottom: {
+        marginBottom: config.deviceWidth * 0.05,
     }
 })
