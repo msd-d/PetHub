@@ -6,6 +6,7 @@ export default {
     gray: 'rgba(139, 144, 147, 1)',
     pethubPink: 'rgba(223, 122, 153, 1)',
     pethubLemon: 'rgba(232, 193, 171, 1)',
+    transparent: 'transparent',
 }
 
 

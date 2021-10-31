@@ -6,11 +6,18 @@ export default StyleSheet.create({
     scrollview: {
         flex: 1, backgroundColor: colors.white
     },
+    scrollviewContainer: {
+    },
     postButton: {
-        width: config.deviceWidth * 0.4, borderRadius: 99
+        width: config.deviceWidth * 0.4, borderRadius: 99,
     },
     cancelButton: {
-        width: config.deviceWidth * 0.4, borderRadius: 99
+        width: config.deviceWidth * 0.4, borderRadius: 99,
+        borderWidth: 2,
+        borderColor: colors.gray
+    },
+    cancelButtonTitle: {
+        color: colors.gray
     },
     description: {
         height: config.deviceWidth * 0.3,
@@ -26,7 +33,11 @@ export default StyleSheet.create({
         padding: 10
     },
     input2: {
-        backgroundColor: colors.lightGray
+        backgroundColor: colors.lightGray,
+        padding: 10,
+        borderRadius: 8,
+        width: config.deviceWidth * 0.45,
+        marginBottom: config.deviceWidth * 0.025
     },
     image: {
         width: undefined,
@@ -55,14 +66,38 @@ export default StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 25,
-        height: 35,
+        marginVertical: config.deviceWidth * 0.025
     },
     dateButton: {
         backgroundColor: colors.lightGray,
         borderRadius: 12,
-        width: config.deviceWidth * 0.25,
+        width: config.deviceWidth * 0.27,
     },
     dateTitle: {
         color: colors.gray,
+    },
+    whl: {
+        color: colors.darkGray,
+        fontFamily: 'Roboto',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        width: config.deviceWidth * 0.2
+    },
+    genderButton: {
+        borderRadius: 12,
+        backgroundColor: colors.pethubPink
+    },
+    genderContainer: {
+        marginHorizontal: config.deviceWidth * 0.05,
+        borderRadius: 12,
+        borderWidth: 0,
+    },
+    genderButtonDisabled: {
+        borderRadius: 12,
+        backgroundColor: colors.lightGray
+    },
+    genderBorder: {
+        color: colors.transparent,
+        width: config.deviceWidth * 0.05,
     }
 })

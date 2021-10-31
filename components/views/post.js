@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Text, Platform, ScrollView, TouchableOpacity } from 'react-native';
-import { Button, ButtonGroup, Input } from 'react-native-elements';
+import { Button, ButtonGroup } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 import GradientText from '../colors/gradient-text';
 
@@ -15,6 +15,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import PropTypes from 'prop-types';
 import generelPositioning from '../styles/generel-positioning';
 import postStyle from '../styles/post-style';
+import GradientButton from '../colors/gradient-button';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const viewText = {
   images: 'Images',
@@ -107,6 +109,11 @@ function PostScreen() {
   const genderButtons = ['Male', 'Female']
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
+  const [gender, setGender] = useState(0);
+
+  const onGenderChange = (index) => {
+    setGender(index)
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -120,24 +127,19 @@ function PostScreen() {
 
   return (
     <ScrollView style={postStyle.scrollview}
-    contentContainerStyle={{paddingVertical: 25}}
+      contentContainerStyle={postStyle.scrollviewContainer}
     >
-      <View style={generelPositioning.flexRowSpaceEvenly}>
-        <Button
-          buttonStyle={postStyle.postButton}
-          title='Post animal'
-        />
-        <Button
-          buttonStyle={postStyle.cancelButton}
-          title='Cancel'
-        />
-      </View>
       <GradientText style={postStyle.chipText}>{viewText.images}</GradientText>
       <ImageBoxes />
       <GradientText style={postStyle.chipText}>{viewText.gender}</GradientText>
       <ButtonGroup
+        selectedIndex={gender}
+        onPress={onGenderChange}
         buttons={genderButtons}
-        containerStyle={generelPositioning.flexRowMargin}
+        containerStyle={postStyle.genderContainer}
+        buttonStyle={postStyle.genderButtonDisabled}
+        innerBorderStyle={postStyle.genderBorder}
+        selectedButtonStyle={postStyle.genderButton}
       />
       <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
       <View>
@@ -159,7 +161,9 @@ function PostScreen() {
         placeholder={'Enter the name of your animal'}
       />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
-      <Breeds />
+      <View style={generelPositioning.marginBottom}>
+        <Breeds />
+      </View>
       <GradientText style={postStyle.chipText}>{viewText.description}</GradientText>
       <TextInput
         editable={true}
@@ -176,30 +180,36 @@ function PostScreen() {
       />
       <GradientText style={postStyle.chipText}>{viewText.measurements}</GradientText>
       <View>
-        <View style={generelPositioning.flexRowMargin}>
-          <Text>Weight</Text>
+        <View style={generelPositioning.flexRowMarginCenterItems}>
+          <Text style={postStyle.whl}>Weight</Text>
           <TextInput style={postStyle.input2}
             placeholder={'Enter weight in kg'}
             keyboardType={'decimal-pad'}
           />
         </View>
-        <View style={generelPositioning.flexRowMargin}>
-          <Text>Height</Text>
+        <View style={generelPositioning.flexRowMarginCenterItems}>
+          <Text style={postStyle.whl}>Height</Text>
           <TextInput style={postStyle.input2}
             placeholder={'Enter height in kg'}
             keyboardType={'decimal-pad'}
           />
         </View>
-        <View style={generelPositioning.flexRowMargin}>
-          <Text>Length</Text>
+        <View style={generelPositioning.flexRowMarginCenterItems}>
+          <Text style={postStyle.whl}>Length</Text>
           <TextInput style={postStyle.input2}
-            placeholder={'Enter length in kg'}
+            placeholder={'Enter length in cm'}
             keyboardType={'decimal-pad'}
           />
         </View>
       </View>
       <GradientText style={postStyle.chipText}>{viewText.conditions}</GradientText>
-      <Conditions />
+      <View style={generelPositioning.marginBottom}>
+        <Conditions />
+      </View>
+      <View style={generelPositioning.flexRowSpaceEvenly}>
+        <GradientButton title={'Post animal'} style={postStyle.postButton} />
+        <Button title={'Cancel'} containerStyle={postStyle.cancelButton} titleStyle={postStyle.cancelButtonTitle} type={'outline'} />
+      </View>
     </ScrollView>
   );
 }
