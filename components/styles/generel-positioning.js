@@ -14,6 +14,9 @@ export default StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: config.deviceWidth * 0.05
     },
+    margin: { 
+        marginHorizontal: config.deviceWidth * 0.05
+    },
     flexRowWrap: {
         flex: 1,
         flexDirection: 'row',
