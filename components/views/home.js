@@ -51,7 +51,9 @@ const renderItem = ({ item }) => (
         />
         <Chip
           title={
-            <GradientText style={homeStyle.chipText}>{item.gender}</GradientText>
+            <GradientText style={homeStyle.chipText}>
+              {item.gender}
+            </GradientText>
           }
           titleStyle={homeStyle.chipText}
           buttonStyle={homeStyle.chip}
