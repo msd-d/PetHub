@@ -5,7 +5,7 @@ const homeData = [
         breed: "Mixed",
         gender: "Female",
         age: 5,
-        image: require("../../images/image1.png"),
+        image: require("../images/image1.png"),
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ const homeData = [
         breed: "Mixed",
         gender: "Female",
         age: 5,
-        image: require("../../images/image1.png"),
+        image: require("../images/image1.png"),
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ const homeData = [
         breed: "Alcholic",
         gender: "Female",
         age: 5,
-        image: require("../../images/image1.png"),
+        image: require("../images/image1.png"),
     },
 ];
 
