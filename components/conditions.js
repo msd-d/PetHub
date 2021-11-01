@@ -46,7 +46,7 @@ const icon = ({ name, size = 18, style }) => {
   // flatten the styles
   const flat = StyleSheet.flatten(style);
   // remove out the keys that aren't accepted on View
-  const { color, fontSize, ...styles } = flat;
+  const { color, ...styles } = flat;
 
   let iconComponent;
 
@@ -85,9 +85,6 @@ export default class Conditions extends React.Component {
       selectedItems: [],
     };
   }
-  onSelectedItemsChange = (selectedItems) => {
-    this.setState({ selectedItems });
-  };
 
   render() {
     return (
@@ -96,10 +93,11 @@ export default class Conditions extends React.Component {
         IconRenderer={icon}
         uniqueKey="id"
         subKey="children"
-        selectText="Choose some things..."
         showDropDowns={true}
         readOnlyHeadings={true}
-        onSelectedItemsChange={this.onSelectedItemsChange}
+        onSelectedItemsChange={(selectedItems) =>
+          this.setState({ selectedItems })
+        }
         selectedItems={this.state.selectedItems}
         selectText={"Select animals conditions"}
         styles={tagSelectionStyle}

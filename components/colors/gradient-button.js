@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import colors from "../colors";
+import colors from "../colors.js";
 import GradientText from "./gradient-text";
 import PropTypes from "prop-types";
 
