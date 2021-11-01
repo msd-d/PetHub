@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { Text, View, Image, FlatList } from "react-native";
 import { Chip } from "react-native-elements";
