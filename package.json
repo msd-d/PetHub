@@ -6,8 +6,10 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint App.js/;exit 0 --fix",
-    "test": "eslint App.js/;exit 0 --fix && node test/my-test.js"
+    "format": "prettier --write App.js components",
+    "format:check": "prettier --check App.js components",
+    "lint": "eslint App.js components/ --fix ;exit 0",
+    "test": "eslint App.js components/ && node test/my-test.js"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.0",
@@ -35,7 +37,8 @@
     "@babel/core": "^7.9.0",
     "eslint": "^8.0.1",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-native": "^3.11.0"
+    "eslint-plugin-react-native": "^3.11.0",
+    "prettier": "^2.4.1"
   },
   "private": true
 }
