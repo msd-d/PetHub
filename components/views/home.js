@@ -2,34 +2,8 @@ import React from "react";
 import { Text, View, Image, FlatList } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
+import { homeData } from "../dummy-data";
 import homeStyle from "../styles/home-style";
-
-const apiData = [
-  {
-    id: 1,
-    name: "Daisy",
-    breed: "Mixed",
-    gender: "Female",
-    age: 5,
-    image: require("../../images/image1.png"),
-  },
-  {
-    id: 2,
-    name: "Daisy2",
-    breed: "Mixed",
-    gender: "Female",
-    age: 5,
-    image: require("../../images/image1.png"),
-  },
-  {
-    id: 3,
-    name: "Gustav",
-    breed: "Alcholic",
-    gender: "Female",
-    age: 5,
-    image: require("../../images/image1.png"),
-  },
-];
 
 const renderItem = ({ item }) => (
   <View style={homeStyle.card}>
@@ -73,10 +47,10 @@ const renderItem = ({ item }) => (
 );
 
 export default class HomeScreen extends React.Component {
-  Render() {
+  render() {
     return (
       <FlatList
-        data={apiData}
+        data={homeData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
       />
