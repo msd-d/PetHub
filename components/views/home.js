@@ -1,8 +1,9 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { Text, View, Image, FlatList } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
-import { homeData } from "../dummy-data";
+import Database from "../database";
 import homeStyle from "../styles/home-style";
 
 const renderItem = ({ item }) => (
@@ -40,6 +41,15 @@ const renderItem = ({ item }) => (
           }
           titleStyle={homeStyle.chipText}
           buttonStyle={homeStyle.chip}
+          onPress={() => Database.getItem('home').then(data => Database.setItem([...data, {
+            id: (data.length + 1),
+            name: "Gustav" + (data.length + 1),
+            breed: "Alcholic",
+            gender: "Female",
+            age: 5,
+            image: require("../../images/image1.png"),
+          }]
+            , 'home'))}
         />
       </View>
     </View>
@@ -47,12 +57,24 @@ const renderItem = ({ item }) => (
 );
 
 export default class HomeScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      homeData: [],
+    };
+  }
+
+  componentDidMount() {
+    Database.getItem('home').then(data => this.setState({ homeData: data }))
+  }
+
   render() {
     return (
       <FlatList
-        data={homeData}
+        data={this.state.homeData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
+        extraData={this.state.homeData}
       />
     );
   }
