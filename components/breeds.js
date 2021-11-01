@@ -56,7 +56,7 @@ export default class Breeds extends React.Component {
   }
 
   componentDidMount() {
-    Database.getItem('breeds').then(data => this.setState({breeds: data }))
+    Database.getItem("breeds").then((data) => this.setState({ breeds: data }));
   }
 
   render() {

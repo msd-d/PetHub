@@ -54,7 +54,9 @@ export default class Conditions extends React.Component {
   }
 
   componentDidMount() {
-    Database.getItem('conditions').then(data => this.setState({ conditions: data }))
+    Database.getItem("conditions").then((data) =>
+      this.setState({ conditions: data })
+    );
   }
 
   render() {

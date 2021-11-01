@@ -41,15 +41,6 @@ const renderItem = ({ item }) => (
           }
           titleStyle={homeStyle.chipText}
           buttonStyle={homeStyle.chip}
-          onPress={() => Database.getItem('home').then(data => Database.setItem([...data, {
-            id: (data.length + 1),
-            name: "Gustav" + (data.length + 1),
-            breed: "Alcholic",
-            gender: "Female",
-            age: 5,
-            image: require("../../images/image1.png"),
-          }]
-            , 'home'))}
         />
       </View>
     </View>
@@ -65,7 +56,7 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    Database.getItem('home').then(data => this.setState({ homeData: data }))
+    Database.getItem("home").then((data) => this.setState({ homeData: data }));
   }
 
   render() {

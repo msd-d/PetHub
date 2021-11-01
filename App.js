@@ -16,7 +16,6 @@ import Database from "./components/database";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-
   Database.setup();
   let [fontsLoaded] = useFonts({
     Inter_700Bold,
