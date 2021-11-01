@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { Standard } from "components/styles/save-style.js";
+import { Standard } from "components/styles/save-style";
 
 function SaveScreen() {
   return (
