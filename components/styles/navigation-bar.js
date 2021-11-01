@@ -1,12 +1,13 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
+import color from "components/colors";
 
 const StandardBar = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        marginBottom: 36,
-        backgroundColor: '#003'
-    }
-})
+  container: {
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: 36,
+    backgroundColor: color.white,
+  },
+});
 
-export {StandardBar}
+export { StandardBar };
