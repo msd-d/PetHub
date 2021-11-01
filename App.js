@@ -11,10 +11,13 @@ import AppLoading from "expo-app-loading";
 import { useFonts, Inter_700Bold } from "@expo-google-fonts/inter";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Database from "./components/database";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
+  Database.setup();
   let [fontsLoaded] = useFonts({
     Inter_700Bold,
   });
