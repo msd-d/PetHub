@@ -1,11 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { breeds, conditions, homeData } from "./dummy-data";
+import { breeds, conditions, data } from "./dummy-data";
 
 export default class Database {
   static setup() {
     this.setItem(conditions, "conditions");
     this.setItem(breeds, "breeds");
-    this.setItem(homeData, "home");
+    this.setItem(data,'data')
   }
 
   static async getItem(key) {
