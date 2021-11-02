@@ -1,27 +1,57 @@
-const homeData = [
+const data = [
+  {
+    id: 0,
+    name: "Daisy",
+    breeds: ["Golden reciever","Husky"],
+    conditions: [],
+    gender: "Female",
+    birthDate: {
+      day: 3,
+      month: 4,
+      year: 2002,
+    },
+    images: [require("../images/image1.png")],
+    weight: 1025,
+    height: 550,
+    length: 1500,
+    location: "Dogburg",
+    description: "A happy doggy dog"
+  },
   {
     id: 1,
-    name: "Daisy",
-    breed: "Mixed",
+    name: "Daisy2",
+    breeds: ["Mixed"],
+    conditions: [],
     gender: "Female",
-    age: 5,
-    image: require("../images/image1.png"),
+    birthDate: {
+      day: 3,
+      month: 4,
+      year: 2005,
+    },
+    images: [require("../images/image1.png")],
+    weight: 1025,
+    height: 550,
+    length: 1500,
+    location: "Dogburg",
+    description: "A happy doggy dog"
   },
   {
     id: 2,
-    name: "Daisy2",
-    breed: "Mixed",
-    gender: "Female",
-    age: 5,
-    image: require("../images/image1.png"),
-  },
-  {
-    id: 3,
     name: "Gustav",
-    breed: "Alcholic",
+    breeds: ["Bulldog"],
+    conditions: [],
     gender: "Female",
-    age: 5,
-    image: require("../images/image1.png"),
+    birthDate: {
+      day: 3,
+      month: 4,
+      year: 2003,
+    },
+    images: [require("../images/image1.png")],
+    weight: 1025,
+    height: 550,
+    length: 1500,
+    location: "Dogburg",
+    description: "A happy doggy dog"
   },
 ];
 
@@ -95,4 +125,4 @@ const breeds = [
   },
 ];
 
-export { homeData, conditions, breeds };
+export { data, conditions, breeds };
