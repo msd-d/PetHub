@@ -3,41 +3,7 @@ import { View, StyleSheet } from "react-native";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import tagSelectionStyle from "./styles/tag-selection-style";
-
-const conditions = [
-  // this is the parent or 'item'
-  {
-    name: "Conditions",
-    id: 0,
-    // these are the children or 'sub items'
-    children: [
-      {
-        name: "Arthritis",
-        id: 1,
-      },
-      {
-        name: "Cancer",
-        id: 2,
-      },
-      {
-        name: "Diabetes Militus",
-        id: 3,
-      },
-      {
-        name: "Epilepsy",
-        id: 4,
-      },
-      {
-        name: "Gastric Dilation Volvulus",
-        id: 5,
-      },
-      {
-        name: "Hypothyroidism",
-        id: 6,
-      },
-    ],
-  },
-];
+import Database from "./database";
 
 // custom icon renderer passed to iconRenderer prop
 // see the switch for possible icon name
@@ -83,13 +49,20 @@ export default class Conditions extends React.Component {
     super();
     this.state = {
       selectedItems: [],
+      conditions: [],
     };
+  }
+
+  componentDidMount() {
+    Database.getItem("conditions").then((data) =>
+      this.setState({ conditions: data })
+    );
   }
 
   render() {
     return (
       <SectionedMultiSelect
-        items={conditions}
+        items={this.state.conditions}
         IconRenderer={icon}
         uniqueKey="id"
         subKey="children"

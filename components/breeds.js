@@ -3,41 +3,7 @@ import { View, StyleSheet } from "react-native";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import tagSelectionStyle from "./styles/tag-selection-style";
-
-const breeds = [
-  // this is the parent or 'item'
-  {
-    name: "Dogs",
-    id: 0,
-    // these are the children or 'sub items'
-    children: [
-      {
-        name: "Golden Retriever",
-        id: 1,
-      },
-      {
-        name: "Akita",
-        id: 2,
-      },
-      {
-        name: "Chihuahua",
-        id: 3,
-      },
-      {
-        name: "Husky",
-        id: 4,
-      },
-      {
-        name: "Bulldog",
-        id: 5,
-      },
-      {
-        name: "Corgi",
-        id: 6,
-      },
-    ],
-  },
-];
+import Database from "./database";
 
 const styles = StyleSheet.create({});
 
@@ -85,13 +51,18 @@ export default class Breeds extends React.Component {
     super();
     this.state = {
       selectedItems: [],
+      breeds: [],
     };
+  }
+
+  componentDidMount() {
+    Database.getItem("breeds").then((data) => this.setState({ breeds: data }));
   }
 
   render() {
     return (
       <SectionedMultiSelect
-        items={breeds}
+        items={this.state.breeds}
         IconRenderer={icon}
         uniqueKey="id"
         subKey="children"
