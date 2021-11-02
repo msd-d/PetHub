@@ -38,13 +38,13 @@ export default class Database {
   static async multiSet(keyValuePairs) {
     try {
       const pairs = [[]];
-     await keyValuePairs.array.forEach(element => {
+      await keyValuePairs.array.forEach((element) => {
         const jsonValue = JSON.parse(element[1]);
         pairs.push([element[0], jsonValue]);
       });
       console.log(pairs);
       await AsyncStorage.multiSet(pairs);
-    } catch(e) {
+    } catch (e) {
       //save error
     }
   }
