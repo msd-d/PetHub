@@ -53,8 +53,8 @@ const data = {
   height: 0,
   length: 0,
   conditions: [],
-  breeds: []
-}
+  breeds: [],
+};
 
 const ImageBoxes = () => {
   const [images, setImages] = useState([]);
@@ -138,7 +138,7 @@ function PostScreen() {
   const [show, setShow] = useState(false);
   const [name, setName] = useState(null);
   const [breeds, setBreeds] = useState([]);
-  const [description, setDescription ] = useState(null);
+  const [description, setDescription] = useState(null);
   const [location, setLocation] = useState(null);
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
@@ -154,8 +154,8 @@ function PostScreen() {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-    data.birthDate.day = currentDate.getDate() 
-    data.birthDate.month = currentDate.getMonth()
+    data.birthDate.day = currentDate.getDate();
+    data.birthDate.month = currentDate.getMonth();
     data.birthDate.year = currentDate.getFullYear();
   };
 
@@ -165,11 +165,11 @@ function PostScreen() {
 
   const onBreedsChange = (newValue) => {
     setBreeds(newValue);
-  }
+  };
 
   const onConditionsChange = (newValue) => {
     setConditions(newValue);
-  }
+  };
 
   const postData = async () => {
     data.gender = genderButtons[gender];
@@ -180,17 +180,17 @@ function PostScreen() {
     data.weight = weight;
     data.height = height;
     data.length = length;
-    data.breeds = breeds.map(item => item.name);
-    data.conditions = conditions.map(item => item.name);
+    data.breeds = breeds.map((item) => item.name);
+    data.conditions = conditions.map((item) => item.name);
 
-    let dataArray = await Database.getItem('data');
+    let dataArray = await Database.getItem("data");
     data.id = dataArray.length;
     dataArray = [...dataArray, data];
 
-    Database.setItem(dataArray,'data');
+    Database.setItem(dataArray, "data");
 
-    Database.getItem('data').then((items) => console.log(items));
-  }
+    Database.getItem("data").then((items) => console.log(items));
+  };
 
   return (
     <ScrollView
@@ -238,9 +238,7 @@ function PostScreen() {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the name of your animal"}
-        onChangeText={(text) =>
-          setName(text)
-        }
+        onChangeText={(text) => setName(text)}
       />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <View style={generelPositioning.marginBottom}>
@@ -256,9 +254,7 @@ function PostScreen() {
         numberOfLines={4}
         placeholder="Write something nice about the animal..."
         style={postStyle.description}
-        onChangeText={(text) =>
-          setDescription(text)
-        }
+        onChangeText={(text) => setDescription(text)}
       />
 
       <GradientText style={postStyle.chipText}>
@@ -267,9 +263,7 @@ function PostScreen() {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the location of your animal"}
-        onChangeText={(text) =>
-          setLocation(text)
-        }
+        onChangeText={(text) => setLocation(text)}
       />
       <GradientText style={postStyle.chipText}>
         {viewText.measurements}
@@ -283,9 +277,7 @@ function PostScreen() {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
-            onChangeText={(text) =>
-              setWeight(text)
-            }
+            onChangeText={(text) => setWeight(text)}
           />
           <Text style={postStyle.whl}>g</Text>
         </View>
@@ -297,9 +289,7 @@ function PostScreen() {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
-            onChangeText={(text) =>
-              setHeight(text)
-            }
+            onChangeText={(text) => setHeight(text)}
           />
           <Text style={postStyle.whl}>cm</Text>
         </View>
@@ -311,9 +301,7 @@ function PostScreen() {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
-            onChangeText={(text) =>
-              setLength(text)
-            }
+            onChangeText={(text) => setLength(text)}
           />
           <Text style={postStyle.whl}>cm</Text>
         </View>
@@ -325,7 +313,11 @@ function PostScreen() {
         <Conditions onItemChange={onConditionsChange} />
       </View>
       <View style={generelPositioning.flexRowSpaceEvenly}>
-        <GradientButton title={"Post animal"} style={postStyle.postButton} onPress={postData} />
+        <GradientButton
+          title={"Post animal"}
+          style={postStyle.postButton}
+          onPress={postData}
+        />
         <Button
           title={"Cancel"}
           containerStyle={postStyle.cancelButton}

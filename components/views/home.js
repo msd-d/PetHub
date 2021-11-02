@@ -18,7 +18,9 @@ const renderItem = ({ item }) => (
       <View style={homeStyle.chipBox}>
         <Chip
           title={
-            <GradientText style={homeStyle.chipText}>{(item.breeds.length > 1) ? 'Mixed' : item.breeds[0]}</GradientText>
+            <GradientText style={homeStyle.chipText}>
+              {item.breeds.length > 1 ? "Mixed" : item.breeds[0]}
+            </GradientText>
           }
           titleStyle={homeStyle.chipText}
           buttonStyle={homeStyle.chip}
@@ -35,7 +37,7 @@ const renderItem = ({ item }) => (
         <Chip
           title={
             <GradientText style={homeStyle.chipText}>
-              {(new Date().getFullYear() - item.birthDate.year) + " y/o"}
+              {new Date().getFullYear() - item.birthDate.year + " y/o"}
             </GradientText>
           }
           titleStyle={homeStyle.chipText}

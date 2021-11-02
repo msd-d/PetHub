@@ -84,5 +84,5 @@ export default class Conditions extends React.Component {
 }
 
 Conditions.propTypes = {
-  onItemChange: PropTypes.func
-}
+  onItemChange: PropTypes.func,
+};

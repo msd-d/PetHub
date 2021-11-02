@@ -32,9 +32,7 @@ export default class GradientButton extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity
-        onPress={this.props.onPress}
-      >
+      <TouchableOpacity onPress={this.props.onPress}>
         <LinearGradient
           colors={["rgba(223, 122, 153, 1)", "rgba(232, 193, 171, 1)"]}
           start={{ x: -1, y: -1 }}
@@ -55,5 +53,5 @@ export default class GradientButton extends React.Component {
 GradientButton.propTypes = {
   style: Text.propTypes.style,
   title: PropTypes.string,
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
 };

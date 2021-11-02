@@ -5,7 +5,7 @@ export default class Database {
   static setup() {
     this.setItem(conditions, "conditions");
     this.setItem(breeds, "breeds");
-    this.setItem(data,'data')
+    this.setItem(data, "data");
   }
 
   static async getItem(key) {

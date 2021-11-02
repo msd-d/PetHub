@@ -2,7 +2,7 @@ const data = [
   {
     id: 0,
     name: "Daisy",
-    breeds: ["Golden reciever","Husky"],
+    breeds: ["Golden reciever", "Husky"],
     conditions: [],
     gender: "Female",
     birthDate: {
@@ -15,7 +15,7 @@ const data = [
     height: 550,
     length: 1500,
     location: "Dogburg",
-    description: "A happy doggy dog"
+    description: "A happy doggy dog",
   },
   {
     id: 1,
@@ -33,7 +33,7 @@ const data = [
     height: 550,
     length: 1500,
     location: "Dogburg",
-    description: "A happy doggy dog"
+    description: "A happy doggy dog",
   },
   {
     id: 2,
@@ -51,7 +51,7 @@ const data = [
     height: 550,
     length: 1500,
     location: "Dogburg",
-    description: "A happy doggy dog"
+    description: "A happy doggy dog",
   },
 ];
 
