@@ -8,7 +8,7 @@ import homeStyle from "../styles/home-style";
 const renderItem = ({ item }) => (
   <View style={homeStyle.card}>
     <Image
-      source={{uri: item.images[0]}}
+      source={{ uri: item.images[0] }}
       resizeMode="cover"
       overflow="hidden"
       style={homeStyle.image}
@@ -62,9 +62,9 @@ export default class HomeScreen extends React.Component {
   }
 
   onRefresh() {
-    this.setState({isFetching: true});
+    this.setState({ isFetching: true });
     this.getData();
-    this.setState({isFetching: false});
+    this.setState({ isFetching: false });
   }
 
   componentDidMount() {

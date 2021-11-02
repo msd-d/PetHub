@@ -10,7 +10,9 @@ const data = [
       month: 4,
       year: 2002,
     },
-    images: ["https://nationaltoday.com/wp-content/uploads/2020/02/national-golden-retriever-day-640x514.jpg"],
+    images: [
+      "https://nationaltoday.com/wp-content/uploads/2020/02/national-golden-retriever-day-640x514.jpg",
+    ],
     weight: 1025,
     height: 550,
     length: 1500,
@@ -28,12 +30,15 @@ const data = [
       month: 4,
       year: 2015,
     },
-    images: ["https://i.barkpost.com/wp-content/uploads/2019/06/corgi-by-the-beach-again.jpg?q=70&fit=crop&crop=entropy&w=808&h=500"],
+    images: [
+      "https://i.barkpost.com/wp-content/uploads/2019/06/corgi-by-the-beach-again.jpg?q=70&fit=crop&crop=entropy&w=808&h=500",
+    ],
     weight: 1025,
     height: 550,
     length: 1500,
     location: "Dogburg",
-    description: "A small dog with a big temper! Likes the usual stuff walks, playing and water.",
+    description:
+      "A small dog with a big temper! Likes the usual stuff walks, playing and water.",
   },
   {
     id: 2,
@@ -51,7 +56,8 @@ const data = [
     height: 550,
     length: 1000,
     location: "Sonderborg",
-    description: "A calm cat with a dog-like personality. It likes to hunt so you wouldn't have problems with pests again!",
+    description:
+      "A calm cat with a dog-like personality. It likes to hunt so you wouldn't have problems with pests again!",
   },
 ];
 
