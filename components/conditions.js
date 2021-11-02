@@ -4,6 +4,7 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import tagSelectionStyle from "./styles/tag-selection-style";
 import Database from "./database";
+import PropTypes from "prop-types";
 
 // custom icon renderer passed to iconRenderer prop
 // see the switch for possible icon name
@@ -45,11 +46,11 @@ const icon = ({ name, size = 18, style }) => {
 };
 
 export default class Conditions extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      selectedItems: [],
       conditions: [],
+      selectedItems: [],
     };
   }
 
@@ -71,10 +72,17 @@ export default class Conditions extends React.Component {
         onSelectedItemsChange={(selectedItems) =>
           this.setState({ selectedItems })
         }
+        onSelectedItemObjectsChange={(selectedItems) =>
+          this.props.onItemChange(selectedItems)
+        }
         selectedItems={this.state.selectedItems}
         selectText={"Select animals conditions"}
         styles={tagSelectionStyle}
       />
     );
   }
+}
+
+Conditions.propTypes = {
+  onItemChange: PropTypes.func
 }
