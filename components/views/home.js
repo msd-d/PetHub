@@ -8,7 +8,7 @@ import homeStyle from "../styles/home-style";
 const renderItem = ({ item }) => (
   <View style={homeStyle.card}>
     <Image
-      source={item.image}
+      source={item.images[0]}
       resizeMode="cover"
       overflow="hidden"
       style={homeStyle.image}
@@ -18,7 +18,7 @@ const renderItem = ({ item }) => (
       <View style={homeStyle.chipBox}>
         <Chip
           title={
-            <GradientText style={homeStyle.chipText}>{item.breed}</GradientText>
+            <GradientText style={homeStyle.chipText}>{(item.breeds.length > 1) ? 'Mixed' : item.breeds[0]}</GradientText>
           }
           titleStyle={homeStyle.chipText}
           buttonStyle={homeStyle.chip}
@@ -35,7 +35,7 @@ const renderItem = ({ item }) => (
         <Chip
           title={
             <GradientText style={homeStyle.chipText}>
-              {item.age + " years old"}
+              {(new Date().getFullYear() - item.birthDate.year) + " y/o"}
             </GradientText>
           }
           titleStyle={homeStyle.chipText}
