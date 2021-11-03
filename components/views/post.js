@@ -58,38 +58,48 @@ const data = {
 
 const ImageBoxes = () => {
   const [images, setImages] = useState([]);
+  const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        await ImagePicker.requestMediaLibraryPermissionsAsync().then((status) => setStatus(status));
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
 
   const ImageBox = (props) => {
-    useEffect(() => {
-      (async () => {
+
+    const pickImage = async () => {
+      if (status == "granted") {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsMultipleSelection: true,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+
+        if (!result.cancelled) {
+          if (typeof images[props.number] == "undefined") {
+            setImages((images) => [...images, result.uri]);
+          } else {
+            const updatedImages = [...images];
+            updatedImages[props.number] = result.uri;
+            setImages(updatedImages);
+          }
+          data.images = images;
+        }
+      } else {
         if (Platform.OS !== "web") {
-          const { status } =
-            await ImagePicker.requestMediaLibraryPermissionsAsync();
+          await ImagePicker.requestMediaLibraryPermissionsAsync().then((status) => setStatus(status));
           if (status !== "granted") {
             alert("Sorry, we need camera roll permissions to make this work!");
           }
         }
-      })();
-    }, []);
-
-    const pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsMultipleSelection: true,
-        allowsEditing: true,
-        aspect: [1, 1],
-        quality: 1,
-      });
-
-      if (!result.cancelled) {
-        if (typeof images[props.number] == "undefined") {
-          setImages((images) => [...images, result.uri]);
-        } else {
-          const updatedImages = [...images];
-          updatedImages[props.number] = result.uri;
-          setImages(updatedImages);
-        }
-        data.images = images;
       }
     };
 
