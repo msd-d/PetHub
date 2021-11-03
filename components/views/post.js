@@ -63,7 +63,9 @@ const ImageBoxes = () => {
   useEffect(() => {
     (async () => {
       if (Platform.OS !== "web") {
-        await ImagePicker.requestMediaLibraryPermissionsAsync().then((status) => setStatus(status));
+        await ImagePicker.requestMediaLibraryPermissionsAsync().then((status) =>
+          setStatus(status)
+        );
         if (status !== "granted") {
           alert("Sorry, we need camera roll permissions to make this work!");
         }
@@ -72,7 +74,6 @@ const ImageBoxes = () => {
   }, []);
 
   const ImageBox = (props) => {
-
     const pickImage = async () => {
       if (status == "granted") {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -95,14 +96,15 @@ const ImageBoxes = () => {
         }
       } else {
         if (Platform.OS !== "web") {
-          await ImagePicker.requestMediaLibraryPermissionsAsync().then((status) => setStatus(status));
+          await ImagePicker.requestMediaLibraryPermissionsAsync().then(
+            (status) => setStatus(status)
+          );
           if (status !== "granted") {
             alert("Sorry, we need camera roll permissions to make this work!");
           }
         }
       }
     };
-
     const longPress = () => {
       if (typeof images[props.number] !== "undefined") {
         setImages((images) => images.filter((image, i) => i !== props.number));
