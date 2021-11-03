@@ -207,6 +207,7 @@ function PostScreen() {
         buttonStyle={postStyle.genderButtonDisabled}
         innerBorderStyle={postStyle.genderBorder}
         selectedButtonStyle={postStyle.genderButton}
+        textStyle={postStyle.whl2}
       />
       <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
       <View>
