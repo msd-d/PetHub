@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
@@ -60,6 +60,10 @@ const ImageBoxes = () => {
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState(null);
 
+  useEffect(() => {
+    data.images = images;
+  });
+
   const ImageBox = (props) => {
     const pickImage = async () => {
       if (Platform.OS !== "web" && status == null) {
@@ -78,15 +82,13 @@ const ImageBoxes = () => {
         });
 
         if (!result.cancelled) {
-          if (typeof images[props.number] == "undefined") {
+          if (typeof images[props.number] === "undefined") {
             setImages((images) => [...images, result.uri]);
           } else {
             const updatedImages = [...images];
             updatedImages[props.number] = result.uri;
             setImages(updatedImages);
           }
-          console.log(images);
-          data.images = images;
         }
       }
     };
@@ -94,7 +96,6 @@ const ImageBoxes = () => {
     const longPress = () => {
       if (typeof images[props.number] !== "undefined") {
         setImages((images) => images.filter((image, i) => i !== props.number));
-        data.images = images;
       }
     };
 

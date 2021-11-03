@@ -56,10 +56,8 @@ export default class Database {
   static async clearAll() {
     try {
       await AsyncStorage.clear();
-    } catch(e) {
+    } catch (e) {
       // clear error
     }
-  
-    console.log('Done.')
   }
 }
