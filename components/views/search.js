@@ -5,6 +5,7 @@ import GradientText from "../colors/gradient-text";
 import Database from "../database";
 import searchStyle from "../styles/search-style";
 import postStyle from "../styles/post-style";
+import colors from "../colors";
 
 const renderItem = ({ item }) => (
   <View style={searchStyle.card}>
@@ -89,10 +90,17 @@ export default class SearchScreen extends React.Component {
     return (
       <View style={searchStyle.container}>
         <SearchBar
-          style={searchStyle.input}
           placeholder={"Search"}
           value={this.state.search}
           onChangeText={this.updateSearch}
+          // round={true}
+          searchIcon={{ color: colors.pethubPink }}
+          clearIcon={{ color: colors.pethubPink }}
+          inputStyle={searchStyle.searchBarInput}
+          containerStyle={searchStyle.searchBarContainer}
+          inputContainerStyle={searchStyle.searchBarInputContainer}
+          leftIconContainerStyle={searchStyle.searchBarLeftIconContainer}
+          rightIconContainerStyle={searchStyle.searchBarRightIconContainer}
         />
         <ButtonGroup
           selectedIndex={this.state.selectedIndex}

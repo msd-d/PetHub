@@ -51,14 +51,23 @@ export default StyleSheet.create({
     overflow: "hidden",
     borderRadius: 23,
   },
-  input: {
-    marginHorizontal: config.deviceWidth * 0.05,
+  searchBarInput: {
     backgroundColor: colors.lightGray,
-    borderRadius: 8,
-    padding: 10,
+    color: colors.darkGray,
   },
+  searchBarInputContainer: {
+    backgroundColor: colors.lightGray,
+    borderRadius: 14,
+  },
+  searchBarContainer: {
+    marginHorizontal: config.deviceWidth * 0.05,
+    backgroundColor: colors.white,
+    color: colors.white,
+  },
+  searchBarLeftIconContainer: {},
+  searchBarRightIconContainer: {},
+
   container: {
-    marginTop: 10,
-    marginBottom: 10,
+    backgroundColor: colors.white,
   },
 });
