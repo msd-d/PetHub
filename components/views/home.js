@@ -8,7 +8,7 @@ import homeStyle from "../styles/home-style";
 const renderItem = ({ item }) => (
   <View style={homeStyle.card}>
     <Image
-      source={item.image}
+      source={{ uri: item.images[0] }}
       resizeMode="cover"
       overflow="hidden"
       style={homeStyle.image}
@@ -18,7 +18,9 @@ const renderItem = ({ item }) => (
       <View style={homeStyle.chipBox}>
         <Chip
           title={
-            <GradientText style={homeStyle.chipText}>{item.breed}</GradientText>
+            <GradientText style={homeStyle.chipText}>
+              {item.breeds.length > 1 ? "Mixed" : item.breeds[0]}
+            </GradientText>
           }
           titleStyle={homeStyle.chipText}
           buttonStyle={homeStyle.chip}
@@ -35,7 +37,7 @@ const renderItem = ({ item }) => (
         <Chip
           title={
             <GradientText style={homeStyle.chipText}>
-              {item.age + " years old"}
+              {new Date().getFullYear() - item.birthDate.year + " y/o"}
             </GradientText>
           }
           titleStyle={homeStyle.chipText}
@@ -51,20 +53,33 @@ export default class HomeScreen extends React.Component {
     super();
     this.state = {
       homeData: [],
+      isFetching: false,
     };
   }
 
+  getData() {
+    Database.getItem("data").then((data) => this.setState({ homeData: data }));
+  }
+
+  onRefresh() {
+    this.setState({ isFetching: true });
+    this.getData();
+    this.setState({ isFetching: false });
+  }
+
   componentDidMount() {
-    Database.getItem("home").then((data) => this.setState({ homeData: data }));
+    this.getData();
   }
 
   render() {
     return (
       <FlatList
         data={this.state.homeData}
+        extraData={this.state.homeData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
-        extraData={this.state.homeData}
+        refreshing={this.state.isFetching}
+        onRefresh={() => this.onRefresh()}
       />
     );
   }

@@ -1,27 +1,63 @@
-const homeData = [
+const data = [
+  {
+    id: 0,
+    name: "Daisy",
+    breeds: ["Golden reciever", "Husky"],
+    conditions: [],
+    gender: "Female",
+    birthDate: {
+      day: 3,
+      month: 4,
+      year: 2002,
+    },
+    images: [
+      "https://nationaltoday.com/wp-content/uploads/2020/02/national-golden-retriever-day-640x514.jpg",
+    ],
+    weight: 1025,
+    height: 550,
+    length: 1500,
+    location: "Dogburg",
+    description: "A happy doggy dog",
+  },
   {
     id: 1,
-    name: "Daisy",
-    breed: "Mixed",
-    gender: "Female",
-    age: 5,
-    image: require("../images/image1.png"),
+    name: "Harry",
+    breeds: ["Corgi"],
+    conditions: [],
+    gender: "Male",
+    birthDate: {
+      day: 20,
+      month: 4,
+      year: 2015,
+    },
+    images: [
+      "https://i.barkpost.com/wp-content/uploads/2019/06/corgi-by-the-beach-again.jpg?q=70&fit=crop&crop=entropy&w=808&h=500",
+    ],
+    weight: 1025,
+    height: 550,
+    length: 1500,
+    location: "Dogburg",
+    description:
+      "A small dog with a big temper! Likes the usual stuff walks, playing and water.",
   },
   {
     id: 2,
-    name: "Daisy2",
-    breed: "Mixed",
+    name: "Tuffy",
+    breeds: ["Chartreux"],
+    conditions: [],
     gender: "Female",
-    age: 5,
-    image: require("../images/image1.png"),
-  },
-  {
-    id: 3,
-    name: "Gustav",
-    breed: "Alcholic",
-    gender: "Female",
-    age: 5,
-    image: require("../images/image1.png"),
+    birthDate: {
+      day: 12,
+      month: 5,
+      year: 2010,
+    },
+    images: ["https://petkeen.com/wp-content/uploads/2021/05/Chartreux.jpeg"],
+    weight: 3625,
+    height: 550,
+    length: 1000,
+    location: "Sonderborg",
+    description:
+      "A calm cat with a dog-like personality. It likes to hunt so you wouldn't have problems with pests again!",
   },
 ];
 
@@ -95,4 +131,4 @@ const breeds = [
   },
 ];
 
-export { homeData, conditions, breeds };
+export { data, conditions, breeds };

@@ -1,11 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { breeds, conditions, homeData } from "./dummy-data";
+import { breeds, conditions, data } from "./dummy-data";
 
 export default class Database {
-  static setup() {
-    this.setItem(conditions, "conditions");
-    this.setItem(breeds, "breeds");
-    this.setItem(homeData, "home");
+  static async setup() {
+    const init = await this.getItem("dataInit");
+    if (!init) {
+      this.setItem(conditions, "conditions");
+      this.setItem(breeds, "breeds");
+      this.setItem(data, "data");
+      this.setItem(true, "dataInit");
+    }
   }
 
   static async getItem(key) {
@@ -46,6 +50,14 @@ export default class Database {
       await AsyncStorage.multiSet(pairs);
     } catch (e) {
       //save error
+    }
+  }
+
+  static async clearAll() {
+    try {
+      await AsyncStorage.clear();
+    } catch (e) {
+      // clear error
     }
   }
 }

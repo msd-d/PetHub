@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
@@ -23,6 +23,7 @@ import PropTypes from "prop-types";
 import generelPositioning from "../styles/generel-positioning";
 import postStyle from "../styles/post-style";
 import GradientButton from "../colors/gradient-button";
+import Database from "../database";
 
 const viewText = {
   images: "Images",
@@ -36,38 +37,58 @@ const viewText = {
   conditions: "Conditions",
 };
 
+const data = {
+  id: 0,
+  images: [],
+  gender: "Male",
+  name: "",
+  birthDate: {
+    day: 3,
+    month: 4,
+    year: 2005,
+  },
+  description: "",
+  location: "",
+  weight: 0,
+  height: 0,
+  length: 0,
+  conditions: [],
+  breeds: [],
+};
+
 const ImageBoxes = () => {
   const [images, setImages] = useState([]);
+  const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+    data.images = images;
+  });
 
   const ImageBox = (props) => {
-    useEffect(() => {
-      (async () => {
-        if (Platform.OS !== "web") {
-          const { status } =
-            await ImagePicker.requestMediaLibraryPermissionsAsync();
-          if (status !== "granted") {
-            alert("Sorry, we need camera roll permissions to make this work!");
-          }
-        }
-      })();
-    }, []);
-
     const pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsMultipleSelection: true,
-        allowsEditing: true,
-        aspect: [1, 1],
-        quality: 1,
-      });
+      if (Platform.OS !== "web" && status == null) {
+        const stat = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!stat.granted) {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+        setStatus(stat);
+      } else if (status.granted) {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsMultipleSelection: true,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
 
-      if (!result.cancelled) {
-        if (typeof images[props.number] == "undefined") {
-          setImages((images) => [...images, result.uri]);
-        } else {
-          const updatedImages = [...images];
-          updatedImages[props.number] = result.uri;
-          setImages(updatedImages);
+        if (!result.cancelled) {
+          if (typeof images[props.number] === "undefined") {
+            setImages((images) => [...images, result.uri]);
+          } else {
+            const updatedImages = [...images];
+            updatedImages[props.number] = result.uri;
+            setImages(updatedImages);
+          }
         }
       }
     };
@@ -110,22 +131,64 @@ const ImageBoxes = () => {
 
 function PostScreen() {
   const genderButtons = ["Male", "Female"];
+
+  const [gender, setGender] = useState(0);
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
-  const [gender, setGender] = useState(0);
+  const [name, setName] = useState(null);
+  const [breeds, setBreeds] = useState([]);
+  const [description, setDescription] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [length, setLength] = useState(0);
+  const [conditions, setConditions] = useState([]);
 
   const onGenderChange = (index) => {
     setGender(index);
+    data.gender = genderButtons[index];
   };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
+    data.birthDate.day = currentDate.getDate();
+    data.birthDate.month = currentDate.getMonth();
+    data.birthDate.year = currentDate.getFullYear();
   };
 
   const showMode = () => {
     setShow(true);
+  };
+
+  const onBreedsChange = (newValue) => {
+    setBreeds(newValue);
+  };
+
+  const onConditionsChange = (newValue) => {
+    setConditions(newValue);
+  };
+
+  const postData = async () => {
+    data.gender = genderButtons[gender];
+    //data.birthDate = date.getDate() + ":" + (date.getMonth() + 1) + ":" + date.getFullYear();
+    data.name = name;
+    data.description = description;
+    data.location = location;
+    data.weight = weight;
+    data.height = height;
+    data.length = length;
+    data.breeds = breeds.map((item) => item.name);
+    data.conditions = conditions.map((item) => item.name);
+
+    let dataArray = await Database.getItem("data");
+    data.id = dataArray.length;
+    dataArray = [...dataArray, data];
+
+    Database.setItem(dataArray, "data");
+
+    Database.getItem("data").then((items) => console.log(items));
   };
 
   return (
@@ -158,7 +221,7 @@ function PostScreen() {
             buttonStyle={postStyle.dateButton}
             titleStyle={postStyle.dateTitle}
             onPress={showMode}
-            title={date.getUTCMonth() + 1}
+            title={date.getMonth() + 1}
           />
           <Button
             buttonStyle={postStyle.dateButton}
@@ -174,10 +237,11 @@ function PostScreen() {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the name of your animal"}
+        onChangeText={(text) => setName(text)}
       />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <View style={generelPositioning.marginBottom}>
-        <Breeds />
+        <Breeds onItemChange={onBreedsChange} />
       </View>
       <GradientText style={postStyle.chipText}>
         {viewText.description}
@@ -189,6 +253,7 @@ function PostScreen() {
         numberOfLines={4}
         placeholder="Write something nice about the animal..."
         style={postStyle.description}
+        onChangeText={(text) => setDescription(text)}
       />
 
       <GradientText style={postStyle.chipText}>
@@ -197,6 +262,7 @@ function PostScreen() {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the location of your animal"}
+        onChangeText={(text) => setLocation(text)}
       />
       <GradientText style={postStyle.chipText}>
         {viewText.measurements}
@@ -210,6 +276,7 @@ function PostScreen() {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
+            onChangeText={(text) => setWeight(text)}
           />
           <Text style={postStyle.whl}>g</Text>
         </View>
@@ -221,6 +288,7 @@ function PostScreen() {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
+            onChangeText={(text) => setHeight(text)}
           />
           <Text style={postStyle.whl}>cm</Text>
         </View>
@@ -232,6 +300,7 @@ function PostScreen() {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
+            onChangeText={(text) => setLength(text)}
           />
           <Text style={postStyle.whl}>cm</Text>
         </View>
@@ -240,10 +309,14 @@ function PostScreen() {
         {viewText.conditions}
       </GradientText>
       <View style={generelPositioning.marginBottom}>
-        <Conditions />
+        <Conditions onItemChange={onConditionsChange} />
       </View>
       <View style={generelPositioning.flexRowSpaceEvenly}>
-        <GradientButton title={"Post animal"} style={postStyle.postButton} />
+        <GradientButton
+          title={"Post animal"}
+          style={postStyle.postButton}
+          onPress={postData}
+        />
         <Button
           title={"Cancel"}
           containerStyle={postStyle.cancelButton}

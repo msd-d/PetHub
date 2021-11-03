@@ -4,6 +4,7 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import tagSelectionStyle from "./styles/tag-selection-style";
 import Database from "./database";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({});
 
@@ -47,11 +48,11 @@ const icon = ({ name, size = 18, style }) => {
 };
 
 export default class Breeds extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      selectedItems: [],
       breeds: [],
+      selectedItems: [],
     };
   }
 
@@ -71,6 +72,9 @@ export default class Breeds extends React.Component {
         onSelectedItemsChange={(selectedItems) =>
           this.setState({ selectedItems })
         }
+        onSelectedItemObjectsChange={(selectedItems) =>
+          this.props.onItemChange(selectedItems)
+        }
         selectedItems={this.state.selectedItems}
         searchPlaceholderText={"Search animals"}
         selectText={"Select an animal..."}
@@ -79,3 +83,7 @@ export default class Breeds extends React.Component {
     );
   }
 }
+
+Breeds.propTypes = {
+  onItemChange: PropTypes.func,
+};
