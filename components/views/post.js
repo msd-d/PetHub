@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Image,
@@ -85,6 +85,7 @@ const ImageBoxes = () => {
             updatedImages[props.number] = result.uri;
             setImages(updatedImages);
           }
+          console.log(images);
           data.images = images;
         }
       }
