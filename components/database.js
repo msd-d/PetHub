@@ -52,4 +52,14 @@ export default class Database {
       //save error
     }
   }
+
+  static async clearAll() {
+    try {
+      await AsyncStorage.clear();
+    } catch(e) {
+      // clear error
+    }
+  
+    console.log('Done.')
+  }
 }
