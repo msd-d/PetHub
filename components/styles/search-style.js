@@ -51,4 +51,14 @@ export default StyleSheet.create({
     overflow: "hidden",
     borderRadius: 23,
   },
+  input: {
+    marginHorizontal: config.deviceWidth * 0.05,
+    backgroundColor: colors.lightGray,
+    borderRadius: 8,
+    padding: 10,
+  },
+  container: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
 });
