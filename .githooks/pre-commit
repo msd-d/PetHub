@@ -1,3 +1,12 @@
 #!/bin/sh
+git diff --full-index --binary > /tmp/stash.$$
+git stash -q --keep-index
+
 npm run format:check && \
 npm test
+RESULT=$?
+
+git apply --whitespace=nowarn < /tmp/stash.$$ && git stash drop -q
+rm /tmp/stash.$$
+
+exit $RESULT
