@@ -72,6 +72,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 25,
     marginVertical: config.deviceWidth * 0.025,
+    marginHorizontal: config.deviceWidth * 0.05,
   },
   dateButton: {
     backgroundColor: colors.lightGray,
