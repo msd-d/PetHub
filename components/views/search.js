@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, FlatList } from "react-native";
+import { Text, View, Image, FlatList, TextInput } from "react-native";
 import { Chip, ButtonGroup, SearchBar } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import Database from "../database";
@@ -59,17 +59,9 @@ export default class SearchScreen extends React.Component {
       isFetching: false,
       selectedIndex: 0,
       search: "",
+      yearMin: "",
+      yearMax: "",
     };
-    this.updateIndex = this.updateIndex.bind(this);
-    this.updateSearch = this.updateSearch.bind(this);
-  }
-
-  updateIndex(selectedIndex) {
-    this.setState({ selectedIndex });
-  }
-
-  updateSearch(search) {
-    this.setState({ search });
   }
 
   getData() {
@@ -92,8 +84,7 @@ export default class SearchScreen extends React.Component {
         <SearchBar
           placeholder={"Search"}
           value={this.state.search}
-          onChangeText={this.updateSearch}
-          // round={true}
+          onChangeText={(search) => this.setState({ search })}
           searchIcon={{ color: colors.pethubPink }}
           clearIcon={{ color: colors.pethubPink }}
           inputStyle={searchStyle.searchBarInput}
@@ -104,7 +95,7 @@ export default class SearchScreen extends React.Component {
         />
         <ButtonGroup
           selectedIndex={this.state.selectedIndex}
-          onPress={this.updateIndex}
+          onPress={(selectedIndex) => this.setState({ selectedIndex })}
           buttons={genderButtons}
           containerStyle={postStyle.genderContainer}
           buttonStyle={postStyle.genderButtonDisabled}
@@ -112,6 +103,22 @@ export default class SearchScreen extends React.Component {
           selectedButtonStyle={postStyle.genderButton}
           textStyle={postStyle.whl2}
         />
+        <View style={searchStyle.inputContainer}>
+          <TextInput
+            style={searchStyle.input}
+            value={this.state.yearMin}
+            placeholder="Minimum age (in years) "
+            onChangeText={(yearMin) => this.setState({ yearMin })}
+            keyboardType="numeric"
+          />
+          <TextInput
+            style={searchStyle.input}
+            value={this.state.yearMax}
+            placeholder="Maximum age (in years) "
+            onChangeText={(yearMax) => this.setState({ yearMax })}
+            keyboardType="numeric"
+          />
+        </View>
         <FlatList
           data={this.state.homeData}
           extraData={this.state.homeData}
