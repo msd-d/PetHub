@@ -26,9 +26,8 @@ export default StyleSheet.create({
     height: 40,
     justifyContent: "center",
     borderRadius: 100,
-    position: "absolute",
-    top: -220,
-    right: 0,
+    display: "flex",
+    flexDirection: "row-reverse",
   },
 
   name: {
@@ -73,5 +72,14 @@ export default StyleSheet.create({
     alignSelf: "center",
     width: config.deviceWidth * 0.8,
     height: 100,
+  },
+
+  removeBox: {
+    display: "flex",
+    flexDirection: "row-reverse",
+    position: "absolute",
+    margin: config.deviceWidth * 0.05,
+    top: 1,
+    width: config.deviceWidth * 0.8,
   },
 });

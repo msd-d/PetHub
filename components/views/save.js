@@ -13,12 +13,15 @@ const renderSaveScreen = ({ item }) => (
       overflow="hidden"
       style={saveStyle.image}
     />
-    <View style={saveStyle.cardContent}>
-      <Text style={saveStyle.name}>{item.name}</Text>
+    <View style={saveStyle.removeBox}>
       <TouchableOpacity
         style={saveStyle.remove}
         onPress={() => remove(item.id)}
       />
+    </View>
+    <View style={saveStyle.cardContent}>
+      <Text style={saveStyle.name}>{item.name}</Text>
+
       <View style={saveStyle.chipBox}>
         <Chip
           title={
