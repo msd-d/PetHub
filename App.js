@@ -6,6 +6,7 @@ import SearchScreen from "components/views/search";
 import PostScreen from "components/views/post";
 import SaveScreen from "components/views/save";
 import ProfileScreen from "components/views/profile";
+import LoginScreen from "components/views/login";
 
 import AppLoading from "expo-app-loading";
 import { useFonts, Inter_700Bold } from "@expo-google-fonts/inter";
@@ -28,8 +29,13 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
+            headerStatusBarHeight: 0,
+            headerTitle: "",
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
+
+              // TODO: Handle sessions for navigation
+              // Show profile or login view based on session state
 
               switch (route.name) {
                 case "Home":
@@ -43,6 +49,9 @@ export default function App() {
                   break;
                 case "Save":
                   iconName = focused ? "bookmark" : "bookmark-outline";
+                  break;
+                case "Login":
+                  iconName = focused ? "log-in" : "log-in-outline";
                   break;
                 case "Profile":
                   iconName = focused
@@ -64,6 +73,7 @@ export default function App() {
           <Tab.Screen name="Search" component={SearchScreen} />
           <Tab.Screen name="Post" component={PostScreen} />
           <Tab.Screen name="Save" component={SaveScreen} />
+          <Tab.Screen name="Login" component={LoginScreen} />
           <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
       </NavigationContainer>

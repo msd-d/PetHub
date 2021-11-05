@@ -9,6 +9,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 import generelPositioning from "../styles/generel-positioning";
 import postStyle from "../styles/post-style";
+import standardStyle from "../styles/standard-style";
 import GradientButton from "../colors/gradient-button";
 import Database from "../database";
 import MultiSelect from "../multi-select";
@@ -124,10 +125,11 @@ function PostScreen() {
         selectedIndex={gender}
         onPress={onGenderChange}
         buttons={genderButtons}
-        containerStyle={postStyle.genderContainer}
-        buttonStyle={postStyle.genderButtonDisabled}
-        innerBorderStyle={postStyle.genderBorder}
-        selectedButtonStyle={postStyle.genderButton}
+        containerStyle={standardStyle.genderContainer}
+        buttonStyle={standardStyle.genderButtonDisabled}
+        innerBorderStyle={standardStyle.genderBorder}
+        selectedButtonStyle={standardStyle.genderButton}
+        textStyle={standardStyle.buttonTextBold}
       />
       <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
       <View>
