@@ -16,6 +16,8 @@ import Database from "./components/database";
 
 const Tab = createBottomTabNavigator();
 
+global.loggedIn = true;
+
 export default function App() {
   Database.setup();
   let [fontsLoaded] = useFonts({
@@ -71,7 +73,18 @@ export default function App() {
         >
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Search" component={SearchScreen} />
-          <Tab.Screen name="Post" component={PostScreen} />
+          <Tab.Screen
+            name="Post"
+            component={PostScreen}
+            listeners={({ navigation, route }) => ({
+              tabPress: (event) => {
+                event.preventDefault();
+                global.loggedIn
+                  ? navigation.navigate("Post")
+                  : navigation.navigate("Login");
+              },
+            })}
+          />
           <Tab.Screen name="Save" component={SaveScreen} />
           <Tab.Screen name="Login" component={LoginScreen} />
           <Tab.Screen name="Profile" component={ProfileScreen} />
