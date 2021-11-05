@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Image,
-  Text,
-  Platform,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState } from "react";
+import { View, Text, ScrollView } from "react-native";
 import { Button, ButtonGroup } from "react-native-elements";
-import * as ImagePicker from "expo-image-picker";
 import GradientText from "../colors/gradient-text";
 
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { TextInput } from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import PropTypes from "prop-types";
 import generelPositioning from "../styles/generel-positioning";
 import postStyle from "../styles/post-style";
 import GradientButton from "../colors/gradient-button";
 import Database from "../database";
 import MultiSelect from "../multi-select";
+import ImageBoxes from "../image-boxes";
 
 const viewText = {
   images: "Images",
@@ -54,79 +45,6 @@ const data = {
   breeds: [],
 };
 
-const ImageBoxes = () => {
-  const [images, setImages] = useState([]);
-  const [status, setStatus] = useState(null);
-
-  useEffect(() => {
-    data.images = images;
-  });
-
-  const ImageBox = (props) => {
-    const pickImage = async () => {
-      if (Platform.OS !== "web" && status == null) {
-        const stat = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (!stat.granted) {
-          alert("Sorry, we need camera roll permissions to make this work!");
-        }
-        setStatus(stat);
-      } else if (status.granted) {
-        let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsMultipleSelection: true,
-          allowsEditing: true,
-          aspect: [1, 1],
-          quality: 1,
-        });
-
-        if (!result.cancelled) {
-          if (typeof images[props.number] === "undefined") {
-            setImages((images) => [...images, result.uri]);
-          } else {
-            const updatedImages = [...images];
-            updatedImages[props.number] = result.uri;
-            setImages(updatedImages);
-          }
-        }
-      }
-    };
-
-    const longPress = () => {
-      if (typeof images[props.number] !== "undefined") {
-        setImages((images) => images.filter((image, i) => i !== props.number));
-      }
-    };
-
-    return (
-      <TouchableOpacity
-        style={postStyle.button}
-        onPress={pickImage}
-        onLongPress={longPress}
-      >
-        <View style={postStyle.icon}>
-          <Ionicons name="add-circle-outline" size={30} color="white" />
-        </View>
-        <Image source={{ uri: images[props.number] }} style={postStyle.image} />
-      </TouchableOpacity>
-    );
-  };
-
-  ImageBox.propTypes = {
-    number: PropTypes.number,
-  };
-
-  return (
-    <View style={generelPositioning.flexRowWrap}>
-      <ImageBox number={0} />
-      <ImageBox number={1} />
-      <ImageBox number={2} />
-      <ImageBox number={3} />
-      <ImageBox number={4} />
-      <ImageBox number={5} />
-    </View>
-  );
-};
-
 function PostScreen() {
   const genderButtons = ["Male", "Female"];
 
@@ -141,6 +59,7 @@ function PostScreen() {
   const [height, setHeight] = useState(0);
   const [length, setLength] = useState(0);
   const [conditions, setConditions] = useState([]);
+  const [images, setImages] = useState([]);
 
   const onGenderChange = (index) => {
     setGender(index);
@@ -168,6 +87,10 @@ function PostScreen() {
     setConditions(newValue);
   };
 
+  const onImagesChange = (newValue) => {
+    setImages(newValue);
+  };
+
   const postData = async () => {
     data.gender = genderButtons[gender];
     data.name = name;
@@ -178,6 +101,7 @@ function PostScreen() {
     data.length = length;
     data.breeds = breeds.map((item) => item.name);
     data.conditions = conditions.map((item) => item.name);
+    data.images = images;
 
     let dataArray = await Database.getItem("data");
     data.id = dataArray.length;
@@ -194,7 +118,7 @@ function PostScreen() {
       contentContainerStyle={postStyle.scrollviewContainer}
     >
       <GradientText style={postStyle.chipText}>{viewText.images}</GradientText>
-      <ImageBoxes />
+      <ImageBoxes setImages={onImagesChange} />
       <GradientText style={postStyle.chipText}>{viewText.gender}</GradientText>
       <ButtonGroup
         selectedIndex={gender}
@@ -271,35 +195,35 @@ function PostScreen() {
             style={postStyle.input2}
             placeholder={"Enter weight in g"}
             keyboardType={"number-pad"}
-            maxLength={4}
+            maxLength={6}
             textAlign={"center"}
             onChangeText={(text) => setWeight(text)}
           />
-          <Text style={postStyle.whl}>g</Text>
+          <Text style={postStyle.whl}>kg</Text>
         </View>
         <View style={generelPositioning.flexRowMarginCenterItems}>
           <Text style={postStyle.whl}>Height</Text>
           <TextInput
             style={postStyle.input2}
-            placeholder={"Enter height in cm"}
+            placeholder={"Enter height in m"}
             keyboardType={"number-pad"}
-            maxLength={4}
+            maxLength={6}
             textAlign={"center"}
             onChangeText={(text) => setHeight(text)}
           />
-          <Text style={postStyle.whl}>cm</Text>
+          <Text style={postStyle.whl}>m</Text>
         </View>
         <View style={generelPositioning.flexRowMarginCenterItems}>
           <Text style={postStyle.whl}>Length</Text>
           <TextInput
             style={postStyle.input2}
-            placeholder={"Enter length in cm"}
+            placeholder={"Enter length in m"}
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
             onChangeText={(text) => setLength(text)}
           />
-          <Text style={postStyle.whl}>cm</Text>
+          <Text style={postStyle.whl}>m</Text>
         </View>
       </View>
       <GradientText style={postStyle.chipText}>
