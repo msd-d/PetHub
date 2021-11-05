@@ -15,7 +15,10 @@ const renderSaveScreen = ({ item }) => (
     />
     <View style={saveStyle.cardContent}>
       <Text style={saveStyle.name}>{item.name}</Text>
-      <TouchableOpacity style={saveStyle.remove} onPress={() => remove()} />
+      <TouchableOpacity
+        style={saveStyle.remove}
+        onPress={() => remove(item.id)}
+      />
       <View style={saveStyle.chipBox}>
         <Chip
           title={
@@ -49,8 +52,8 @@ const renderSaveScreen = ({ item }) => (
   </View>
 );
 
-function remove() {
-  console.log("Test");
+function remove(id) {
+  console.log("Remove " + id);
 }
 
 export default class SavedScreen extends React.Component {
