@@ -14,6 +14,7 @@ import GradientButton from "../colors/gradient-button";
 import Database from "../database";
 import MultiSelect from "../multi-select";
 import ImageBoxes from "../image-boxes";
+import PropTypes from "prop-types";
 
 const viewText = {
   images: "Images",
@@ -46,9 +47,10 @@ const data = {
   breeds: [],
 };
 
-function PostScreen() {
+function PostScreen({ navigation }) {
   const genderButtons = ["Male", "Female"];
 
+  const [animalData, setAnimalData] = useState({ ...data });
   const [gender, setGender] = useState(0);
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
@@ -111,6 +113,8 @@ function PostScreen() {
     Database.setItem(dataArray, "data");
 
     Database.getItem("data").then((items) => console.log(items));
+
+    navigation.navigate("Home");
   };
 
   return (
@@ -253,5 +257,9 @@ function PostScreen() {
     </ScrollView>
   );
 }
+
+PostScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default PostScreen;
