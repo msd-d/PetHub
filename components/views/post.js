@@ -14,9 +14,6 @@ import GradientText from "../colors/gradient-text";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { TextInput } from "react-native";
 
-import Conditions from "../conditions";
-import Breeds from "../breeds";
-
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import PropTypes from "prop-types";
@@ -24,6 +21,7 @@ import generelPositioning from "../styles/generel-positioning";
 import postStyle from "../styles/post-style";
 import GradientButton from "../colors/gradient-button";
 import Database from "../database";
+import MultiSelect from "../multi-select";
 
 const viewText = {
   images: "Images",
@@ -172,7 +170,6 @@ function PostScreen() {
 
   const postData = async () => {
     data.gender = genderButtons[gender];
-    //data.birthDate = date.getDate() + ":" + (date.getMonth() + 1) + ":" + date.getFullYear();
     data.name = name;
     data.description = description;
     data.location = location;
@@ -241,7 +238,7 @@ function PostScreen() {
       />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <View style={generelPositioning.marginBottom}>
-        <Breeds onItemChange={onBreedsChange} />
+        <MultiSelect dataName={"breeds"} onItemChange={onBreedsChange} />
       </View>
       <GradientText style={postStyle.chipText}>
         {viewText.description}
@@ -309,7 +306,10 @@ function PostScreen() {
         {viewText.conditions}
       </GradientText>
       <View style={generelPositioning.marginBottom}>
-        <Conditions onItemChange={onConditionsChange} />
+        <MultiSelect
+          dataName={"conditions"}
+          onItemChange={onConditionsChange}
+        />
       </View>
       <View style={generelPositioning.flexRowSpaceEvenly}>
         <GradientButton
