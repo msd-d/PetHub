@@ -20,6 +20,17 @@ export default StyleSheet.create({
     borderRadius: 23,
   },
 
+  remove: {
+    backgroundColor: colors.white,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    borderRadius: 100,
+    position: "absolute",
+    top: -220,
+    right: 0,
+  },
+
   name: {
     fontFamily: "Inter_700Bold",
     fontStyle: "normal",

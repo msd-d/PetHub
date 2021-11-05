@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, FlatList } from "react-native";
+import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { Chip } from "react-native-elements/dist/buttons/Chip";
 import GradientText from "../colors/gradient-text";
 import Database from "../database";
@@ -15,6 +15,7 @@ const renderSaveScreen = ({ item }) => (
     />
     <View style={saveStyle.cardContent}>
       <Text style={saveStyle.name}>{item.name}</Text>
+      <TouchableOpacity style={saveStyle.remove} onPress={() => remove()} />
       <View style={saveStyle.chipBox}>
         <Chip
           title={
@@ -47,6 +48,10 @@ const renderSaveScreen = ({ item }) => (
     </View>
   </View>
 );
+
+function remove() {
+  console.log("Test");
+}
 
 export default class SavedScreen extends React.Component {
   constructor() {
