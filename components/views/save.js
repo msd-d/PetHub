@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, View, Image, FlatList } from "react-native";
+import { Chip } from "react-native-elements/dist/buttons/Chip";
+import GradientText from "../colors/gradient-text";
 import Database from "../database";
 import saveStyle from "../styles/save-style";
 
 const renderSaveScreen = ({ item }) => (
   <View style={saveStyle.card}>
-    <Text>{item.name}</Text>
     <Image
       source={{ uri: item.images[0] }}
       resizeMode="cover"
@@ -13,7 +14,36 @@ const renderSaveScreen = ({ item }) => (
       style={saveStyle.image}
     />
     <View style={saveStyle.cardContent}>
-      <Text>{item.name}</Text>
+      <Text style={saveStyle.name}>{item.name}</Text>
+      <View style={saveStyle.chipBox}>
+        <Chip
+          title={
+            <GradientText style={saveStyle.chipText}>
+              {item.breeds.length > 1 ? "Mixed" : item.breeds[0]}
+            </GradientText>
+          }
+          titleStyle={saveStyle.chipText}
+          buttonStyle={saveStyle.chip}
+        />
+        <Chip
+          title={
+            <GradientText style={saveStyle.chipText}>
+              {item.gender}
+            </GradientText>
+          }
+          titleStyle={saveStyle.chipText}
+          buttonStyle={saveStyle.chip}
+        />
+        <Chip
+          title={
+            <GradientText style={saveStyle.chipText}>
+              {new Date().getFullYear() - item.birthDate.year + " y/o"}
+            </GradientText>
+          }
+          titleStyle={saveStyle.chipText}
+          buttonStyle={saveStyle.chip}
+        />
+      </View>
     </View>
   </View>
 );
@@ -22,18 +52,16 @@ export default class SavedScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      SaveData: [],
+      savedData: [],
       isFetching: false,
     };
   }
 
   getData() {
     Database.getItem("data").then((data) => {
-      let filtered = data.filter(items => items.saved);
-      this.setState({ savedData: data })
+      let filtered = data.filter((items) => items.saved);
+      this.setState({ savedData: filtered });
     });
-
-    
   }
 
   onRefresh() {
@@ -48,14 +76,14 @@ export default class SavedScreen extends React.Component {
 
   render() {
     return (
-        <FlatList
-          data={this.state.SaveData}
-          extraData={this.state.savedData}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderSaveScreen}
-          refreshing={this.state.isFetching}
-          onRefresh={() => this.onRefresh()}
-        />
+      <FlatList
+        data={this.state.savedData}
+        extraData={this.state.savedData}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderSaveScreen}
+        refreshing={this.state.isFetching}
+        onRefresh={() => this.onRefresh()}
+      />
     );
   }
 }

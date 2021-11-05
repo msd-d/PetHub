@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import config from "../config";
+import colors from "../colors";
 
 export default StyleSheet.create({
   card: {
@@ -10,13 +11,41 @@ export default StyleSheet.create({
     height: config.deviceWidth * 0.9,
     marginTop: 15,
     borderRadius: 23,
-  }, 
+  },
 
   image: {
     width: undefined,
     height: "100%",
     overflow: "hidden",
     borderRadius: 23,
+  },
+
+  name: {
+    fontFamily: "Inter_700Bold",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 22,
+    color: colors.white,
+    marginBottom: 10,
+  },
+
+  chipBox: {
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  chipText: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 12,
+    height: 20,
+  },
+
+  chip: {
+    backgroundColor: colors.white,
+    marginRight: 10,
+    borderRadius: 8,
   },
 
   container: {
@@ -33,5 +62,5 @@ export default StyleSheet.create({
     alignSelf: "center",
     width: config.deviceWidth * 0.8,
     height: 100,
-  }
+  },
 });
