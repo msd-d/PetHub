@@ -89,21 +89,4 @@ export default StyleSheet.create({
     fontWeight: "bold",
     width: config.deviceWidth * 0.2,
   },
-  genderButton: {
-    borderRadius: 12,
-    backgroundColor: colors.pethubPink,
-  },
-  genderContainer: {
-    marginHorizontal: config.deviceWidth * 0.05,
-    borderRadius: 12,
-    borderWidth: 0,
-  },
-  genderButtonDisabled: {
-    borderRadius: 12,
-    backgroundColor: colors.lightGray,
-  },
-  genderBorder: {
-    color: colors.transparent,
-    width: config.deviceWidth * 0.05,
-  },
 });
