@@ -3,10 +3,14 @@ import { breeds, conditions, data } from "./dummy-data";
 
 export default class Database {
   static async setup() {
+    this.setItem(conditions, "conditions");
+    this.setItem(breeds, "breeds");
+    this.initData();
+  }
+
+  static async initData() {
     const init = await this.getItem("dataInit");
     if (!init) {
-      this.setItem(conditions, "conditions");
-      this.setItem(breeds, "breeds");
       this.setItem(data, "data");
       this.setItem(true, "dataInit");
     }
@@ -37,6 +41,31 @@ export default class Database {
     } catch (e) {
       // save error
     }
+
+    if (await this.isDebug()) {
+      console.log("Set key: " + key + " with value: " + value);
+    }
+  }
+
+  static async isDebug() {
+    return await this.getItem("debug");
+  }
+
+  static async removeItem(key) {
+    const debug = await this.isDebug();
+
+    try {
+      await AsyncStorage.removeItem(key);
+    } catch (e) {
+      // remove error
+      if (debug) {
+        console.log("Error removing key: " + key);
+      }
+    }
+
+    if (await this.isDebug()) {
+      console.log("Removed key: " + key);
+    }
   }
 
   static async multiSet(keyValuePairs) {
@@ -53,11 +82,16 @@ export default class Database {
     }
   }
 
-  static async clearAll() {
+  static async clearData() {
     try {
-      await AsyncStorage.clear();
+      await this.removeItem("data");
+      await this.removeItem("dataInit");
+      await this.initData();
     } catch (e) {
       // clear error
+      if (await this.isDebug()) {
+        console.log("Error clearing data");
+      }
     }
   }
 }
