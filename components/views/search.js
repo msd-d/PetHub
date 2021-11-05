@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, View, Image, FlatList, TextInput } from "react-native";
-import { Chip, ButtonGroup, SearchBar } from "react-native-elements";
+import { FlatList, Image, Text, TextInput, View } from "react-native";
+import { ButtonGroup, Chip, SearchBar } from "react-native-elements";
+
 import GradientText from "../colors/gradient-text";
 import Database from "../database";
-import searchStyle from "../styles/search-style";
-import postStyle from "../styles/post-style";
 import colors from "../colors";
+import standardStyle from "../styles/standard-style";
+import searchStyle from "../styles/search-style";
 
 const renderItem = ({ item }) => (
   <View style={searchStyle.card}>
@@ -97,11 +98,11 @@ export default class SearchScreen extends React.Component {
           selectedIndex={this.state.selectedIndex}
           onPress={(selectedIndex) => this.setState({ selectedIndex })}
           buttons={genderButtons}
-          containerStyle={postStyle.genderContainer}
-          buttonStyle={postStyle.genderButtonDisabled}
-          innerBorderStyle={postStyle.genderBorder}
-          selectedButtonStyle={postStyle.genderButton}
-          textStyle={postStyle.whl2}
+          containerStyle={standardStyle.genderContainer}
+          buttonStyle={standardStyle.genderButtonDisabled}
+          innerBorderStyle={standardStyle.genderBorder}
+          selectedButtonStyle={standardStyle.genderButton}
+          textStyle={standardStyle.buttonTextBold}
         />
         <View style={searchStyle.inputContainer}>
           <TextInput
