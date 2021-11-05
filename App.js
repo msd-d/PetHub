@@ -76,7 +76,7 @@ export default function App() {
           <Tab.Screen
             name="Post"
             component={PostScreen}
-            listeners={({ navigation, route }) => ({
+            listeners={({ navigation }) => ({
               tabPress: (event) => {
                 event.preventDefault();
                 global.loggedIn
