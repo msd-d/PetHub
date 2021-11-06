@@ -89,4 +89,30 @@ export default StyleSheet.create({
     fontWeight: "bold",
     width: config.deviceWidth * 0.2,
   },
+  modal: {
+    margin: 20,
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    elevation: 5,
+  },
+  modalButton: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: colors.lightGray,
+  },
+  modalInfo: {
+    color: colors.darkGray,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+  },
+  modalButtonText: {
+    color: colors.darkGray,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+  },
 });
