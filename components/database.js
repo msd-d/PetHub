@@ -1,8 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { breeds, conditions, data } from "./dummy-data";
+import { array } from "prop-types";
+import { SocialIcon } from "react-native-elements/dist/social/SocialIcon";
+import { users, breeds, conditions, data } from "./dummy-data";
 
 export default class Database {
   static async setup() {
+    this.setItem(users, "users");
     this.setItem(conditions, "conditions");
     this.setItem(breeds, "breeds");
     this.initData();
@@ -20,6 +23,25 @@ export default class Database {
     try {
       const jsonValue = await AsyncStorage.getItem(key);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      // read error
+    }
+  }
+
+  static async getUser(uname, pwd) {
+    try {
+      let success = false;
+      await AsyncStorage.getItem("users").then((data) => {
+        let array = JSON.parse(data);
+        for (let i = 0; i < array.length; i++) {
+          const user = array[i];
+          if (user.username == uname && user.password == pwd) {
+            success = true;
+          }
+        }
+      });
+
+      return success;
     } catch (e) {
       // read error
     }

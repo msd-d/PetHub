@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import React, { useContext, useState } from "react";
+import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { Standard } from "components/styles/save-style";
 import colors from "../colors";
 import loginStyles from "../styles/login-styles";
@@ -7,25 +7,49 @@ import GradientButton from "../colors/gradient-button";
 import PropTypes from "prop-types";
 
 import AppContext from "../AppContext";
+import Database from "../database";
 
-function LoginScreen({ navigation }) {
+const LoginScreen = ({ navigation }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const myContext = useContext(AppContext);
 
-  const handleLogin = () => {
-    myContext.updateUserID("test");
-    navigation.navigate("Profile");
+  const handleLogin = async () => {
+    await Database.getUser(username, password).then((success) =>{
+      if (!success) {
+        console.log("Wrong username or password, please try again");
+      } else {
+        console.log("wuuup");
+      }
+    })
+
+    // if (dbPassword != password) {
+    //   console.log("nope")
+    // } else {
+    //   myContext.updateUserID(username);
+    //   navigation.navigate("Profile");
+    // }
   };
 
   return (
     <View style={Standard.container}>
       <Text style={loginStyles.header}>Welcome!</Text>
 
-      <TextInput style={loginStyles.input} placeholder="Email"></TextInput>
+      {/* Username input */}
+      <TextInput
+        style={loginStyles.input}
+        placeholder={"Username"}
+        onChangeText={(username) => setUsername(username)}
+      />
+
+      {/* Password input */}
       <TextInput
         secureTextEntry={true}
         style={loginStyles.input}
-        placeholder="Password"
-      ></TextInput>
+        placeholder={"Password"}
+        onChangeText={(text) => setPassword(text)}
+      />
 
       {/* TODO: Handle login */}
       <GradientButton
@@ -34,7 +58,7 @@ function LoginScreen({ navigation }) {
         onPress={() => {
           handleLogin();
         }}
-      ></GradientButton>
+      />
 
       {/* Register */}
       <Pressable onPress={() => navigation.navigate("Register")}>
