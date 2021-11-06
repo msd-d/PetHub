@@ -18,5 +18,4 @@ export default StyleSheet.create({
     width: config.deviceWidth * 0.5,
     borderRadius: 99,
   },
-
 });

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Pressable, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 import { Standard } from "components/styles/save-style";
 import colors from "../colors";
 import loginStyles from "../styles/login-styles";
@@ -11,8 +11,12 @@ class LoginScreen extends Component {
       <View style={Standard.container}>
         <Text style={loginStyles.header}>Welcome!</Text>
 
-        <TextInput style={loginStyles.input} placeholder="Email" ></TextInput>
-        <TextInput style={loginStyles.input} placeholder="Password" ></TextInput>
+        <TextInput style={loginStyles.input} placeholder="Email"></TextInput>
+        <TextInput
+          secureTextEntry={true}
+          style={loginStyles.input}
+          placeholder="Password"
+        ></TextInput>
 
         <GradientButton
           title={"Sign in"}
@@ -20,18 +24,14 @@ class LoginScreen extends Component {
           onPress={() => alert("Not yet supported")}
         ></GradientButton>
 
-        <Pressable 
-          onPress={() => alert("Not yet supported")}
-        >
-          <Text style= {{ margin: 10, color: colors.pethubPink }}>
+        <Pressable onPress={() => alert("Not yet supported")}>
+          <Text style={{ margin: 10, color: colors.pethubPink }}>
             Don't have an account yet?
           </Text>
         </Pressable>
-        <Text style= {{color: colors.pethubPink }}>or</Text>
-        <Pressable 
-          onPress={() => alert("Not yet supported")}
-        >
-          <Text style= {{ margin: 10, color: colors.pethubPink }}>
+        <Text style={{ color: colors.pethubPink }}>or</Text>
+        <Pressable onPress={() => alert("Not yet supported")}>
+          <Text style={{ margin: 10, color: colors.pethubPink }}>
             Continue as guest
           </Text>
         </Pressable>
