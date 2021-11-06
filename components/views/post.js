@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Modal, Alert, Pressable } from "react-native";
 import { Button, ButtonGroup } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 
@@ -56,17 +56,37 @@ function PostScreen({ navigation }) {
   const [show, setShow] = useState(false);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedBreeds, setSelectedBreeds] = useState([]);
+  const [requiredModal, setRequiredModal] = useState(false);
 
   const onGenderChange = (index) => {
     setGender(index);
     setAnimalData({ ...animalData, gender: genderButtons[index] });
   };
 
+  const dataCheck = () => {
+    for (const [key, value] of Object.entries(animalData)) {
+      if (key === "id" || key === "gender") {
+        continue;
+      }
+      if (value === data[key]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-    setAnimalData({ ...animalData, birthDate: { day: currentDate.getDate(), month: (currentDate.getMonth() + 1), year: currentDate.getFullYear() } });
+    setAnimalData({
+      ...animalData,
+      birthDate: {
+        day: currentDate.getDate(),
+        month: currentDate.getMonth() + 1,
+        year: currentDate.getFullYear(),
+      },
+    });
   };
 
   const showMode = () => {
@@ -78,182 +98,234 @@ function PostScreen({ navigation }) {
   };
 
   const onConditionsChange = (newValue) => {
-    setAnimalData({ ...animalData, conditions: newValue.map((item) => item.name) });
+    setAnimalData({
+      ...animalData,
+      conditions: newValue.map((item) => item.name),
+    });
   };
 
   const onConditionSelected = (newValue) => {
     setSelectedConditions(newValue);
-  }
+  };
 
   const onBreedSelected = (newValue) => {
     setSelectedBreeds(newValue);
-  }
+  };
 
   const onImagesChange = (newValue) => {
-    setAnimalData({...animalData, images: newValue});
+    setAnimalData({ ...animalData, images: newValue });
   };
 
   const postData = () => {
-    setSelectedBreeds([]);
-    setSelectedConditions([]);
-    // get persistence data and set last data
-    Database.getItem("data").then((data) => Database.setItem([...data, { ...animalData, id: data.length }], "data"));
-    // clear data
-    setAnimalData({ ...data });
-    navigation.navigate("Home");
+    if (dataCheck()) {
+      setSelectedBreeds([]);
+      setSelectedConditions([]);
+      // get persistence data and set last data
+      Database.getItem("data").then((data) =>
+        Database.setItem([...data, { ...animalData, id: data.length }], "data")
+      );
+      // clear data
+      setAnimalData({ ...data });
+      navigation.navigate("Home");
+    } else {
+      setRequiredModal(!requiredModal);
+    }
   };
 
   return (
-    <ScrollView
-      style={postStyle.scrollview}
-      contentContainerStyle={postStyle.scrollviewContainer}
-    >
-      <GradientText style={postStyle.chipText}>{viewText.images}</GradientText>
-      <ImageBoxes setImages={onImagesChange} selectedImages={animalData.images} />
-      <GradientText style={postStyle.chipText}>{viewText.gender}</GradientText>
-      <ButtonGroup
-        selectedIndex={gender}
-        onPress={onGenderChange}
-        buttons={genderButtons}
-        containerStyle={standardStyle.genderContainer}
-        buttonStyle={standardStyle.genderButtonDisabled}
-        innerBorderStyle={standardStyle.genderBorder}
-        selectedButtonStyle={standardStyle.genderButton}
-        textStyle={standardStyle.buttonTextBold}
-      />
-      <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
-      <View>
+    <View style={generelPositioning.fit100HW}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={requiredModal}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setRequiredModal(!requiredModal);
+        }}
+      >
+        <View style={generelPositioning.flexCenter}>
+          <View style={postStyle.modal}>
+            <Text style={postStyle.modalInfo}>
+              Looks like you did not input everything!
+            </Text>
+            <Pressable
+              style={postStyle.modalButton}
+              onPress={() => setRequiredModal(!requiredModal)}
+            >
+              <Text style={postStyle.modalButtonText}>Understood!</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <ScrollView
+        style={postStyle.scrollview}
+        contentContainerStyle={postStyle.scrollviewContainer}
+      >
+        <GradientText style={postStyle.chipText}>
+          {viewText.images}
+        </GradientText>
+        <ImageBoxes
+          setImages={onImagesChange}
+          selectedImages={animalData.images}
+        />
+        <GradientText style={postStyle.chipText}>
+          {viewText.gender}
+        </GradientText>
+        <ButtonGroup
+          selectedIndex={gender}
+          onPress={onGenderChange}
+          buttons={genderButtons}
+          containerStyle={standardStyle.genderContainer}
+          buttonStyle={standardStyle.genderButtonDisabled}
+          innerBorderStyle={standardStyle.genderBorder}
+          selectedButtonStyle={standardStyle.genderButton}
+          textStyle={standardStyle.buttonTextBold}
+        />
+        <GradientText style={postStyle.chipText}>{viewText.dob}</GradientText>
+        <View>
+          <View style={generelPositioning.flexRowSpaceEvenly}>
+            <Button
+              buttonStyle={postStyle.dateButton}
+              titleStyle={postStyle.dateTitle}
+              onPress={showMode}
+              title={animalData.birthDate.day}
+            />
+            <Button
+              buttonStyle={postStyle.dateButton}
+              titleStyle={postStyle.dateTitle}
+              onPress={showMode}
+              title={animalData.birthDate.month}
+            />
+            <Button
+              buttonStyle={postStyle.dateButton}
+              titleStyle={postStyle.dateTitle}
+              onPress={showMode}
+              title={animalData.birthDate.year}
+            />
+            {show && <DateTimePicker value={date} onChange={onChange} />}
+          </View>
+        </View>
+
+        <GradientText style={postStyle.chipText}>{viewText.name}</GradientText>
+        <TextInput
+          style={postStyle.input}
+          placeholder={"Enter the name of your animal"}
+          onChangeText={(text) => setAnimalData({ ...animalData, name: text })}
+          value={animalData.name}
+        />
+        <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
+        <View style={generelPositioning.marginBottom}>
+          <MultiSelect
+            dataName={"breeds"}
+            onItemChange={onBreedsChange}
+            selectedItems={selectedBreeds}
+            onSelectedChange={onBreedSelected}
+          />
+        </View>
+        <GradientText style={postStyle.chipText}>
+          {viewText.description}
+        </GradientText>
+        <TextInput
+          editable={true}
+          maxLength={200}
+          multiline={true}
+          numberOfLines={4}
+          placeholder="Write something nice about the animal..."
+          style={postStyle.description}
+          onChangeText={(text) =>
+            setAnimalData({ ...animalData, description: text })
+          }
+          value={animalData.description}
+        />
+
+        <GradientText style={postStyle.chipText}>
+          {viewText.location}
+        </GradientText>
+        <TextInput
+          style={postStyle.input}
+          placeholder={"Enter the location of your animal"}
+          onChangeText={(text) =>
+            setAnimalData({ ...animalData, location: text })
+          }
+          value={animalData.location}
+        />
+        <GradientText style={postStyle.chipText}>
+          {viewText.measurements}
+        </GradientText>
+        <View>
+          <View style={generelPositioning.flexRowMarginCenterItems}>
+            <Text style={postStyle.whl}>Weight</Text>
+            <TextInput
+              style={postStyle.input2}
+              placeholder={"Enter weight in kg"}
+              keyboardType={"number-pad"}
+              maxLength={6}
+              textAlign={"center"}
+              onChangeText={(text) =>
+                setAnimalData({ ...animalData, weight: text })
+              }
+              value={animalData.weight}
+            />
+            <Text style={postStyle.whl}>kg</Text>
+          </View>
+          <View style={generelPositioning.flexRowMarginCenterItems}>
+            <Text style={postStyle.whl}>Height</Text>
+            <TextInput
+              style={postStyle.input2}
+              placeholder={"Enter height in m"}
+              keyboardType={"number-pad"}
+              maxLength={6}
+              textAlign={"center"}
+              onChangeText={(text) =>
+                setAnimalData({ ...animalData, height: text })
+              }
+              value={animalData.height}
+            />
+            <Text style={postStyle.whl}>m</Text>
+          </View>
+          <View style={generelPositioning.flexRowMarginCenterItems}>
+            <Text style={postStyle.whl}>Length</Text>
+            <TextInput
+              style={postStyle.input2}
+              placeholder={"Enter length in m"}
+              keyboardType={"number-pad"}
+              maxLength={4}
+              textAlign={"center"}
+              onChangeText={(text) =>
+                setAnimalData({ ...animalData, length: text })
+              }
+              value={animalData.length}
+            />
+            <Text style={postStyle.whl}>m</Text>
+          </View>
+        </View>
+        <GradientText style={postStyle.chipText}>
+          {viewText.conditions}
+        </GradientText>
+        <View style={generelPositioning.marginBottom}>
+          <MultiSelect
+            dataName={"conditions"}
+            onItemChange={onConditionsChange}
+            onSelectedChange={onConditionSelected}
+            selectedItems={selectedConditions}
+          />
+        </View>
         <View style={generelPositioning.flexRowSpaceEvenly}>
-          <Button
-            buttonStyle={postStyle.dateButton}
-            titleStyle={postStyle.dateTitle}
-            onPress={showMode}
-            title={animalData.birthDate.day}
+          <GradientButton
+            title={"Post animal"}
+            style={postStyle.postButton}
+            onPress={postData}
           />
           <Button
-            buttonStyle={postStyle.dateButton}
-            titleStyle={postStyle.dateTitle}
-            onPress={showMode}
-            title={animalData.birthDate.month}
+            title={"Cancel"}
+            containerStyle={postStyle.cancelButton}
+            titleStyle={postStyle.cancelButtonTitle}
+            type={"outline"}
           />
-          <Button
-            buttonStyle={postStyle.dateButton}
-            titleStyle={postStyle.dateTitle}
-            onPress={showMode}
-            title={animalData.birthDate.year}
-          />
-          {show && <DateTimePicker value={date} onChange={onChange} />}
         </View>
-      </View>
-
-      <GradientText style={postStyle.chipText}>{viewText.name}</GradientText>
-      <TextInput
-        style={postStyle.input}
-        placeholder={"Enter the name of your animal"}
-        onChangeText={(text) => setAnimalData({ ...animalData, name: text })}
-        value={animalData.name}
-      />
-      <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
-      <View style={generelPositioning.marginBottom}>
-        <MultiSelect
-          dataName={"breeds"}
-          onItemChange={onBreedsChange}
-          selectedItems={selectedBreeds}
-          onSelectedChange={onBreedSelected}
-        />
-      </View>
-      <GradientText style={postStyle.chipText}>
-        {viewText.description}
-      </GradientText>
-      <TextInput
-        editable={true}
-        maxLength={200}
-        multiline={true}
-        numberOfLines={4}
-        placeholder="Write something nice about the animal..."
-        style={postStyle.description}
-        onChangeText={(text) => setAnimalData({ ...animalData, description: text })}
-        value={animalData.description}
-      />
-
-      <GradientText style={postStyle.chipText}>
-        {viewText.location}
-      </GradientText>
-      <TextInput
-        style={postStyle.input}
-        placeholder={"Enter the location of your animal"}
-        onChangeText={(text) => setAnimalData({ ...animalData, location: text })}
-        value={animalData.location}
-      />
-      <GradientText style={postStyle.chipText}>
-        {viewText.measurements}
-      </GradientText>
-      <View>
-        <View style={generelPositioning.flexRowMarginCenterItems}>
-          <Text style={postStyle.whl}>Weight</Text>
-          <TextInput
-            style={postStyle.input2}
-            placeholder={"Enter weight in g"}
-            keyboardType={"number-pad"}
-            maxLength={6}
-            textAlign={"center"}
-            onChangeText={(text) => setAnimalData({ ...animalData, weight: text })}
-            value={animalData.weight}
-          />
-          <Text style={postStyle.whl}>kg</Text>
-        </View>
-        <View style={generelPositioning.flexRowMarginCenterItems}>
-          <Text style={postStyle.whl}>Height</Text>
-          <TextInput
-            style={postStyle.input2}
-            placeholder={"Enter height in m"}
-            keyboardType={"number-pad"}
-            maxLength={6}
-            textAlign={"center"}
-            onChangeText={(text) => setAnimalData({ ...animalData, height: text })}
-            value={animalData.height}
-          />
-          <Text style={postStyle.whl}>m</Text>
-        </View>
-        <View style={generelPositioning.flexRowMarginCenterItems}>
-          <Text style={postStyle.whl}>Length</Text>
-          <TextInput
-            style={postStyle.input2}
-            placeholder={"Enter length in m"}
-            keyboardType={"number-pad"}
-            maxLength={4}
-            textAlign={"center"}
-            onChangeText={(text) => setAnimalData({ ...animalData, length: text })}
-            value={animalData.length}
-          />
-          <Text style={postStyle.whl}>m</Text>
-        </View>
-      </View>
-      <GradientText style={postStyle.chipText}>
-        {viewText.conditions}
-      </GradientText>
-      <View style={generelPositioning.marginBottom}>
-        <MultiSelect
-          dataName={"conditions"}
-          onItemChange={onConditionsChange}
-          onSelectedChange={onConditionSelected}
-          selectedItems={selectedConditions}
-        />
-      </View>
-      <View style={generelPositioning.flexRowSpaceEvenly}>
-        <GradientButton
-          title={"Post animal"}
-          style={postStyle.postButton}
-          onPress={postData}
-        />
-        <Button
-          title={"Cancel"}
-          containerStyle={postStyle.cancelButton}
-          titleStyle={postStyle.cancelButtonTitle}
-          type={"outline"}
-        />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 

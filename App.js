@@ -63,16 +63,18 @@ function Tabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Post" 
-      component={PostScreen} 
-      listeners={({ navigation }) => ({
-        tabPress: (event) => {
-          event.preventDefault();
-          global.loggedIn
-            ? navigation.navigate("Post")
-            : navigation.navigate("Login");
-        },
-      })} />
+      <Tab.Screen
+        name="Post"
+        component={PostScreen}
+        listeners={({ navigation }) => ({
+          tabPress: (event) => {
+            event.preventDefault();
+            global.loggedIn
+              ? navigation.navigate("Post")
+              : navigation.navigate("Login");
+          },
+        })}
+      />
       <Tab.Screen name="Save" component={SaveScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Debug" component={DebugScreen} />

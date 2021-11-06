@@ -36,4 +36,13 @@ export default StyleSheet.create({
   marginBottom: {
     marginBottom: config.deviceWidth * 0.05,
   },
+  flexCenter: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  fit100HW: {
+    width: "100%",
+    height: "100%",
+  },
 });

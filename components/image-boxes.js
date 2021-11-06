@@ -40,7 +40,9 @@ function ImageBoxes(props) {
 
     const longPress = () => {
       if (typeof props.images[props.number] !== "undefined") {
-        props.onImageChange(props.images.filter((image, i) => i !== props.number));
+        props.onImageChange(
+          props.images.filter((image, i) => i !== props.number)
+        );
       }
     };
 
@@ -53,7 +55,10 @@ function ImageBoxes(props) {
         <View style={postStyle.icon}>
           <Ionicons name="add-circle-outline" size={30} color="white" />
         </View>
-        <Image source={{ uri: props.images[props.number] }} style={postStyle.image} />
+        <Image
+          source={{ uri: props.images[props.number] }}
+          style={postStyle.image}
+        />
       </TouchableOpacity>
     );
   };
@@ -66,12 +71,36 @@ function ImageBoxes(props) {
 
   return (
     <View style={generelPositioning.flexRowWrap}>
-      <ImageBox number={0} images={props.selectedImages} onImageChange={props.setImages} />
-      <ImageBox number={1} images={props.selectedImages} onImageChange={props.setImages} />
-      <ImageBox number={2} images={props.selectedImages} onImageChange={props.setImages} />
-      <ImageBox number={3} images={props.selectedImages} onImageChange={props.setImages} />
-      <ImageBox number={4} images={props.selectedImages} onImageChange={props.setImages} />
-      <ImageBox number={5} images={props.selectedImages} onImageChange={props.setImages} />
+      <ImageBox
+        number={0}
+        images={props.selectedImages}
+        onImageChange={props.setImages}
+      />
+      <ImageBox
+        number={1}
+        images={props.selectedImages}
+        onImageChange={props.setImages}
+      />
+      <ImageBox
+        number={2}
+        images={props.selectedImages}
+        onImageChange={props.setImages}
+      />
+      <ImageBox
+        number={3}
+        images={props.selectedImages}
+        onImageChange={props.setImages}
+      />
+      <ImageBox
+        number={4}
+        images={props.selectedImages}
+        onImageChange={props.setImages}
+      />
+      <ImageBox
+        number={5}
+        images={props.selectedImages}
+        onImageChange={props.setImages}
+      />
     </View>
   );
 }

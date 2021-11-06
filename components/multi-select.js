@@ -69,7 +69,7 @@ export default class MultiSelect extends React.Component {
         showDropDowns={true}
         readOnlyHeadings={true}
         onSelectedItemsChange={(selectedItems) =>
-          this.props.onSelectedChange( selectedItems)
+          this.props.onSelectedChange(selectedItems)
         }
         onSelectedItemObjectsChange={(selectedItems) =>
           this.props.onItemChange(selectedItems)

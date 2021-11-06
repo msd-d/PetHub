@@ -82,12 +82,12 @@ export default class Database {
     }
   }
 
-  static async getID(){
+  static async getID() {
     try {
-       const data = await this.getItem('data');
-       return data.length;
+      const data = await this.getItem("data");
+      return data.length;
     } catch (e) {
-        // error
+      // error
     }
   }
 
