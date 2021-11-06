@@ -10,26 +10,20 @@ import AppContext from "../AppContext";
 import Database from "../database";
 
 const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const myContext = useContext(AppContext);
 
   const handleLogin = async () => {
-    await Database.getUser(username, password).then((success) =>{
+    await Database.getUser(username, password).then((success) => {
       if (!success) {
-        console.log("Wrong username or password, please try again");
+        Alert.alert("Wrong password or password, please try again");
       } else {
-        console.log("wuuup");
+        myContext.updateUserID(username);
+        navigation.navigate("Profile");
       }
-    })
-
-    // if (dbPassword != password) {
-    //   console.log("nope")
-    // } else {
-    //   myContext.updateUserID(username);
-    //   navigation.navigate("Profile");
-    // }
+    });
   };
 
   return (
@@ -77,7 +71,7 @@ const LoginScreen = ({ navigation }) => {
       </Pressable>
     </View>
   );
-}
+};
 
 LoginScreen.propTypes = {
   navigation: PropTypes.object,
