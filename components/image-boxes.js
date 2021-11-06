@@ -1,5 +1,5 @@
 import { Image, Platform, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
@@ -7,12 +7,7 @@ import postStyle from "./styles/post-style";
 import generelPositioning from "./styles/generel-positioning";
 
 function ImageBoxes(props) {
-  const [images, setImages] = useState([]);
   const [status, setStatus] = useState(null);
-
-  useEffect(() => {
-    props.setImages(images);
-  }, [images]);
 
   const ImageBox = (props) => {
     const pickImage = async () => {
@@ -32,20 +27,20 @@ function ImageBoxes(props) {
         });
 
         if (!result.cancelled) {
-          if (typeof images[props.number] === "undefined") {
-            setImages((images) => [...images, result.uri]);
+          if (typeof props.images[props.number] === "undefined") {
+            props.onImageChange([...props.images, result.uri]);
           } else {
-            const updatedImages = [...images];
+            const updatedImages = [...props.images];
             updatedImages[props.number] = result.uri;
-            setImages(updatedImages);
+            props.onImageChange(updatedImages);
           }
         }
       }
     };
 
     const longPress = () => {
-      if (typeof images[props.number] !== "undefined") {
-        setImages((images) => images.filter((image, i) => i !== props.number));
+      if (typeof props.images[props.number] !== "undefined") {
+        props.onImageChange(props.images.filter((image, i) => i !== props.number));
       }
     };
 
@@ -58,29 +53,32 @@ function ImageBoxes(props) {
         <View style={postStyle.icon}>
           <Ionicons name="add-circle-outline" size={30} color="white" />
         </View>
-        <Image source={{ uri: images[props.number] }} style={postStyle.image} />
+        <Image source={{ uri: props.images[props.number] }} style={postStyle.image} />
       </TouchableOpacity>
     );
   };
 
   ImageBox.propTypes = {
     number: PropTypes.number,
+    images: PropTypes.array,
+    onImageChange: PropTypes.func,
   };
 
   return (
     <View style={generelPositioning.flexRowWrap}>
-      <ImageBox number={0} />
-      <ImageBox number={1} />
-      <ImageBox number={2} />
-      <ImageBox number={3} />
-      <ImageBox number={4} />
-      <ImageBox number={5} />
+      <ImageBox number={0} images={props.selectedImages} onImageChange={props.setImages} />
+      <ImageBox number={1} images={props.selectedImages} onImageChange={props.setImages} />
+      <ImageBox number={2} images={props.selectedImages} onImageChange={props.setImages} />
+      <ImageBox number={3} images={props.selectedImages} onImageChange={props.setImages} />
+      <ImageBox number={4} images={props.selectedImages} onImageChange={props.setImages} />
+      <ImageBox number={5} images={props.selectedImages} onImageChange={props.setImages} />
     </View>
   );
 }
 
 ImageBoxes.propTypes = {
   setImages: PropTypes.func,
+  selectedImages: PropTypes.array,
 };
 
 export default ImageBoxes;
