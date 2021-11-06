@@ -56,7 +56,6 @@ function PostScreen({ navigation }) {
   const [show, setShow] = useState(false);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedBreeds, setSelectedBreeds] = useState([]);
-  const [images, setImages] = useState([]);
 
   const onGenderChange = (index) => {
     setGender(index);
@@ -83,7 +82,6 @@ function PostScreen({ navigation }) {
   };
 
   const onConditionSelected = (newValue) => {
-    console.log(newValue);
     setSelectedConditions(newValue);
   }
 
@@ -92,12 +90,12 @@ function PostScreen({ navigation }) {
   }
 
   const onImagesChange = (newValue) => {
-    setImages(newValue);
+    setAnimalData({...animalData, images: newValue});
   };
 
   const postData = () => {
     // get persistence data and set last data
-    Database.getItem("data").then((data) => Database.setItem([...data, { ...animalData, id: data.length, images: images }], "data"));
+    Database.getItem("data").then((data) => Database.setItem([...data, { ...animalData, id: data.length }], "data"));
     // clear data
     setAnimalData({ ...data });
     navigation.navigate("Home");
@@ -109,7 +107,7 @@ function PostScreen({ navigation }) {
       contentContainerStyle={postStyle.scrollviewContainer}
     >
       <GradientText style={postStyle.chipText}>{viewText.images}</GradientText>
-      <ImageBoxes setImages={onImagesChange} />
+      <ImageBoxes setImages={onImagesChange} selectedImages={animalData.images} />
       <GradientText style={postStyle.chipText}>{viewText.gender}</GradientText>
       <ButtonGroup
         selectedIndex={gender}
