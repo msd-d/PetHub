@@ -3,6 +3,7 @@ import { Text, TextInput, View, Pressable } from "react-native";
 import { Standard } from "components/styles/save-style";
 import registerStyles from "../styles/register-styles";
 import GradientButton from "../colors/gradient-button";
+import PropTypes from "prop-types";
 
 const RegisterScreen = ({ navigation }) => {
   // TODO: Handle user registration
@@ -40,6 +41,10 @@ const RegisterScreen = ({ navigation }) => {
       </Pressable>
     </View>
   );
+};
+
+RegisterScreen.propTypes = {
+  navigation: PropTypes.object,
 };
 
 export default RegisterScreen;
