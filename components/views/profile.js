@@ -13,6 +13,6 @@ function ProfileScreen() {
 
 ProfileScreen.propTypes = {
   navigation: PropTypes.object,
-}
+};
 
 export default ProfileScreen;

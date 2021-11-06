@@ -48,9 +48,7 @@ function Tabs() {
               iconName = focused ? "log-in" : "log-in-outline";
               break;
             case "Profile":
-              iconName = focused
-                ? "person-circle"
-                : "person-circle-outline";
+              iconName = focused ? "person-circle" : "person-circle-outline";
               break;
             default:
               iconName = "alert";
@@ -90,10 +88,7 @@ export default function App() {
             component={Tabs}
             options={{ headerShown: false }}
           />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-          />
+          <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
