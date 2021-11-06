@@ -96,16 +96,21 @@ function PostScreen({ navigation }) {
   };
 
   const setData = () => {
+    // set last data
     Database.getID().then((id) => setAnimalData({...animalData, id: id}));
     setAnimalData({...animalData, images: images});
     postData();
   }
 
   const postData = async () => {
+    // get persistence data
     let dataArray = await Database.getItem("data");
+    // add new data
     dataArray = [...dataArray, animalData];
+    // set data
     Database.setItem(dataArray, "data");
     Database.getItem("data").then((items) => console.log(items));
+    // clear data
     setAnimalData({...data});
     navigation.navigate("Home");
   };
