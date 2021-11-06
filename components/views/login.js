@@ -1,4 +1,4 @@
-import React, { useContext }  from "react";
+import React, { useContext } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { Standard } from "components/styles/save-style";
 import colors from "../colors";
@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import AppContext from "../AppContext";
 
 function LoginScreen({ navigation }) {
-
   const myContext = useContext(AppContext);
 
   const handleLogin = () => {
@@ -32,7 +31,9 @@ function LoginScreen({ navigation }) {
       <GradientButton
         title={"Sign in"}
         style={loginStyles.loginButton}
-        onPress={() => {handleLogin()}}
+        onPress={() => {
+          handleLogin();
+        }}
       ></GradientButton>
 
       {/* Register */}

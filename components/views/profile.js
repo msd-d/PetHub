@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import AppContext from "../AppContext";
 
 function ProfileScreen() {
-
   const myContext = useContext(AppContext);
 
   return (

@@ -82,12 +82,11 @@ export default function App() {
   const userSettings = {
     userID: userID,
     updateUserID,
-  }
+  };
 
   let [fontsLoaded] = useFonts({
     Inter_700Bold,
   });
-
 
   if (!fontsLoaded) {
     return <AppLoading />;
