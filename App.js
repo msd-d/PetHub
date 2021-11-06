@@ -7,6 +7,7 @@ import PostScreen from "components/views/post";
 import SaveScreen from "components/views/save";
 import ProfileScreen from "components/views/profile";
 import LoginScreen from "components/views/login";
+import RegisterScreen from "components/views/register";
 
 import AppLoading from "expo-app-loading";
 import { useFonts, Inter_700Bold } from "@expo-google-fonts/inter";
@@ -43,9 +44,6 @@ function Tabs() {
               break;
             case "Save":
               iconName = focused ? "bookmark" : "bookmark-outline";
-              break;
-            case "Login":
-              iconName = focused ? "log-in" : "log-in-outline";
               break;
             case "Profile":
               iconName = focused ? "person-circle" : "person-circle-outline";
@@ -89,6 +87,7 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
