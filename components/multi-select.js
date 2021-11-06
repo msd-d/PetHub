@@ -49,33 +49,32 @@ export default class MultiSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      conditions: [],
-      selectedItems: [],
+      items: [],
     };
   }
 
   componentDidMount() {
     Database.getItem(this.props.dataName).then((data) =>
-      this.setState({ conditions: data })
+      this.setState({ items: data })
     );
   }
 
   render() {
     return (
       <SectionedMultiSelect
-        items={this.state.conditions}
+        items={this.state.items}
         IconRenderer={icon}
         uniqueKey="id"
         subKey="children"
         showDropDowns={true}
         readOnlyHeadings={true}
         onSelectedItemsChange={(selectedItems) =>
-          this.setState({ selectedItems })
+          this.props.onSelectedChange( selectedItems)
         }
         onSelectedItemObjectsChange={(selectedItems) =>
           this.props.onItemChange(selectedItems)
         }
-        selectedItems={this.state.selectedItems}
+        selectedItems={this.props.selectedItems}
         selectText={"Select animals conditions"}
         styles={tagSelectionStyle}
       />
@@ -84,6 +83,8 @@ export default class MultiSelect extends React.Component {
 }
 
 MultiSelect.propTypes = {
-  onItemChange: PropTypes.func,
-  dataName: PropTypes.string,
+  onItemChange: PropTypes.func.isRequired,
+  onSelectedChange: PropTypes.func.isRequired,
+  selectedItems: PropTypes.array.isRequired,
+  dataName: PropTypes.string.isRequired,
 };
