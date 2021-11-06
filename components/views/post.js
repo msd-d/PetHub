@@ -60,14 +60,14 @@ function PostScreen({ navigation }) {
 
   const onGenderChange = (index) => {
     setGender(index);
-    setAnimalData({...animalData, gender: genderButtons[index]});
+    setAnimalData({ ...animalData, gender: genderButtons[index] });
   };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-    setAnimalData({...animalData, birthDate: { day: currentDate.getDate(), month: (currentDate.getMonth() + 1), year: currentDate.getFullYear()}});
+    setAnimalData({ ...animalData, birthDate: { day: currentDate.getDate(), month: (currentDate.getMonth() + 1), year: currentDate.getFullYear() } });
   };
 
   const showMode = () => {
@@ -75,11 +75,11 @@ function PostScreen({ navigation }) {
   };
 
   const onBreedsChange = (newValue) => {
-    setAnimalData({...animalData, breeds: newValue.map((item) => item.name)});
+    setAnimalData({ ...animalData, breeds: newValue.map((item) => item.name) });
   };
 
   const onConditionsChange = (newValue) => {
-    setAnimalData({...animalData, conditions: newValue.map((item) => item.name)});
+    setAnimalData({ ...animalData, conditions: newValue.map((item) => item.name) });
   };
 
   const onConditionSelected = (newValue) => {
@@ -95,23 +95,11 @@ function PostScreen({ navigation }) {
     setImages(newValue);
   };
 
-  const setData = () => {
-    // set last data
-    Database.getID().then((id) => setAnimalData({...animalData, id: id}));
-    setAnimalData({...animalData, images: images});
-    postData();
-  }
-
-  const postData = async () => {
-    // get persistence data
-    let dataArray = await Database.getItem("data");
-    // add new data
-    dataArray = [...dataArray, animalData];
-    // set data
-    Database.setItem(dataArray, "data");
-    Database.getItem("data").then((items) => console.log(items));
+  const postData = () => {
+    // get persistence data and set last data
+    Database.getItem("data").then((data) => Database.setItem([...data, { ...animalData, id: data.length, images: images }], "data"));
     // clear data
-    setAnimalData({...data});
+    setAnimalData({ ...data });
     navigation.navigate("Home");
   };
 
@@ -162,15 +150,15 @@ function PostScreen({ navigation }) {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the name of your animal"}
-        onChangeText={(text) => setAnimalData({...animalData, name:text})}
+        onChangeText={(text) => setAnimalData({ ...animalData, name: text })}
         value={animalData.name}
       />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <View style={generelPositioning.marginBottom}>
-        <MultiSelect 
-          dataName={"breeds"} 
+        <MultiSelect
+          dataName={"breeds"}
           onItemChange={onBreedsChange}
-          selectedItems={selectedBreeds} 
+          selectedItems={selectedBreeds}
           onSelectedChange={onBreedSelected}
         />
       </View>
@@ -184,7 +172,7 @@ function PostScreen({ navigation }) {
         numberOfLines={4}
         placeholder="Write something nice about the animal..."
         style={postStyle.description}
-        onChangeText={(text) => setAnimalData({...animalData, description: text})}
+        onChangeText={(text) => setAnimalData({ ...animalData, description: text })}
         value={animalData.description}
       />
 
@@ -194,7 +182,7 @@ function PostScreen({ navigation }) {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the location of your animal"}
-        onChangeText={(text) => setAnimalData({...animalData, location: text})}
+        onChangeText={(text) => setAnimalData({ ...animalData, location: text })}
         value={animalData.location}
       />
       <GradientText style={postStyle.chipText}>
@@ -209,7 +197,7 @@ function PostScreen({ navigation }) {
             keyboardType={"number-pad"}
             maxLength={6}
             textAlign={"center"}
-            onChangeText={(text) => setAnimalData({...animalData, weight: text})}
+            onChangeText={(text) => setAnimalData({ ...animalData, weight: text })}
             value={animalData.weight}
           />
           <Text style={postStyle.whl}>kg</Text>
@@ -222,7 +210,7 @@ function PostScreen({ navigation }) {
             keyboardType={"number-pad"}
             maxLength={6}
             textAlign={"center"}
-            onChangeText={(text) => setAnimalData({...animalData, height: text})}
+            onChangeText={(text) => setAnimalData({ ...animalData, height: text })}
             value={animalData.height}
           />
           <Text style={postStyle.whl}>m</Text>
@@ -235,7 +223,7 @@ function PostScreen({ navigation }) {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
-            onChangeText={(text) => setAnimalData({...animalData, length: text})}
+            onChangeText={(text) => setAnimalData({ ...animalData, length: text })}
             value={animalData.length}
           />
           <Text style={postStyle.whl}>m</Text>
@@ -256,7 +244,7 @@ function PostScreen({ navigation }) {
         <GradientButton
           title={"Post animal"}
           style={postStyle.postButton}
-          onPress={setData}
+          onPress={postData}
         />
         <Button
           title={"Cancel"}
