@@ -40,9 +40,9 @@ const data = {
   },
   description: "",
   location: "",
-  weight: 0,
-  height: 0,
-  length: 0,
+  weight: "",
+  height: "",
+  length: "",
   conditions: [],
   breeds: [],
 };
@@ -54,28 +54,20 @@ function PostScreen({ navigation }) {
   const [gender, setGender] = useState(0);
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
-  const [name, setName] = useState(null);
-  const [breeds, setBreeds] = useState([]);
-  const [description, setDescription] = useState(null);
-  const [location, setLocation] = useState(null);
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [length, setLength] = useState(0);
-  const [conditions, setConditions] = useState([]);
+  const [selectedConditions, setSelectedConditions] = useState([]);
+  const [selectedBreeds, setSelectedBreeds] = useState([]);
   const [images, setImages] = useState([]);
 
   const onGenderChange = (index) => {
     setGender(index);
-    data.gender = genderButtons[index];
+    setAnimalData({...animalData, gender: genderButtons[index]});
   };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-    data.birthDate.day = currentDate.getDate();
-    data.birthDate.month = currentDate.getMonth();
-    data.birthDate.year = currentDate.getFullYear();
+    setAnimalData({...animalData, birthDate: { day: currentDate.getDate(), month: (currentDate.getMonth() + 1), year: currentDate.getFullYear()}});
   };
 
   const showMode = () => {
@@ -83,37 +75,38 @@ function PostScreen({ navigation }) {
   };
 
   const onBreedsChange = (newValue) => {
-    setBreeds(newValue);
+    setAnimalData({...animalData, breeds: newValue.map((item) => item.name)});
   };
 
   const onConditionsChange = (newValue) => {
-    setConditions(newValue);
+    setAnimalData({...animalData, conditions: newValue.map((item) => item.name)});
   };
+
+  const onConditionSelected = (newValue) => {
+    console.log(newValue);
+    setSelectedConditions(newValue);
+  }
+
+  const onBreedSelected = (newValue) => {
+    setSelectedBreeds(newValue);
+  }
 
   const onImagesChange = (newValue) => {
     setImages(newValue);
   };
 
+  const setData = () => {
+    Database.getID().then((id) => setAnimalData({...animalData, id: id}));
+    setAnimalData({...animalData, images: images});
+    postData();
+  }
+
   const postData = async () => {
-    data.gender = genderButtons[gender];
-    data.name = name;
-    data.description = description;
-    data.location = location;
-    data.weight = weight;
-    data.height = height;
-    data.length = length;
-    data.breeds = breeds.map((item) => item.name);
-    data.conditions = conditions.map((item) => item.name);
-    data.images = images;
-
     let dataArray = await Database.getItem("data");
-    data.id = dataArray.length;
-    dataArray = [...dataArray, data];
-
+    dataArray = [...dataArray, animalData];
     Database.setItem(dataArray, "data");
-
     Database.getItem("data").then((items) => console.log(items));
-
+    setAnimalData({...data});
     navigation.navigate("Home");
   };
 
@@ -142,19 +135,19 @@ function PostScreen({ navigation }) {
             buttonStyle={postStyle.dateButton}
             titleStyle={postStyle.dateTitle}
             onPress={showMode}
-            title={date.getDate()}
+            title={animalData.birthDate.day}
           />
           <Button
             buttonStyle={postStyle.dateButton}
             titleStyle={postStyle.dateTitle}
             onPress={showMode}
-            title={date.getMonth() + 1}
+            title={animalData.birthDate.month}
           />
           <Button
             buttonStyle={postStyle.dateButton}
             titleStyle={postStyle.dateTitle}
             onPress={showMode}
-            title={date.getFullYear()}
+            title={animalData.birthDate.year}
           />
           {show && <DateTimePicker value={date} onChange={onChange} />}
         </View>
@@ -164,11 +157,17 @@ function PostScreen({ navigation }) {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the name of your animal"}
-        onChangeText={(text) => setName(text)}
+        onChangeText={(text) => setAnimalData({...animalData, name:text})}
+        value={animalData.name}
       />
       <GradientText style={postStyle.chipText}>{viewText.breed}</GradientText>
       <View style={generelPositioning.marginBottom}>
-        <MultiSelect dataName={"breeds"} onItemChange={onBreedsChange} />
+        <MultiSelect 
+          dataName={"breeds"} 
+          onItemChange={onBreedsChange}
+          selectedItems={selectedBreeds} 
+          onSelectedChange={onBreedSelected}
+        />
       </View>
       <GradientText style={postStyle.chipText}>
         {viewText.description}
@@ -180,7 +179,8 @@ function PostScreen({ navigation }) {
         numberOfLines={4}
         placeholder="Write something nice about the animal..."
         style={postStyle.description}
-        onChangeText={(text) => setDescription(text)}
+        onChangeText={(text) => setAnimalData({...animalData, description: text})}
+        value={animalData.description}
       />
 
       <GradientText style={postStyle.chipText}>
@@ -189,7 +189,8 @@ function PostScreen({ navigation }) {
       <TextInput
         style={postStyle.input}
         placeholder={"Enter the location of your animal"}
-        onChangeText={(text) => setLocation(text)}
+        onChangeText={(text) => setAnimalData({...animalData, location: text})}
+        value={animalData.location}
       />
       <GradientText style={postStyle.chipText}>
         {viewText.measurements}
@@ -203,7 +204,8 @@ function PostScreen({ navigation }) {
             keyboardType={"number-pad"}
             maxLength={6}
             textAlign={"center"}
-            onChangeText={(text) => setWeight(text)}
+            onChangeText={(text) => setAnimalData({...animalData, weight: text})}
+            value={animalData.weight}
           />
           <Text style={postStyle.whl}>kg</Text>
         </View>
@@ -215,7 +217,8 @@ function PostScreen({ navigation }) {
             keyboardType={"number-pad"}
             maxLength={6}
             textAlign={"center"}
-            onChangeText={(text) => setHeight(text)}
+            onChangeText={(text) => setAnimalData({...animalData, height: text})}
+            value={animalData.height}
           />
           <Text style={postStyle.whl}>m</Text>
         </View>
@@ -227,7 +230,8 @@ function PostScreen({ navigation }) {
             keyboardType={"number-pad"}
             maxLength={4}
             textAlign={"center"}
-            onChangeText={(text) => setLength(text)}
+            onChangeText={(text) => setAnimalData({...animalData, length: text})}
+            value={animalData.length}
           />
           <Text style={postStyle.whl}>m</Text>
         </View>
@@ -239,13 +243,15 @@ function PostScreen({ navigation }) {
         <MultiSelect
           dataName={"conditions"}
           onItemChange={onConditionsChange}
+          onSelectedChange={onConditionSelected}
+          selectedItems={selectedConditions}
         />
       </View>
       <View style={generelPositioning.flexRowSpaceEvenly}>
         <GradientButton
           title={"Post animal"}
           style={postStyle.postButton}
-          onPress={postData}
+          onPress={setData}
         />
         <Button
           title={"Cancel"}
