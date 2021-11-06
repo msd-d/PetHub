@@ -16,6 +16,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Database from "./components/database";
 import { createStackNavigator } from "@react-navigation/stack";
 import DebugScreen from "./components/views/debug";
+import AppContext from "./components/AppContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -71,25 +72,40 @@ function Tabs() {
 
 export default function App() {
   Database.setup();
+
+  const [userID, setuserID] = React.useState(null);
+
+  const updateUserID = (id) => {
+    setuserID(id);
+  };
+
+  const userSettings = {
+    userID: userID,
+    updateUserID,
+  }
+
   let [fontsLoaded] = useFonts({
     Inter_700Bold,
   });
+
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Standard"
-            component={Tabs}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AppContext.Provider value={userSettings}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Standard"
+              component={Tabs}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AppContext.Provider>
     );
   }
 }
