@@ -94,6 +94,8 @@ function PostScreen({ navigation }) {
   };
 
   const postData = () => {
+    setSelectedBreeds([]);
+    setSelectedConditions([]);
     // get persistence data and set last data
     Database.getItem("data").then((data) => Database.setItem([...data, { ...animalData, id: data.length }], "data"));
     // clear data
