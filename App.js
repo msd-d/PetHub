@@ -7,6 +7,7 @@ import PostScreen from "components/views/post";
 import SaveScreen from "components/views/save";
 import ProfileScreen from "components/views/profile";
 import LoginScreen from "components/views/login";
+import RegisterScreen from "components/views/register";
 
 import AppLoading from "expo-app-loading";
 import { useFonts, Inter_700Bold } from "@expo-google-fonts/inter";
@@ -15,6 +16,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Database from "./components/database";
 import { createStackNavigator } from "@react-navigation/stack";
 import DebugScreen from "./components/views/debug";
+import AppContext from "./components/AppContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -43,9 +45,6 @@ function Tabs() {
               break;
             case "Save":
               iconName = focused ? "bookmark" : "bookmark-outline";
-              break;
-            case "Login":
-              iconName = focused ? "log-in" : "log-in-outline";
               break;
             case "Profile":
               iconName = focused ? "person-circle" : "person-circle-outline";
@@ -86,6 +85,18 @@ global.loggedIn = true;
 
 export default function App() {
   Database.setup();
+
+  const [userID, setuserID] = React.useState(null);
+
+  const updateUserID = (id) => {
+    setuserID(id);
+  };
+
+  const userSettings = {
+    userID: userID,
+    updateUserID,
+  };
+
   let [fontsLoaded] = useFonts({
     Inter_700Bold,
   });
@@ -94,16 +105,19 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Standard"
-            component={Tabs}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Login" component={LoginScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AppContext.Provider value={userSettings}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Standard"
+              component={Tabs}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AppContext.Provider>
     );
   }
 }

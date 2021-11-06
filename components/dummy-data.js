@@ -1,3 +1,14 @@
+const users = [
+  {
+    username: "admin",
+    password: "admin",
+  },
+  {
+    username: "test",
+    password: "test",
+  },
+];
+
 const data = [
   {
     id: 0,
@@ -131,4 +142,4 @@ const breeds = [
   },
 ];
 
-export { data, conditions, breeds };
+export { users, data, conditions, breeds };
