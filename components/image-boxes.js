@@ -12,7 +12,7 @@ function ImageBoxes(props) {
 
   useEffect(() => {
     props.setImages(images);
-  });
+  }, [images]);
 
   const ImageBox = (props) => {
     const pickImage = async () => {
