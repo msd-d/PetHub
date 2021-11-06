@@ -1,6 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { array } from "prop-types";
-import { SocialIcon } from "react-native-elements/dist/social/SocialIcon";
 import { users, breeds, conditions, data } from "./dummy-data";
 
 export default class Database {

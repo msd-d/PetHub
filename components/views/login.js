@@ -56,8 +56,8 @@ const LoginScreen = ({ navigation }) => {
 
       {/* Register */}
       <Pressable onPress={() => navigation.navigate("Register")}>
-        <Text style={{ margin: 10, color: colors.pethubPink }}>
-          Don't have an account yet?
+        <Text style={loginStyles.pressableText}>
+          Don&apos;t have an account yet?
         </Text>
       </Pressable>
 
@@ -65,9 +65,7 @@ const LoginScreen = ({ navigation }) => {
 
       {/* Continue as guest */}
       <Pressable onPress={() => navigation.navigate("Home")}>
-        <Text style={{ margin: 10, color: colors.pethubPink }}>
-          Continue as guest
-        </Text>
+        <Text style={loginStyles.pressableText}>Continue as guest</Text>
       </Pressable>
     </View>
   );

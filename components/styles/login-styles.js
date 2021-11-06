@@ -18,4 +18,8 @@ export default StyleSheet.create({
     width: config.deviceWidth * 0.5,
     borderRadius: 99,
   },
+  pressableText: {
+    margin: 10,
+    color: colors.pethubPink,
+  },
 });
