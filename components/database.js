@@ -82,6 +82,15 @@ export default class Database {
     }
   }
 
+  static async getID(){
+    try {
+       const data = await this.getItem('data');
+       return data.length;
+    } catch (e) {
+        // error
+    }
+  }
+
   static async clearData() {
     try {
       await this.removeItem("data");
