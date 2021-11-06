@@ -8,7 +8,10 @@ class RegisterScreen extends React.Component {
     return (
       <View style={Standard.container}>
         <Text>Register a profile</Text>
-        <Button title="Already have an account?" onPress={() => alert("Not yet supported")}></Button>
+        <Button
+          title="Already have an account?"
+          onPress={() => alert("Not yet supported")}
+        ></Button>
       </View>
     );
   }
