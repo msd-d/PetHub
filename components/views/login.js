@@ -45,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={(text) => setPassword(text)}
       />
 
-      {/* TODO: Handle login */}
+      {/* Handle login */}
       <GradientButton
         title={"Sign in"}
         style={loginStyles.loginButton}
