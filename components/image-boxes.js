@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import postStyle from "./styles/post-style";
-import generelPositioning from "./styles/generel-positioning";
+import generelPositioning from "./styles/general-positioning";
 
 function ImageBoxes(props) {
   const [status, setStatus] = useState(null);

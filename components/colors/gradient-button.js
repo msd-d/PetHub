@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text } from "react-native";
 import PropTypes from "prop-types";
 import { Button } from "react-native-elements";
+import { moderateScale } from "react-native-size-matters";
 
 const styles = StyleSheet.create({
   text: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   button: {
     borderRadius: 20,
@@ -34,14 +35,16 @@ export default class GradientButton extends React.Component {
         }}
         title={this.props.title}
         titleStyle={[styles.text]}
-        buttonStyle={[styles.button]}
+        buttonStyle={[styles.button, this.props.buttonStyle]}
         containerStyle={[styles.container, this.props.containerStyle]}
+        onPress={this.props.onPress}
       />
     );
   }
 }
 
 GradientButton.propTypes = {
+  buttonStyle: Text.propTypes.style,
   containerStyle: Text.propTypes.style,
   title: PropTypes.string,
   onPress: PropTypes.func,
