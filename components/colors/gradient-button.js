@@ -1,28 +1,21 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import colors from "../colors";
-import GradientText from "./gradient-text";
+import { StyleSheet, Text } from "react-native";
 import PropTypes from "prop-types";
+import { Button } from "react-native-elements";
 
 const styles = StyleSheet.create({
-  circleGradient: {
-    margin: 2,
-    backgroundColor: colors.white,
-    borderRadius: 99,
-  },
   text: {
-    margin: 7,
-    paddingHorizontal: 6,
     textAlign: "center",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 16,
   },
-  gradient: {
-    borderRadius: 99,
+  button: {
+    borderRadius: 20,
   },
+  container: {},
 });
 
 export default class GradientButton extends React.Component {
@@ -32,26 +25,24 @@ export default class GradientButton extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress}>
-        <LinearGradient
-          colors={["rgba(223, 122, 153, 1)", "rgba(232, 193, 171, 1)"]}
-          start={{ x: -1, y: -1 }}
-          end={{ x: 1, y: 3 }}
-          style={styles.gradient}
-        >
-          <View style={styles.circleGradient}>
-            <GradientText style={[this.props.style, styles.text]}>
-              {this.props.title}
-            </GradientText>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+      <Button
+        ViewComponent={LinearGradient}
+        linearGradientProps={{
+          colors: ["rgba(223, 122, 153, 1)", "rgba(232, 193, 171, 1)"],
+          start: { x: -1, y: -1 },
+          end: { x: 1, y: 3 },
+        }}
+        title={this.props.title}
+        titleStyle={[styles.text]}
+        buttonStyle={[styles.button]}
+        containerStyle={[styles.container, this.props.containerStyle]}
+      />
     );
   }
 }
 
 GradientButton.propTypes = {
-  style: Text.propTypes.style,
+  containerStyle: Text.propTypes.style,
   title: PropTypes.string,
   onPress: PropTypes.func,
 };

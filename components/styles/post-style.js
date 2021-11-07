@@ -10,11 +10,13 @@ export default StyleSheet.create({
   scrollviewContainer: {},
   postButton: {
     width: config.deviceWidth * 0.4,
-    borderRadius: 99,
+    height: config.deviceHeight * 0.068,
+    borderRadius: 20,
   },
   cancelButton: {
     width: config.deviceWidth * 0.4,
-    borderRadius: 99,
+    height: config.deviceHeight * 0.068,
+    borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.gray,
   },

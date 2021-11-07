@@ -314,7 +314,7 @@ function PostScreen({ navigation }) {
         <View style={generelPositioning.flexRowSpaceEvenly}>
           <GradientButton
             title={"Post animal"}
-            style={postStyle.postButton}
+            containerStyle={postStyle.postButton}
             onPress={postData}
           />
           <Button
