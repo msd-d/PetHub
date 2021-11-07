@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, ViewPropTypes } from "react-native";
+import { Text, TextInput, View, ViewPropTypes } from "react-native";
 import { Standard } from "components/styles/profile-style";
 import PropTypes from "prop-types";
 import AppContext from "../AppContext";
@@ -34,39 +34,41 @@ const ProfileScreen = () => {
       {/* Settings, user photo, and logout */}
       <View style={profileStyle.top}>
         <Button
-          title={<Ionicons name={"settings"} size={40} color={colors.pethubPink}/>}
+          title={<Ionicons name={"settings-outline"} size={40} color={colors.pethubPink}/>}
           style={profileStyle.button}
           onPress={() => alert("Not yet supported")}
         />
-        <View>
+        <View style={profileStyle.profilePicture}>
           <Ionicons name={"person"} size={100} color={colors.pethubPink}/>
-          <Text>{myContext.userID} </Text>
+          <Text style={profileStyle.usernameText}>{myContext.userID}</Text>
         </View>
           
         <Button
-          title={<Ionicons name={"log-out"} size={40} color={colors.pethubPink}/>}
+          title={<Ionicons name={"log-out-outline"} size={40} color={colors.pethubPink}/>}
           style={profileStyle.button}
           onPress={() => alert("Not yet supported")}
         />
       </View>
 
       {/* User info */}
-      <View>
-        <View>
-          <Ionicons name={"call"} size={100} color={colors.darkGray}/>
-          <Text>{phone} </Text>
+      <View style={profileStyle.infoView}>
+        <View style={profileStyle.row}>
+          <Ionicons name={"call"} size={40} color={colors.darkGray}/>
+          <Text style={profileStyle.infoText}> {phone} </Text>
         </View>
-        <View>
-          <Ionicons name={"mail"} size={100} color={colors.darkGray}/>
-          <Text>{email} </Text>
+        <View style={profileStyle.row}>
+          <Ionicons name={"at"} size={40} color={colors.darkGray}/>
+          <Text style={profileStyle.infoText}>{email} </Text>
         </View>
-        <View>
-          <Ionicons name={"pin"} size={100} color={colors.darkGray}/>
-          <Text>{location} </Text>
+        <View style={profileStyle.row}>
+          <Ionicons name={"pin"} size={40} color={colors.darkGray}/>
+          <Text style={profileStyle.infoText}>{location} </Text>
         </View>
       </View>
 
-
+      <View>
+        
+      </View>
     </View>
   );
 }
