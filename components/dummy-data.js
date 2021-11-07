@@ -2,14 +2,14 @@ const users = [
   {
     username: "admin",
     password: "admin",
-    phone: 88888888,
+    phone: "88888888",
     email: "admin@pethub.com",
     location: "Odense",
   },
   {
     username: "test",
     password: "test",
-    phone: 12345678,
+    phone: "12345678",
     email: "test@pethub.com",
     location: "Test City",
   },
