@@ -26,7 +26,7 @@ export default class Database {
     }
   }
 
-  static async getUser(uname, pwd) {
+  static async loginUser(uname, pwd) {
     try {
       let success = false;
       await AsyncStorage.getItem("users").then((data) => {

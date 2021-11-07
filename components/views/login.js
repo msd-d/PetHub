@@ -16,9 +16,9 @@ const LoginScreen = ({ navigation }) => {
   const myContext = useContext(AppContext);
 
   const handleLogin = async () => {
-    await Database.getUser(username, password).then((success) => {
+    await Database.loginUser(username, password).then((success) => {
       if (!success) {
-        Alert.alert("Wrong password or password, please try again");
+        Alert.alert("Wrong username or password, please try again");
       } else {
         myContext.updateUserID(username);
         navigation.navigate("Profile");
