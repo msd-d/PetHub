@@ -75,13 +75,24 @@ function Tabs() {
         })}
       />
       <Tab.Screen name="Save" component={SaveScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen
+        name="Profile"  
+        component={ProfileScreen}
+        listeners={({ navigation }) => ({
+          tabPress: (event) => {
+            event.preventDefault();
+            global.loggedIn
+              ? navigation.navigate("Profile")
+              : navigation.navigate("Login");
+          },
+        })}
+      />
       <Tab.Screen name="Debug" component={DebugScreen} />
     </Tab.Navigator>
   );
 }
 
-global.loggedIn = true;
+global.loggedIn = false;
 
 export default function App() {
   Database.setup();
@@ -90,6 +101,7 @@ export default function App() {
 
   const updateUserID = (id) => {
     setuserID(id);
+    global.loggedIn = true;
   };
 
   const userSettings = {

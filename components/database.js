@@ -45,6 +45,25 @@ export default class Database {
     }
   }
 
+  static async getUser(uname) {
+    try {
+      let user;
+      await AsyncStorage.getItem("users").then((data) => {
+        let array = JSON.parse(data);
+        for (let i = 0; i < array.length; i++) {
+          const dbUser = array[i];
+          if (dbUser.username == uname) {
+            user = dbUser;
+          }
+        }
+      });
+
+      return user;
+    } catch (e) {
+      // read error
+    }
+  }
+
   static async getMultiple(keys) {
     try {
       const values = await AsyncStorage.multiGet(keys);
