@@ -51,23 +51,33 @@ const ProfileScreen = () => {
       </View>
 
       {/* User info */}
+      {/* TODO: Make component */}
       <View style={profileStyle.infoView}>
         <View style={profileStyle.row}>
-          <Ionicons name={"call"} size={40} color={colors.darkGray}/>
+          <Ionicons name={"call"} size={30} color={colors.darkGray}/>
           <Text style={profileStyle.infoText}> {phone} </Text>
         </View>
         <View style={profileStyle.row}>
-          <Ionicons name={"at"} size={40} color={colors.darkGray}/>
+          <Ionicons name={"at"} size={30} color={colors.darkGray}/>
           <Text style={profileStyle.infoText}>{email} </Text>
         </View>
         <View style={profileStyle.row}>
-          <Ionicons name={"pin"} size={40} color={colors.darkGray}/>
+          <Ionicons name={"pin"} size={30} color={colors.darkGray}/>
           <Text style={profileStyle.infoText}>{location} </Text>
         </View>
       </View>
 
-      <View>
-        
+      <View style={profileStyle.postingsView}>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
+        <Text>some text</Text>
       </View>
     </View>
   );

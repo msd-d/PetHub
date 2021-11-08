@@ -9,6 +9,7 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   top: {
+    marginTop: 5,
     width: config.deviceWidth,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -18,10 +19,10 @@ export default StyleSheet.create({
     width: config.deviceWidth,
     flexDirection: "row",
     justifyContent: "flex-start",
-
+    alignItems: "center",
   },
   infoView: {
-    marginLeft: 20,
+    
   }, 
   profilePicture: {
     alignItems: "center",
@@ -35,6 +36,12 @@ export default StyleSheet.create({
     margin: 5,
     padding: 10,
     borderRadius: 99,
+    flexGrow: 1,
+  },
+  postingsView: {
+    backgroundColor: colors.lightGray,
+    marginTop: 30,
+    width: config.deviceWidth,
   },
   button: {
     borderRadius: 99,
