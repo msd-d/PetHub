@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { element } from "prop-types";
 import { users, breeds, conditions, data } from "./dummy-data";
 
 export default class Database {
