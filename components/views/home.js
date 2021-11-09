@@ -9,6 +9,7 @@ import colors from "../colors";
 import AppContext from "../AppContext";
 import PropTypes from "prop-types";
 import postStyle from "../styles/post-style";
+import { getAgeFromTime } from "../util";
 
 const ListEmptyComponent = () => <View style={postStyle.empty}></View>;
 
@@ -54,7 +55,7 @@ const Item = ({ item, starIcon, username, getData }) => (
         <Chip
           title={
             <GradientText style={homeStyle.chipText}>
-              {new Date().getFullYear() - item.birthDate.year + " y/o"}
+              {getAgeFromTime(new Date(item.birthDate)) + " y/o"}
             </GradientText>
           }
           titleStyle={homeStyle.chipText}

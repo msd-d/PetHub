@@ -18,11 +18,8 @@ const data = [
     breeds: ["Golden reciever", "Husky"],
     conditions: [],
     gender: "Female",
-    birthDate: {
-      day: 3,
-      month: 4,
-      year: 2002,
-    },
+    // https://stackoverflow.com/questions/22354899/what-is-the-best-way-to-store-a-date-time-in-json
+    birthDate: "2002-04-03T13:37:27+00:00",
     images: [
       "https://nationaltoday.com/wp-content/uploads/2020/02/national-golden-retriever-day-640x514.jpg",
     ],
@@ -38,11 +35,7 @@ const data = [
     breeds: ["Corgi"],
     conditions: [],
     gender: "Male",
-    birthDate: {
-      day: 20,
-      month: 4,
-      year: 2015,
-    },
+    birthDate: "2015-04-20T13:37:27+00:00",
     images: [
       "https://i.barkpost.com/wp-content/uploads/2019/06/corgi-by-the-beach-again.jpg?q=70&fit=crop&crop=entropy&w=808&h=500",
     ],
@@ -59,11 +52,7 @@ const data = [
     breeds: ["Chartreux"],
     conditions: [],
     gender: "Female",
-    birthDate: {
-      day: 12,
-      month: 5,
-      year: 2010,
-    },
+    birthDate: "2010-05-12T13:37:27+00:00",
     images: ["https://petkeen.com/wp-content/uploads/2021/05/Chartreux.jpeg"],
     weight: 3625,
     height: 550,

@@ -33,11 +33,7 @@ const data = {
   images: [],
   gender: "Male",
   name: "",
-  birthDate: {
-    day: 3,
-    month: 4,
-    year: 2005,
-  },
+  birthDate: new Date("2005-01-12T13:00:00+00:00"),
   description: "",
   location: "",
   weight: "",
@@ -52,7 +48,6 @@ function PostScreen({ navigation }) {
 
   const [animalData, setAnimalData] = useState({ ...data });
   const [gender, setGender] = useState(0);
-  const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedBreeds, setSelectedBreeds] = useState([]);
@@ -75,17 +70,12 @@ function PostScreen({ navigation }) {
     return true;
   };
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
+  const onChange = (_event, selectedDate) => {
+    const currentDate = selectedDate || animalData;
     setShow(false);
-    setDate(currentDate);
     setAnimalData({
       ...animalData,
-      birthDate: {
-        day: currentDate.getDate(),
-        month: currentDate.getMonth() + 1,
-        year: currentDate.getFullYear(),
-      },
+      birthDate: currentDate,
     });
   };
 
@@ -189,21 +179,26 @@ function PostScreen({ navigation }) {
               buttonStyle={postStyle.dateButton}
               titleStyle={postStyle.dateTitle}
               onPress={showMode}
-              title={animalData.birthDate.day}
+              title={animalData.birthDate.getDate()}
             />
             <Button
               buttonStyle={postStyle.dateButton}
               titleStyle={postStyle.dateTitle}
               onPress={showMode}
-              title={animalData.birthDate.month}
+              title={animalData.birthDate.getMonth() + 1}
             />
             <Button
               buttonStyle={postStyle.dateButton}
               titleStyle={postStyle.dateTitle}
               onPress={showMode}
-              title={animalData.birthDate.year}
+              title={animalData.birthDate.getFullYear()}
             />
-            {show && <DateTimePicker value={date} onChange={onChange} />}
+            {show && (
+              <DateTimePicker
+                value={animalData.birthDate}
+                onChange={onChange}
+              />
+            )}
           </View>
         </View>
 
