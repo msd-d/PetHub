@@ -7,6 +7,7 @@ import Database from "../database";
 import colors from "../colors";
 import standardStyle from "../styles/standard-style";
 import searchStyle from "../styles/search-style";
+import { getAgeFromTime } from "../util";
 
 const renderItem = ({ item }) => (
   <View style={searchStyle.card}>
@@ -40,7 +41,7 @@ const renderItem = ({ item }) => (
         <Chip
           title={
             <GradientText style={searchStyle.chipText}>
-              {new Date().getFullYear() - item.birthDate.year + " y/o"}
+              {getAgeFromTime(new Date(item.birthDate)) + " y/o"}
             </GradientText>
           }
           titleStyle={searchStyle.chipText}

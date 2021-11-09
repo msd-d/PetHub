@@ -4,6 +4,7 @@ import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import Database from "../database";
 import homeStyle from "../styles/home-style";
+import { getAgeFromTime } from "../util";
 
 const renderItem = ({ item }) => (
   <View style={homeStyle.card}>
@@ -37,7 +38,7 @@ const renderItem = ({ item }) => (
         <Chip
           title={
             <GradientText style={homeStyle.chipText}>
-              {new Date().getFullYear() - item.birthDate.year + " y/o"}
+              {getAgeFromTime(new Date(item.birthDate)) + " y/o"}
             </GradientText>
           }
           titleStyle={homeStyle.chipText}
