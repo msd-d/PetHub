@@ -12,7 +12,7 @@ import postStyle from "../styles/post-style";
 
 const ListEmptyComponent = () => <View style={postStyle.empty}></View>;
 
-const Item = ({ item, starIcon }) => (
+const Item = ({ item, starIcon, username, getData }) => (
   <View style={homeStyle.card}>
     <Image
       source={{ uri: item.images[0] }}
@@ -22,7 +22,11 @@ const Item = ({ item, starIcon }) => (
     />
     <TouchableOpacity
       style={homeStyle.star}
-      onPress={() => console.log("Favorite")}
+      onPress={() =>
+        starIcon === "star"
+          ? Database.removeSaved(item.id, username).then(getData())
+          : Database.setSaved(item.id, username).then(getData())
+      }
     >
       <Ionicons name={starIcon} size={45} color={colors.starYellow} />
     </TouchableOpacity>
@@ -64,6 +68,8 @@ const Item = ({ item, starIcon }) => (
 Item.propTypes = {
   item: PropTypes.object,
   starIcon: PropTypes.string,
+  username: PropTypes.string,
+  getData: PropTypes.func,
 };
 
 export default function HomeScreen() {
@@ -74,21 +80,30 @@ export default function HomeScreen() {
 
   const RenderItem = ({ item }) => {
     const starIcon = savedData.includes(item.id) ? "star" : "star-outline"; // todo: check if saved has it.
-    return <Item item={item} starIcon={starIcon} />;
+    return (
+      <Item
+        item={item}
+        starIcon={starIcon}
+        username={myContext.userID}
+        getData={getData}
+      />
+    );
   };
 
   RenderItem.propTypes = {
     item: PropTypes.object,
   };
 
-  const getData = () => {
-    Database.getItem("data").then((data) => setHomeData(data));
-    Database.getSaved(myContext.UserID).then((data) => setSavedData(data));
+  const getData = async () => {
+    const data = await Database.getItem("data");
+    setHomeData(data);
+    const saved = await Database.getSaved(myContext.userID);
+    setSavedData(saved);
   };
 
-  const onRefresh = () => {
+  const onRefresh = async () => {
     setFetching(true);
-    getData();
+    await getData();
     setFetching(false);
   };
 
@@ -104,7 +119,7 @@ export default function HomeScreen() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={RenderItem}
         refreshing={fetching}
-        onRefresh={() => onRefresh}
+        onRefresh={() => onRefresh()}
         ListEmptyComponent={ListEmptyComponent}
       />
     </View>

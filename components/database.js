@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { element } from "prop-types";
 import { users, breeds, conditions, data } from "./dummy-data";
 
 export default class Database {
@@ -45,16 +46,46 @@ export default class Database {
     }
   }
 
+  static async setSaved(id, username) {
+    try {
+      const users = await this.getItem("users");
+      users.forEach((element) => {
+        if (element.username == username) {
+          element.saved = [...element.saved, id];
+          this.setItem(users, "users");
+        }
+      });
+    } catch (e) {
+      // error
+    }
+  }
+
+  static async removeSaved(id, username) {
+    console.log("removing " + id + " : " + username);
+    try {
+      const users = await this.getItem("users");
+      users.forEach((element) => {
+        if (element.username == username) {
+          const index = element.saved.indexOf(id);
+          element.saved.splice(index, 1);
+          this.setItem(users, "users");
+        }
+      });
+    } catch (e) {
+      // error
+    }
+  }
+
   static async getSaved(username) {
     let saved = [];
     try {
-      await AsyncStorage.getItem("users").then((users) =>
-        users.forEach((element) => {
-          if (element.username === username) {
+      await this.getItem("users").then((data) => {
+        data.forEach((element) => {
+          if (element.username == username) {
             saved = element.saved;
           }
-        })
-      );
+        });
+      });
     } catch (e) {
       // error
     }
