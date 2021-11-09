@@ -7,7 +7,7 @@ import { TextInput } from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import generelPositioning from "../styles/generel-positioning";
+import generelPositioning from "../styles/general-positioning";
 import postStyle from "../styles/post-style";
 import standardStyle from "../styles/standard-style";
 import GradientButton from "../colors/gradient-button";
@@ -314,12 +314,14 @@ function PostScreen({ navigation }) {
         <View style={generelPositioning.flexRowSpaceEvenly}>
           <GradientButton
             title={"Post animal"}
-            style={postStyle.postButton}
+            buttonStyle={postStyle.postButton}
+            containerStyle={postStyle.postButtonContainer}
             onPress={postData}
           />
           <Button
             title={"Cancel"}
-            containerStyle={postStyle.cancelButton}
+            containerStyle={postStyle.cancelButtonContainer}
+            buttonStyle={postStyle.cancelButton}
             titleStyle={postStyle.cancelButtonTitle}
             type={"outline"}
           />
