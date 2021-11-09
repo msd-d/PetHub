@@ -45,6 +45,22 @@ export default class Database {
     }
   }
 
+  static async getSaved(username) {
+    let saved = [];
+    try {
+      await AsyncStorage.getItem("users").then((users) =>
+        users.forEach((element) => {
+          if (element.username === username) {
+            saved = element.saved;
+          }
+        })
+      );
+    } catch (e) {
+      // error
+    }
+    return saved;
+  }
+
   static async getMultiple(keys) {
     try {
       const values = await AsyncStorage.multiGet(keys);

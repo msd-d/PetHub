@@ -12,6 +12,21 @@ export default StyleSheet.create({
     marginTop: 15,
     borderRadius: 23,
   },
+  empty: {
+    flex: 1,
+    display: "flex",
+    width: config.deviceWidth * 0.9,
+    marginLeft: config.deviceWidth * 0.05,
+    height: config.deviceWidth * 0.9,
+    marginTop: 15,
+    borderRadius: 23,
+    backgroundColor: colors.lightGray,
+  },
+  star: {
+    position: "absolute",
+    right: 10,
+    top: 10,
+  },
   cardContent: {
     display: "flex",
     flexDirection: "column",
