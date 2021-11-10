@@ -2,10 +2,12 @@ const users = [
   {
     username: "admin",
     password: "admin",
+    saved: [],
   },
   {
     username: "test",
     password: "test",
+    saved: [0, 2],
   },
 ];
 

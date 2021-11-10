@@ -45,6 +45,52 @@ export default class Database {
     }
   }
 
+  static async setSaved(id, username) {
+    try {
+      const users = await this.getItem("users");
+      users.forEach((element) => {
+        if (element.username == username) {
+          element.saved = [...element.saved, id];
+          this.setItem(users, "users");
+        }
+      });
+    } catch (e) {
+      // error
+    }
+  }
+
+  static async removeSaved(id, username) {
+    console.log("removing " + id + " : " + username);
+    try {
+      const users = await this.getItem("users");
+      users.forEach((element) => {
+        if (element.username == username) {
+          const index = element.saved.indexOf(id);
+          element.saved.splice(index, 1);
+          this.setItem(users, "users");
+        }
+      });
+    } catch (e) {
+      // error
+    }
+  }
+
+  static async getSaved(username) {
+    let saved = [];
+    try {
+      await this.getItem("users").then((data) => {
+        data.forEach((element) => {
+          if (element.username == username) {
+            saved = element.saved;
+          }
+        });
+      });
+    } catch (e) {
+      // error
+    }
+    return saved;
+  }
+
   static async getMultiple(keys) {
     try {
       const values = await AsyncStorage.multiGet(keys);
