@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Switch, Text, View } from "react-native";
 import { Standard } from "components/styles/debug-style";
 import { Button } from "react-native-elements";
 import Database from "../database";
 import PropTypes from "prop-types";
+import AppContext from "../AppContext";
 
 function DebugScreen({ navigation }) {
   // ----------------------------- Debug toggle
   const [value, setValue] = useState(false);
+
+  const myContext = useContext(AppContext);
 
   const readItemFromStorage = async () => {
     const item = await Database.getItem("debug");
@@ -22,6 +25,13 @@ function DebugScreen({ navigation }) {
   useEffect(() => {
     readItemFromStorage();
   }, []);
+
+  const handleLogin = async () => {
+    await Database.getUser("test", "test").then(() => {
+      myContext.updateUserID("test");
+      navigation.navigate("Profile");
+    });
+  };
   // ------------------------------
 
   return (
@@ -45,6 +55,7 @@ function DebugScreen({ navigation }) {
         title={"Debug login"}
         onPress={() => navigation.navigate("Login")}
       />
+      <Button title={"Test Login"} onPress={() => handleLogin()} />
     </View>
   );
 }

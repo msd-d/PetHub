@@ -5,6 +5,7 @@ const users = [
     phone: "88888888",
     email: "admin@pethub.com",
     location: "Odense",
+    saved: [],
   },
   {
     username: "test",
@@ -12,6 +13,7 @@ const users = [
     phone: "12345678",
     email: "test@pethub.com",
     location: "Test City",
+    saved: [0, 2],
   },
 ];
 
