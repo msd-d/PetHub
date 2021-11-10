@@ -18,6 +18,7 @@ const users = [
 const data = [
   {
     id: 0,
+    postedBy: "admin",
     name: "Daisy",
     breeds: ["Golden reciever", "Husky"],
     conditions: [],
@@ -35,6 +36,7 @@ const data = [
   },
   {
     id: 1,
+    postedBy: "admin",
     name: "Harry",
     breeds: ["Corgi"],
     conditions: [],
@@ -52,6 +54,7 @@ const data = [
   },
   {
     id: 2,
+    postedBy: "admin",
     name: "Tuffy",
     breeds: ["Chartreux"],
     conditions: [],
