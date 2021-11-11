@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Switch, Text, View } from "react-native";
-import { Standard } from "components/styles/profile-style";
+import { Standard } from "components/styles/debug-style";
 import { Button } from "react-native-elements";
 import Database from "../database";
 import PropTypes from "prop-types";

@@ -26,7 +26,7 @@ export default class Database {
     }
   }
 
-  static async getUser(uname, pwd) {
+  static async loginUser(uname, pwd) {
     try {
       let success = false;
       await AsyncStorage.getItem("users").then((data) => {
@@ -40,6 +40,25 @@ export default class Database {
       });
 
       return success;
+    } catch (e) {
+      // read error
+    }
+  }
+
+  static async getUser(uname) {
+    try {
+      let user;
+      await AsyncStorage.getItem("users").then((data) => {
+        let array = JSON.parse(data);
+        for (let i = 0; i < array.length; i++) {
+          const dbUser = array[i];
+          if (dbUser.username == uname) {
+            user = dbUser;
+          }
+        }
+      });
+
+      return user;
     } catch (e) {
       // read error
     }

@@ -2,11 +2,17 @@ const users = [
   {
     username: "admin",
     password: "admin",
+    phone: "88888888",
+    email: "admin@pethub.com",
+    location: "Odense",
     saved: [],
   },
   {
     username: "test",
     password: "test",
+    phone: "12345678",
+    email: "test@pethub.com",
+    location: "Test City",
     saved: [0, 2],
   },
 ];
@@ -14,6 +20,7 @@ const users = [
 const data = [
   {
     id: 0,
+    postedBy: "admin",
     name: "Daisy",
     breeds: ["Golden reciever", "Husky"],
     conditions: [],
@@ -31,6 +38,7 @@ const data = [
   },
   {
     id: 1,
+    postedBy: "admin",
     name: "Harry",
     breeds: ["Corgi"],
     conditions: [],
@@ -48,6 +56,7 @@ const data = [
   },
   {
     id: 2,
+    postedBy: "admin",
     name: "Tuffy",
     breeds: ["Chartreux"],
     conditions: [],
