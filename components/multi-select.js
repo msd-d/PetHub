@@ -75,7 +75,7 @@ export default class MultiSelect extends React.Component {
           this.props.onItemChange(selectedItems)
         }
         selectedItems={this.props.selectedItems}
-        selectText={"Select animals conditions"}
+        selectText={this.props.selectText}
         styles={tagSelectionStyle}
       />
     );
@@ -87,4 +87,5 @@ MultiSelect.propTypes = {
   onSelectedChange: PropTypes.func.isRequired,
   selectedItems: PropTypes.array.isRequired,
   dataName: PropTypes.string.isRequired,
+  selectText: PropTypes.string.isRequired,
 };
