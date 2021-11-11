@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, Image, ViewPropTypes } from "react-native";
+import { Text, View, Image } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
-import PropTypes from "prop-types";
 import AppContext from "../AppContext";
 import Database from "../database";
 import profileStyle from "../styles/profile-style";
@@ -13,7 +12,7 @@ import { getAgeFromTime } from "../util";
 import colors from "../colors";
 import { FlatList } from "react-native-gesture-handler";
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -159,10 +158,6 @@ const ProfileScreen = ({ navigation }) => {
       onRefresh={() => onRefresh}
     />
   );
-};
-
-ProfileScreen.propTypes = {
-  navigation: PropTypes.object,
 };
 
 export default ProfileScreen;
