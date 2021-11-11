@@ -28,7 +28,6 @@ const ProfileScreen = () => {
       setEmail(user.email);
       setLocation(user.location);
       getData();
-      console.log("useEffect called");
     });
   }, [myContext]);
 
