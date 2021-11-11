@@ -123,28 +123,260 @@ const conditions = [
     // these are the children or 'sub items'
     children: [
       {
-        name: "Arthritis",
+        id: 0,
+        name: "Aflatoxicosis",
+      },
+      {
         id: 1,
+        name: "African horse sickness",
       },
       {
-        name: "Cancer",
         id: 2,
+        name: "African swine fever",
       },
       {
-        name: "Diabetes Militus",
         id: 3,
+        name: "Akabane disease",
       },
       {
-        name: "Epilepsy",
         id: 4,
+        name: "Anthrax",
       },
       {
-        name: "Gastric Dilation Volvulus",
         id: 5,
+        name: "Australian bat lyssavirus",
       },
       {
-        name: "Hypothyroidism",
         id: 6,
+        name: "Avian influenza",
+      },
+      {
+        id: 7,
+        name: "Avian paramyxovirus",
+      },
+      {
+        id: 8,
+        name: "Blackhead",
+      },
+      {
+        id: 9,
+        name: "Bluetongue",
+      },
+      {
+        id: 10,
+        name: "Botulism",
+      },
+      {
+        id: 11,
+        name: "Botulism in poultry",
+      },
+      {
+        id: 12,
+        name: "Bovine ephemeral fever",
+      },
+      {
+        id: 13,
+        name: "Bovine viral diarrhoea virus",
+      },
+      {
+        id: 14,
+        name: "Brucellosis",
+      },
+      {
+        id: 15,
+        name: "Canine ehrlichiosis",
+      },
+      {
+        id: 16,
+        name: "Caprine arthritis encephalitis",
+      },
+      {
+        id: 17,
+        name: "Cattle tick",
+      },
+      {
+        id: 18,
+        name: "Coccidiosis",
+      },
+      {
+        id: 19,
+        name: "Copper deficiency in ruminants",
+      },
+      {
+        id: 20,
+        name: "Enzootic bovine leucosis",
+      },
+      {
+        id: 21,
+        name: "Equine herpesvirus type 1 (EHV-1)",
+      },
+      {
+        id: 22,
+        name: "Equine infectious anaemia",
+      },
+      {
+        id: 23,
+        name: "Equine influenza",
+      },
+      {
+        id: 24,
+        name: "Equine viral arteritis",
+      },
+      {
+        id: 25,
+        name: "External parasites in poultry",
+      },
+      {
+        id: 26,
+        name: "Foot-and-mouth disease",
+      },
+      {
+        id: 27,
+        name: "Fowl cholera",
+      },
+      {
+        id: 28,
+        name: "Fowl pox",
+      },
+      {
+        id: 29,
+        name: "Hendra virus",
+      },
+      {
+        id: 30,
+        name: "Hydatid disease",
+      },
+      {
+        id: 31,
+        name: "Infectious laryngotracheitis",
+      },
+      {
+        id: 32,
+        name: "Influenza A in pigs",
+      },
+      {
+        id: 33,
+        name: "Intestinal torsion",
+      },
+      {
+        id: 34,
+        name: "Japanese encephalitis",
+      },
+      {
+        id: 35,
+        name: "Johne's disease",
+      },
+      {
+        id: 36,
+        name: "Leptospirosis",
+      },
+      {
+        id: 37,
+        name: "Leptospirosis in pigs",
+      },
+      {
+        id: 38,
+        name: "Lumpy jaw",
+      },
+      {
+        id: 39,
+        name: "Lumpy skin disease",
+      },
+      {
+        id: 40,
+        name: "Marek's disease",
+      },
+      {
+        id: 41,
+        name: "Melioidosis",
+      },
+      {
+        id: 42,
+        name: "Neosporosis",
+      },
+      {
+        id: 43,
+        name: "Neurological disease in horses",
+      },
+      {
+        id: 44,
+        name: "Newcastle disease",
+      },
+      {
+        id: 45,
+        name: "Nipah virus",
+      },
+      {
+        id: 46,
+        name: "Ovine brucellosis",
+      },
+      {
+        id: 47,
+        name: "Piglet anaemia",
+      },
+      {
+        id: 48,
+        name: "Piglet scours",
+      },
+      {
+        id: 49,
+        name: "Psittacosis",
+      },
+      {
+        id: 50,
+        name: "Rabies due to rabies virus",
+      },
+      {
+        id: 51,
+        name: "Salmonella",
+      },
+      {
+        id: 52,
+        name: "Screw-worm fly",
+      },
+      {
+        id: 53,
+        name: "Spotty liver",
+      },
+      {
+        id: 54,
+        name: "Strangles",
+      },
+      {
+        id: 55,
+        name: "Swine brucellosis",
+      },
+      {
+        id: 56,
+        name: "Tetanus",
+      },
+      {
+        id: 57,
+        name: "Transit tetany",
+      },
+      {
+        id: 58,
+        name: "Vibriosis (Campylobacteriosis)",
+      },
+      {
+        id: 59,
+        name: "Warts on cattle",
+      },
+      {
+        id: 60,
+        name: "White spot disease",
+      },
+      {
+        id: 61,
+        name: "White-nose syndrome",
+      },
+      {
+        id: 62,
+        name: "Wooden tongue",
+      },
+      {
+        id: 63,
+        name: "Worm parasites in poultry",
       },
     ],
   },
@@ -188,411 +420,411 @@ const breeds = [
     id: 1,
     children: [
       {
-        id: 0,
+        id: 7,
         name: "Abyssinian",
       },
       {
-        id: 1,
+        id: 8,
         name: "Aegean",
       },
       {
-        id: 2,
+        id: 9,
         name: "American Bobtail",
       },
       {
-        id: 3,
+        id: 10,
         name: "American Curl",
       },
       {
-        id: 4,
+        id: 11,
         name: "American Ringtail",
       },
       {
-        id: 5,
+        id: 12,
         name: "American Shorthair",
       },
       {
-        id: 6,
+        id: 13,
         name: "American Wirehair",
       },
       {
-        id: 7,
+        id: 14,
         name: "Aphrodite Giant",
       },
       {
-        id: 8,
+        id: 15,
         name: "Arabian Mau",
       },
       {
-        id: 9,
+        id: 16,
         name: "Asian",
       },
       {
-        id: 10,
+        id: 17,
         name: "Asian Semi-longhair",
       },
       {
-        id: 11,
+        id: 18,
         name: "Australian Mist",
       },
       {
-        id: 12,
+        id: 19,
         name: "Balinese",
       },
       {
-        id: 13,
+        id: 20,
         name: "Bambino",
       },
       {
-        id: 14,
+        id: 21,
         name: "Bengal",
       },
       {
-        id: 15,
+        id: 22,
         name: "Birman",
       },
       {
-        id: 16,
+        id: 23,
         name: "Bombay",
       },
       {
-        id: 17,
+        id: 24,
         name: "Brazilian Shorthair",
       },
       {
-        id: 18,
+        id: 25,
         name: "British Longhair",
       },
       {
-        id: 19,
+        id: 26,
         name: "British Shorthair",
       },
       {
-        id: 20,
+        id: 27,
         name: "Burmese",
       },
       {
-        id: 21,
+        id: 28,
         name: "Burmilla",
       },
       {
-        id: 22,
+        id: 29,
         name: "California Spangled",
       },
       {
-        id: 23,
+        id: 30,
         name: "Chantilly-Tiffany",
       },
       {
-        id: 24,
+        id: 31,
         name: "Chartreux",
       },
       {
-        id: 25,
+        id: 32,
         name: "Chausie",
       },
       {
-        id: 26,
+        id: 33,
         name: "Colorpoint Shorthair",
       },
       {
-        id: 27,
+        id: 34,
         name: "Cornish Rex",
       },
       {
-        id: 28,
+        id: 35,
         name: "Cymric, Manx Longhair or Long-haired Manx",
       },
       {
-        id: 29,
+        id: 36,
         name: "Cyprus",
       },
       {
-        id: 30,
+        id: 37,
         name: "Devon Rex",
       },
       {
-        id: 31,
+        id: 38,
         name: "Don Sphynx",
       },
       {
-        id: 32,
+        id: 39,
         name: "Dragon Li",
       },
       {
-        id: 33,
+        id: 40,
         name: "Dwelf",
       },
       {
-        id: 34,
+        id: 41,
         name: "Egyptian Mau",
       },
       {
-        id: 35,
+        id: 42,
         name: "European Shorthair",
       },
       {
-        id: 36,
+        id: 43,
         name: "Exotic Shorthair",
       },
       {
-        id: 37,
+        id: 44,
         name: "Foldex",
       },
       {
-        id: 38,
+        id: 45,
         name: "German Rex",
       },
       {
-        id: 39,
+        id: 46,
         name: "Havana Brown",
       },
       {
-        id: 40,
+        id: 47,
         name: "Highlander",
       },
       {
-        id: 41,
+        id: 48,
         name: "Himalayan",
       },
       {
-        id: 42,
+        id: 49,
         name: "Japanese Bobtail",
       },
       {
-        id: 43,
+        id: 50,
         name: "Javanese",
       },
       {
-        id: 44,
+        id: 51,
         name: "Kanaani",
       },
       {
-        id: 45,
+        id: 52,
         name: "Khao Manee",
       },
       {
-        id: 46,
+        id: 53,
         name: "Kinkalow",
       },
       {
-        id: 47,
+        id: 54,
         name: "Korat",
       },
       {
-        id: 48,
+        id: 55,
         name: "Korean Bobtail",
       },
       {
-        id: 49,
+        id: 56,
         name: "Korn Ja",
       },
       {
-        id: 50,
+        id: 57,
         name: "Kurilian Bobtail",
       },
       {
-        id: 51,
+        id: 58,
         name: "Lambkin",
       },
       {
-        id: 52,
+        id: 59,
         name: "LaPerm",
       },
       {
-        id: 53,
+        id: 60,
         name: "Lykoi",
       },
       {
-        id: 54,
+        id: 61,
         name: "Maine Coon",
       },
       {
-        id: 55,
+        id: 62,
         name: "Manx",
       },
       {
-        id: 56,
+        id: 63,
         name: "Mekong Bobtail",
       },
       {
-        id: 57,
+        id: 64,
         name: "Minskin",
       },
       {
-        id: 58,
+        id: 65,
         name: "Napoleon",
       },
       {
-        id: 59,
+        id: 66,
         name: "Munchkin",
       },
       {
-        id: 60,
+        id: 67,
         name: "Nebelung",
       },
       {
-        id: 61,
+        id: 68,
         name: "Norwegian Forest Cat",
       },
       {
-        id: 62,
+        id: 69,
         name: "Ocicat",
       },
       {
-        id: 63,
+        id: 70,
         name: "Ojos Azules",
       },
       {
-        id: 64,
+        id: 71,
         name: "Oregon Rex",
       },
       {
-        id: 65,
+        id: 72,
         name: "Oriental Bicolor",
       },
       {
-        id: 66,
+        id: 73,
         name: "Oriental Longhair",
       },
       {
-        id: 67,
+        id: 74,
         name: "Oriental Shorthair",
       },
       {
-        id: 68,
+        id: 75,
         name: "Persian (modern)",
       },
       {
-        id: 69,
+        id: 76,
         name: "Persian (traditional)",
       },
       {
-        id: 70,
+        id: 77,
         name: "Peterbald",
       },
       {
-        id: 71,
+        id: 78,
         name: "Pixie-bob",
       },
       {
-        id: 72,
+        id: 79,
         name: "Ragamuffin",
       },
       {
-        id: 73,
+        id: 80,
         name: "Ragdoll",
       },
       {
-        id: 74,
+        id: 81,
         name: "Raas",
       },
       {
-        id: 75,
+        id: 82,
         name: "Russian Blue",
       },
       {
-        id: 76,
+        id: 83,
         name: "Russian White, Russian Black and Russian Tabby",
       },
       {
-        id: 77,
+        id: 84,
         name: "Sam Sawet",
       },
       {
-        id: 78,
+        id: 85,
         name: "Savannah",
       },
       {
-        id: 79,
+        id: 86,
         name: "Scottish Fold",
       },
       {
-        id: 80,
+        id: 87,
         name: "Selkirk Rex",
       },
       {
-        id: 81,
+        id: 88,
         name: "Serengeti",
       },
       {
-        id: 82,
+        id: 89,
         name: "Serrade Petit",
       },
       {
-        id: 83,
+        id: 90,
         name: "Siamese (modern)",
       },
       {
-        id: 84,
+        id: 91,
         name: "Siberian Forest Cat",
       },
       {
-        id: 85,
+        id: 92,
         name: "Neva Masquerade",
       },
       {
-        id: 86,
+        id: 93,
         name: "Singapura",
       },
       {
-        id: 87,
+        id: 94,
         name: "Snowshoe",
       },
       {
-        id: 88,
+        id: 95,
         name: "Sokoke",
       },
       {
-        id: 89,
+        id: 96,
         name: "Somali",
       },
       {
-        id: 90,
+        id: 97,
         name: "Sphynx",
       },
       {
-        id: 91,
+        id: 98,
         name: "Suphalak",
       },
       {
-        id: 92,
+        id: 99,
         name: "Thai",
       },
       {
-        id: 93,
+        id: 100,
         name: "Wichien Maat",
       },
       {
-        id: 94,
+        id: 101,
         name: "Thai Lilac",
       },
       {
-        id: 95,
+        id: 102,
         name: "Tonkinese",
       },
       {
-        id: 96,
+        id: 103,
         name: "Toyger",
       },
       {
-        id: 97,
+        id: 104,
         name: "Turkish Angora",
       },
       {
-        id: 98,
+        id: 105,
         name: "Turkish Van",
       },
       {
-        id: 99,
+        id: 106,
         name: "Turkish Vankedisi",
       },
       {
-        id: 100,
+        id: 107,
         name: "Ukrainian Levkoy",
       },
       {
-        id: 101,
+        id: 108,
         name: "York Chocolate",
       },
     ],
@@ -602,299 +834,299 @@ const breeds = [
     id: 2,
     children: [
       {
-        id: 0,
+        id: 109,
         name: "Adolfo's catfish/corydoras",
       },
       {
-        id: 1,
+        id: 110,
         name: "Amazon sailfin catfish",
       },
       {
-        id: 2,
+        id: 111,
         name: "Banded corydoras",
       },
       {
-        id: 3,
+        id: 112,
         name: "Barred-tail corydoras",
       },
       {
-        id: 4,
+        id: 113,
         name: "Barred sorubim",
       },
       {
-        id: 5,
+        id: 114,
         name: "Blackstripe corydoras",
       },
       {
-        id: 6,
+        id: 115,
         name: "Blacktop corydoras",
       },
       {
-        id: 7,
+        id: 116,
         name: "Blue corydoras",
       },
       {
-        id: 8,
+        id: 117,
         name: "Bluespotted corydoras",
       },
       {
-        id: 9,
+        id: 118,
         name: "Bolt catfish",
       },
       {
-        id: 10,
+        id: 119,
         name: "Bristlenose pleco, bushynose pleco",
       },
       {
-        id: 11,
+        id: 120,
         name: "Britski's catfish",
       },
       {
-        id: 12,
+        id: 121,
         name: "Bronze corydoras, Emerald green cory",
       },
       {
-        id: 13,
+        id: 122,
         name: "Caracha",
       },
       {
-        id: 14,
+        id: 123,
         name: "Cascarudo",
       },
       {
-        id: 15,
+        id: 124,
         name: "Common pleco, suckermouth catfish",
       },
       {
-        id: 16,
+        id: 125,
         name: "Corydoras nain",
       },
       {
-        id: 17,
+        id: 126,
         name: "Dwarf corydoras",
       },
       {
-        id: 18,
+        id: 127,
         name: "Ehrhardt's corydoras",
       },
       {
-        id: 19,
+        id: 128,
         name: "Elegant corydoras",
       },
       {
-        id: 20,
+        id: 129,
         name: "Emerald catfish",
       },
       {
-        id: 21,
+        id: 130,
         name: "Evelyn's cory",
       },
       {
-        id: 22,
+        id: 131,
         name: "False network catfish",
       },
       {
-        id: 23,
+        id: 132,
         name: "False spotted catfish",
       },
       {
-        id: 24,
+        id: 133,
         name: "Firewood catfish, (planiceps) shovelnose catfish",
       },
       {
-        id: 25,
+        id: 134,
         name: "Flagtail catfish",
       },
       {
-        id: 26,
+        id: 135,
         name: "Golden dwarf sucker, golden oto",
       },
       {
-        id: 27,
+        id: 136,
         name: "Gold laser cory",
       },
       {
-        id: 28,
+        id: 137,
         name: "Gold nugget pleco",
       },
       {
-        id: 29,
+        id: 138,
         name: "Gold Zebra catfish",
       },
       {
-        id: 30,
+        id: 139,
         name: "Guapore corydoras",
       },
       {
-        id: 31,
+        id: 140,
         name: "Hognosed brochis",
       },
       {
-        id: 32,
+        id: 141,
         name: "Hover over the menu items to see examples of what we can do.",
       },
       {
-        id: 33,
+        id: 142,
         name: "Julii corydoras",
       },
       {
-        id: 34,
+        id: 143,
         name: "Leopard sailfin pleco, clown sailfin pleco",
       },
       {
-        id: 35,
+        id: 144,
         name: "Lima shovelnose catfishLists' section.",
       },
       {
-        id: 36,
+        id: 145,
         name: "Loach catfish",
       },
       {
-        id: 37,
+        id: 146,
         name: "Long nosed arched cory",
       },
       {
-        id: 38,
+        id: 147,
         name: "Loxozonus cory",
       },
       {
-        id: 39,
+        id: 148,
         name: "Masked corydoras, bandit corydoras",
       },
       {
-        id: 40,
+        id: 149,
         name: "Mosaic corydoras, reticulated corydoras",
       },
       {
-        id: 41,
+        id: 150,
         name: "Mosaic corydoras, reticulated corydoras",
       },
       {
-        id: 42,
+        id: 151,
         name: "Ornate Pimelodus",
       },
       {
-        id: 43,
+        id: 152,
         name: "Panaque",
       },
       {
-        id: 44,
+        id: 153,
         name: "Panda corydoras",
       },
       {
-        id: 45,
+        id: 154,
         name: "Pastaza corydoras",
       },
       {
-        id: 46,
+        id: 155,
         name: "Peppered corydoras, salt and pepper catfish",
       },
       {
-        id: 47,
+        id: 156,
         name: "Pineapple pleco, orange cheek pleco",
       },
       {
-        id: 48,
+        id: 157,
         name: "Pink corydoras",
       },
       {
-        id: 49,
+        id: 158,
         name: "Please Enter your List Here.",
       },
       {
-        id: 50,
+        id: 159,
         name: "Pygmy corydoras",
       },
       {
-        id: 51,
+        id: 160,
         name: "Redtail catfish",
       },
       {
-        id: 52,
+        id: 161,
         name: "Sailfin catfish",
       },
       {
-        id: 53,
+        id: 162,
         name: "Sailfin corydoras",
       },
       {
-        id: 54,
+        id: 163,
         name: "Salt and pepper catfish/corydoras",
       },
       {
-        id: 55,
+        id: 164,
         name: "Schwartz's catfish",
       },
       {
-        id: 56,
+        id: 165,
         name: "Sixray corydoras, false corydoras",
       },
       {
-        id: 57,
+        id: 166,
         name: "Spotted corydoras, longnose corydoras",
       },
       {
-        id: 58,
+        id: 167,
         name: "Spotted pimelodus, pictus, pictus catfish",
       },
       {
-        id: 59,
+        id: 168,
         name: "Sterba's corydoras",
       },
       {
-        id: 60,
+        id: 169,
         name: "Sturgeon catfish",
       },
       {
-        id: 61,
+        id: 170,
         name: "Sychr's catfish",
       },
       {
-        id: 62,
+        id: 171,
         name: "Tailspot corydoras",
       },
       {
-        id: 63,
+        id: 172,
         name: "Threestripe corydoras, leopard catfish, false julii cory",
       },
       {
-        id: 64,
+        id: 173,
         name: "Tiger sorubim",
       },
       {
-        id: 65,
+        id: 174,
         name: "Twig catfish",
       },
       {
-        id: 66,
+        id: 175,
         name: "Vulture Catfish, zamurito",
       },
       {
-        id: 67,
+        id: 176,
         name: "We also have some reference lists for you to play with in the 'Reference Brown-point shield skin longirostris",
       },
       {
-        id: 68,
+        id: 177,
         name: "Whiptail catfish",
       },
       {
-        id: 69,
+        id: 178,
         name: "Xingu corydoras",
       },
       {
-        id: 70,
+        id: 179,
         name: "You can sort or clean your list in a variety of ways.",
       },
       {
-        id: 71,
+        id: 180,
         name: "Zebra dwarf sucker, zebra oto",
       },
       {
-        id: 72,
+        id: 181,
         name: "Zebra pleco, L-046",
       },
       {
-        id: 73,
+        id: 182,
         name: "Zebra shovelnose",
       },
     ],

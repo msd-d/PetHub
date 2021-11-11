@@ -217,6 +217,7 @@ function PostScreen({ navigation }) {
             selectedItems={selectedBreeds}
             onSelectedChange={onBreedSelected}
             selectText={"Select animal breed"}
+            single={true}
           />
         </View>
         <GradientText style={postStyle.chipText}>
@@ -306,6 +307,7 @@ function PostScreen({ navigation }) {
             onSelectedChange={onConditionSelected}
             selectedItems={selectedConditions}
             selectText={"Select animal conditions"}
+            single={false}
           />
         </View>
         <View style={generelPositioning.flexRowSpaceEvenly}>
