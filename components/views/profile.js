@@ -127,7 +127,7 @@ const ProfileScreen = ({ navigation }) => {
           </View>
         
           {/* User info 
-          *   TODO: Make component
+          *   TODO: Make component, scale icons
           */}
           <View style={profileStyle.infoView}>
             <View style={profileStyle.row}>

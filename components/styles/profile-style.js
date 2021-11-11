@@ -1,28 +1,27 @@
 import { StyleSheet } from "react-native";
+import { ScaledSheet } from "react-native-size-matters";
 import colors from "../colors";
 import config from "../config";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   container: {
     backgroundColor: colors.white,
     justifyContent: "center",
     alignItems: "center",
   },
   top: {
-    marginTop: 5,
-    width: config.deviceWidth,
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 30,
+    marginTop: "10@s",
   },
   row: {
-    width: config.deviceWidth,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
   },
   infoView: {
-    
+    margin: "10@s",
   }, 
   profilePicture: {
     alignItems: "center",
@@ -33,15 +32,10 @@ export default StyleSheet.create({
   },
   infoText: {
     backgroundColor: colors.lightGray,
-    margin: 5,
-    padding: 10,
+    margin: "5@s",
+    padding: "10@s",
     borderRadius: 99,
     flexGrow: 1,
-  },
-  postingsView: {
-    backgroundColor: colors.lightGray,
-    marginTop: 30,
-    width: config.deviceWidth,
   },
   button: {
     borderRadius: 99,
@@ -50,19 +44,19 @@ export default StyleSheet.create({
   card: {
     flex: 1,
     display: "flex",
-    width: config.deviceWidth * 0.4,
-    marginLeft: config.deviceWidth * 0.05,
-    height: config.deviceWidth * 0.4,
-    marginTop: 15,
+    width: "150@s",
+    height: "150@msr",
+    marginLeft: "10@s",
+    marginTop: "15@s",
     borderRadius: 23,
   },
   empty: {
     flex: 1,
     display: "flex",
-    width: config.deviceWidth * 0.4,
-    marginLeft: config.deviceWidth * 0.05,
-    height: config.deviceWidth * 0.4,
-    marginTop: 15,
+    width: "150@s",
+    height: "150@msr",
+    marginLeft: "10@s",
+    marginTop: "15@s",
     borderRadius: 23,
     backgroundColor: colors.lightGray,
   },
@@ -76,9 +70,8 @@ export default StyleSheet.create({
     flexDirection: "column",
     position: "absolute",
     bottom: 1,
-    alignSelf: "center",
-    width: config.deviceWidth * 0.35,
-    height: 70,
+    alignSelf: "flex-start",
+    margin: 10,
   },
   name: {
     fontFamily: "Inter_700Bold",
@@ -86,11 +79,11 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 22,
     color: colors.white,
-    marginBottom: 5,
+    marginBottom: "5@s",
   },
   chip: {
     backgroundColor: colors.white,
-    marginRight: 5,
+    marginRight: "5@s",
     borderRadius: 8,
   },
   chipText: {
@@ -105,7 +98,7 @@ export default StyleSheet.create({
     flexDirection: "row",
   },
   image: {
-    width: undefined,
+    width: "100%",
     height: "100%",
     overflow: "hidden",
     borderRadius: 23,
