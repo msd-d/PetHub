@@ -29,6 +29,11 @@ const data = [
     birthDate: "2002-04-03T13:37:27+00:00",
     images: [
       "https://nationaltoday.com/wp-content/uploads/2020/02/national-golden-retriever-day-640x514.jpg",
+      "https://www.vets4pets.com/siteassets/dental-webheaders-dog---oct-20.jpg?w=585&scale=down",
+      "https://onettechnologiesindia.com/img/8b4b8d33789eb38f8343f9a8103c950a.jpg",
+      "https://www.hdnicewallpapers.com/Walls/Big/Dog/Dog_Face_HD_Wallpaper.jpg",
+      "https://d.newsweek.com/en/full/1618956/dog.jpg",
+      "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2020_30/3398773/dog-treats-kr-2x1-tease-200721.jpg",
     ],
     weight: 1025,
     height: 550,
