@@ -29,9 +29,8 @@ const ProfileScreen = () => {
       setLocation(user.location);
       getData();
       console.log("useEffect called");
-    }),
-      [];
-  });
+    });
+  }, [myContext]);
 
   const getData = () => {
     let temp;
