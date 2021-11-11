@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, TextInput, View, Image, ViewPropTypes } from "react-native";
+import { Text, View, Image, ViewPropTypes } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import PropTypes from "prop-types";
@@ -49,17 +49,8 @@ const ProfileScreen = ({ navigation }) => {
     getData();
     setIsFetching(false);
   };
-
-  const logOut = () => {
-    myContext.updateUserID(null);
-    setPhone("");
-    setEmail("");
-    setLocation("");
-    setPostings([]);
-    navigation.navigate("Home");
-  }
   
-  // TODO: Make items smaller (1/2 screen size) and flex-wrap
+  // TODO: refactor to it's own component
   const renderItem = ({ item }) => (
     <View style={profileStyle.card}>
       <Image
@@ -114,6 +105,8 @@ const ProfileScreen = ({ navigation }) => {
               style={profileStyle.button}
               onPress={() => alert("Not yet supported")}
             />
+
+            {/* TODO: Insert actual profile picture */}
             <View style={profileStyle.profilePicture}>
               <Ionicons name={"person"} size={100} color={colors.pethubPink}/>
               <Text style={profileStyle.usernameText}>{myContext.userID}</Text>
@@ -122,7 +115,7 @@ const ProfileScreen = ({ navigation }) => {
             <Button
               title={<Ionicons name={"log-out-outline"} size={40} color={colors.pethubPink}/>}
               style={profileStyle.button}
-              onPress={() => logOut()}
+              onPress={() => alert("Not yet supported")}
             />
           </View>
         
