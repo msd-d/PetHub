@@ -597,6 +597,308 @@ const breeds = [
       },
     ],
   },
+  {
+    name: "Fish",
+    id: 2,
+    children: [
+      {
+        id: 0,
+        name: "Adolfo's catfish/corydoras",
+      },
+      {
+        id: 1,
+        name: "Amazon sailfin catfish",
+      },
+      {
+        id: 2,
+        name: "Banded corydoras",
+      },
+      {
+        id: 3,
+        name: "Barred-tail corydoras",
+      },
+      {
+        id: 4,
+        name: "Barred sorubim",
+      },
+      {
+        id: 5,
+        name: "Blackstripe corydoras",
+      },
+      {
+        id: 6,
+        name: "Blacktop corydoras",
+      },
+      {
+        id: 7,
+        name: "Blue corydoras",
+      },
+      {
+        id: 8,
+        name: "Bluespotted corydoras",
+      },
+      {
+        id: 9,
+        name: "Bolt catfish",
+      },
+      {
+        id: 10,
+        name: "Bristlenose pleco, bushynose pleco",
+      },
+      {
+        id: 11,
+        name: "Britski's catfish",
+      },
+      {
+        id: 12,
+        name: "Bronze corydoras, Emerald green cory",
+      },
+      {
+        id: 13,
+        name: "Caracha",
+      },
+      {
+        id: 14,
+        name: "Cascarudo",
+      },
+      {
+        id: 15,
+        name: "Common pleco, suckermouth catfish",
+      },
+      {
+        id: 16,
+        name: "Corydoras nain",
+      },
+      {
+        id: 17,
+        name: "Dwarf corydoras",
+      },
+      {
+        id: 18,
+        name: "Ehrhardt's corydoras",
+      },
+      {
+        id: 19,
+        name: "Elegant corydoras",
+      },
+      {
+        id: 20,
+        name: "Emerald catfish",
+      },
+      {
+        id: 21,
+        name: "Evelyn's cory",
+      },
+      {
+        id: 22,
+        name: "False network catfish",
+      },
+      {
+        id: 23,
+        name: "False spotted catfish",
+      },
+      {
+        id: 24,
+        name: "Firewood catfish, (planiceps) shovelnose catfish",
+      },
+      {
+        id: 25,
+        name: "Flagtail catfish",
+      },
+      {
+        id: 26,
+        name: "Golden dwarf sucker, golden oto",
+      },
+      {
+        id: 27,
+        name: "Gold laser cory",
+      },
+      {
+        id: 28,
+        name: "Gold nugget pleco",
+      },
+      {
+        id: 29,
+        name: "Gold Zebra catfish",
+      },
+      {
+        id: 30,
+        name: "Guapore corydoras",
+      },
+      {
+        id: 31,
+        name: "Hognosed brochis",
+      },
+      {
+        id: 32,
+        name: "Hover over the menu items to see examples of what we can do.",
+      },
+      {
+        id: 33,
+        name: "Julii corydoras",
+      },
+      {
+        id: 34,
+        name: "Leopard sailfin pleco, clown sailfin pleco",
+      },
+      {
+        id: 35,
+        name: "Lima shovelnose catfishLists' section.",
+      },
+      {
+        id: 36,
+        name: "Loach catfish",
+      },
+      {
+        id: 37,
+        name: "Long nosed arched cory",
+      },
+      {
+        id: 38,
+        name: "Loxozonus cory",
+      },
+      {
+        id: 39,
+        name: "Masked corydoras, bandit corydoras",
+      },
+      {
+        id: 40,
+        name: "Mosaic corydoras, reticulated corydoras",
+      },
+      {
+        id: 41,
+        name: "Mosaic corydoras, reticulated corydoras",
+      },
+      {
+        id: 42,
+        name: "Ornate Pimelodus",
+      },
+      {
+        id: 43,
+        name: "Panaque",
+      },
+      {
+        id: 44,
+        name: "Panda corydoras",
+      },
+      {
+        id: 45,
+        name: "Pastaza corydoras",
+      },
+      {
+        id: 46,
+        name: "Peppered corydoras, salt and pepper catfish",
+      },
+      {
+        id: 47,
+        name: "Pineapple pleco, orange cheek pleco",
+      },
+      {
+        id: 48,
+        name: "Pink corydoras",
+      },
+      {
+        id: 49,
+        name: "Please Enter your List Here.",
+      },
+      {
+        id: 50,
+        name: "Pygmy corydoras",
+      },
+      {
+        id: 51,
+        name: "Redtail catfish",
+      },
+      {
+        id: 52,
+        name: "Sailfin catfish",
+      },
+      {
+        id: 53,
+        name: "Sailfin corydoras",
+      },
+      {
+        id: 54,
+        name: "Salt and pepper catfish/corydoras",
+      },
+      {
+        id: 55,
+        name: "Schwartz's catfish",
+      },
+      {
+        id: 56,
+        name: "Sixray corydoras, false corydoras",
+      },
+      {
+        id: 57,
+        name: "Spotted corydoras, longnose corydoras",
+      },
+      {
+        id: 58,
+        name: "Spotted pimelodus, pictus, pictus catfish",
+      },
+      {
+        id: 59,
+        name: "Sterba's corydoras",
+      },
+      {
+        id: 60,
+        name: "Sturgeon catfish",
+      },
+      {
+        id: 61,
+        name: "Sychr's catfish",
+      },
+      {
+        id: 62,
+        name: "Tailspot corydoras",
+      },
+      {
+        id: 63,
+        name: "Threestripe corydoras, leopard catfish, false julii cory",
+      },
+      {
+        id: 64,
+        name: "Tiger sorubim",
+      },
+      {
+        id: 65,
+        name: "Twig catfish",
+      },
+      {
+        id: 66,
+        name: "Vulture Catfish, zamurito",
+      },
+      {
+        id: 67,
+        name: "We also have some reference lists for you to play with in the 'Reference Brown-point shield skin longirostris",
+      },
+      {
+        id: 68,
+        name: "Whiptail catfish",
+      },
+      {
+        id: 69,
+        name: "Xingu corydoras",
+      },
+      {
+        id: 70,
+        name: "You can sort or clean your list in a variety of ways.",
+      },
+      {
+        id: 71,
+        name: "Zebra dwarf sucker, zebra oto",
+      },
+      {
+        id: 72,
+        name: "Zebra pleco, L-046",
+      },
+      {
+        id: 73,
+        name: "Zebra shovelnose",
+      },
+    ],
+  },
 ];
 
 export { users, data, conditions, breeds };
