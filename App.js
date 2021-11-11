@@ -76,7 +76,7 @@ function Tabs() {
       />
       <Tab.Screen name="Save" component={SaveScreen} />
       <Tab.Screen
-        name="Profile"  
+        name="Profile"
         component={ProfileScreen}
         listeners={({ navigation }) => ({
           tabPress: (event) => {

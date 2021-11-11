@@ -63,7 +63,7 @@ export default class Database {
       // read error
     }
   }
-  
+
   static async setSaved(id, username) {
     try {
       const users = await this.getItem("users");

@@ -20,7 +20,7 @@ export default ScaledSheet.create({
   },
   infoView: {
     margin: "10@s",
-  }, 
+  },
   profilePicture: {
     alignItems: "center",
   },
