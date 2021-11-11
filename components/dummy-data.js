@@ -75,6 +75,44 @@ const data = [
     description:
       "A calm cat with a dog-like personality. It likes to hunt so you wouldn't have problems with pests again!",
   },
+  {
+    id: 3,
+    postedBy: "admin",
+    name: "Brownie",
+    breeds: ["Lionhead"],
+    conditions: [],
+    gender: "Male",
+    birthDate: "2020-09-01T13:00:00+00:00",
+    images: [
+      "https://raw.githubusercontent.com/wiki/msd-d/PetHub/res/Brownie2.jpg",
+      "https://raw.githubusercontent.com/wiki/msd-d/PetHub/res/Brownie1.jpg",
+      "https://raw.githubusercontent.com/wiki/msd-d/PetHub/res/Brownie3.jpg",
+    ],
+    weight: 2.0,
+    height: 30,
+    length: 35,
+    location: "Nyborg",
+    description: "A wild animal appeard",
+  },
+  {
+    id: 4,
+    postedBy: "admin",
+    name: "Diva",
+    breeds: ["Lionhead"],
+    conditions: [],
+    gender: "Female",
+    birthDate: "2016-05-01T02:00:00+00:00",
+    images: [
+      "https://raw.githubusercontent.com/wiki/msd-d/PetHub/res/Diva1.jpg",
+      "https://raw.githubusercontent.com/wiki/msd-d/PetHub/res/Diva2.jpg",
+      "https://raw.githubusercontent.com/wiki/msd-d/PetHub/res/Diva3.jpg",
+    ],
+    weight: 2.0,
+    height: 30,
+    length: 35,
+    location: "Nyborg",
+    description: "A wild animal appeard",
+  },
 ];
 
 const conditions = [
