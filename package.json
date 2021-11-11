@@ -37,6 +37,7 @@
     "react-native-screens": "~3.4.0",
     "react-native-sectioned-multi-select": "^0.8.1",
     "react-native-size-matters": "^0.4.0",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "^0.17.5"
   },
   "devDependencies": {
