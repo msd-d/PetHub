@@ -101,7 +101,11 @@ export default function App() {
 
   const updateUserID = (id) => {
     setuserID(id);
-    global.loggedIn = true;
+    if (id == null) {
+      global.loggedIn = false;
+    } else {
+      global.loggedIn = true;
+    }
   };
 
   const userSettings = {
