@@ -64,6 +64,7 @@ export default class MultiSelect extends React.Component {
       <SectionedMultiSelect
         items={this.state.items}
         IconRenderer={icon}
+        single={this.props.single}
         uniqueKey="id"
         subKey="children"
         showDropDowns={true}
@@ -88,4 +89,5 @@ MultiSelect.propTypes = {
   selectedItems: PropTypes.array.isRequired,
   dataName: PropTypes.string.isRequired,
   selectText: PropTypes.string.isRequired,
+  single: PropTypes.bool.isRequired,
 };
