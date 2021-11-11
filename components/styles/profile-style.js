@@ -46,9 +46,9 @@ export default ScaledSheet.create({
     display: "flex",
     width: "150@s",
     height: "150@msr",
-    marginLeft: "10@s",
-    marginTop: "15@s",
+    margin: "10@s",
     borderRadius: 23,
+    justifyContent: "space-evenly",
   },
   empty: {
     flex: 1,

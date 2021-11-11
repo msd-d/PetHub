@@ -147,6 +147,7 @@ const ProfileScreen = ({ navigation }) => {
       }
       data={postings}
       extraData={postings}
+      numColumns={2}
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderItem}
       refreshing={isFetching}
