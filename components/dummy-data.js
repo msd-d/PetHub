@@ -123,28 +123,260 @@ const conditions = [
     // these are the children or 'sub items'
     children: [
       {
-        name: "Arthritis",
+        id: 0,
+        name: "Aflatoxicosis",
+      },
+      {
         id: 1,
+        name: "African horse sickness",
       },
       {
-        name: "Cancer",
         id: 2,
+        name: "African swine fever",
       },
       {
-        name: "Diabetes Militus",
         id: 3,
+        name: "Akabane disease",
       },
       {
-        name: "Epilepsy",
         id: 4,
+        name: "Anthrax",
       },
       {
-        name: "Gastric Dilation Volvulus",
         id: 5,
+        name: "Australian bat lyssavirus",
       },
       {
-        name: "Hypothyroidism",
         id: 6,
+        name: "Avian influenza",
+      },
+      {
+        id: 7,
+        name: "Avian paramyxovirus",
+      },
+      {
+        id: 8,
+        name: "Blackhead",
+      },
+      {
+        id: 9,
+        name: "Bluetongue",
+      },
+      {
+        id: 10,
+        name: "Botulism",
+      },
+      {
+        id: 11,
+        name: "Botulism in poultry",
+      },
+      {
+        id: 12,
+        name: "Bovine ephemeral fever",
+      },
+      {
+        id: 13,
+        name: "Bovine viral diarrhoea virus",
+      },
+      {
+        id: 14,
+        name: "Brucellosis",
+      },
+      {
+        id: 15,
+        name: "Canine ehrlichiosis",
+      },
+      {
+        id: 16,
+        name: "Caprine arthritis encephalitis",
+      },
+      {
+        id: 17,
+        name: "Cattle tick",
+      },
+      {
+        id: 18,
+        name: "Coccidiosis",
+      },
+      {
+        id: 19,
+        name: "Copper deficiency in ruminants",
+      },
+      {
+        id: 20,
+        name: "Enzootic bovine leucosis",
+      },
+      {
+        id: 21,
+        name: "Equine herpesvirus type 1 (EHV-1)",
+      },
+      {
+        id: 22,
+        name: "Equine infectious anaemia",
+      },
+      {
+        id: 23,
+        name: "Equine influenza",
+      },
+      {
+        id: 24,
+        name: "Equine viral arteritis",
+      },
+      {
+        id: 25,
+        name: "External parasites in poultry",
+      },
+      {
+        id: 26,
+        name: "Foot-and-mouth disease",
+      },
+      {
+        id: 27,
+        name: "Fowl cholera",
+      },
+      {
+        id: 28,
+        name: "Fowl pox",
+      },
+      {
+        id: 29,
+        name: "Hendra virus",
+      },
+      {
+        id: 30,
+        name: "Hydatid disease",
+      },
+      {
+        id: 31,
+        name: "Infectious laryngotracheitis",
+      },
+      {
+        id: 32,
+        name: "Influenza A in pigs",
+      },
+      {
+        id: 33,
+        name: "Intestinal torsion",
+      },
+      {
+        id: 34,
+        name: "Japanese encephalitis",
+      },
+      {
+        id: 35,
+        name: "Johne's disease",
+      },
+      {
+        id: 36,
+        name: "Leptospirosis",
+      },
+      {
+        id: 37,
+        name: "Leptospirosis in pigs",
+      },
+      {
+        id: 38,
+        name: "Lumpy jaw",
+      },
+      {
+        id: 39,
+        name: "Lumpy skin disease",
+      },
+      {
+        id: 40,
+        name: "Marek's disease",
+      },
+      {
+        id: 41,
+        name: "Melioidosis",
+      },
+      {
+        id: 42,
+        name: "Neosporosis",
+      },
+      {
+        id: 43,
+        name: "Neurological disease in horses",
+      },
+      {
+        id: 44,
+        name: "Newcastle disease",
+      },
+      {
+        id: 45,
+        name: "Nipah virus",
+      },
+      {
+        id: 46,
+        name: "Ovine brucellosis",
+      },
+      {
+        id: 47,
+        name: "Piglet anaemia",
+      },
+      {
+        id: 48,
+        name: "Piglet scours",
+      },
+      {
+        id: 49,
+        name: "Psittacosis",
+      },
+      {
+        id: 50,
+        name: "Rabies due to rabies virus",
+      },
+      {
+        id: 51,
+        name: "Salmonella",
+      },
+      {
+        id: 52,
+        name: "Screw-worm fly",
+      },
+      {
+        id: 53,
+        name: "Spotty liver",
+      },
+      {
+        id: 54,
+        name: "Strangles",
+      },
+      {
+        id: 55,
+        name: "Swine brucellosis",
+      },
+      {
+        id: 56,
+        name: "Tetanus",
+      },
+      {
+        id: 57,
+        name: "Transit tetany",
+      },
+      {
+        id: 58,
+        name: "Vibriosis (Campylobacteriosis)",
+      },
+      {
+        id: 59,
+        name: "Warts on cattle",
+      },
+      {
+        id: 60,
+        name: "White spot disease",
+      },
+      {
+        id: 61,
+        name: "White-nose syndrome",
+      },
+      {
+        id: 62,
+        name: "Wooden tongue",
+      },
+      {
+        id: 63,
+        name: "Worm parasites in poultry",
       },
     ],
   },
