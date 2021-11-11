@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, FlatList } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import AppContext from "../AppContext";
@@ -8,9 +8,7 @@ import profileStyle from "../styles/profile-style";
 import { Button } from "react-native-elements/dist/buttons/Button";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getAgeFromTime } from "../util";
-
 import colors from "../colors";
-import { FlatList } from "react-native-gesture-handler";
 
 const ProfileScreen = () => {
   const [isFetching, setIsFetching] = useState(false);
@@ -21,14 +19,12 @@ const ProfileScreen = () => {
 
   const myContext = useContext(AppContext);
 
-  // TODO: Fix this
   useEffect(() => {
     Database.getUser(myContext.userID).then((user) => {
       setPhone(user.phone);
       setEmail(user.email);
       setLocation(user.location);
       getData();
-      console.log("useEffect called");
     });
   }, [myContext]);
 
