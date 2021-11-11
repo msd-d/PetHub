@@ -28,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={Standard.container}>
-      <Text style={loginStyles.header}>Welcome!</Text>
+      <Text style={loginStyles.header}>Login to PetHub</Text>
 
       {/* Username input */}
       <TextInput
@@ -46,13 +46,15 @@ const LoginScreen = ({ navigation }) => {
       />
 
       {/* Handle login */}
-      <GradientButton
-        title={"Sign in"}
-        style={loginStyles.loginButton}
-        onPress={() => {
-          handleLogin();
-        }}
-      />
+      <View style={loginStyles.outerWall}>
+        <GradientButton
+          title={"Sign in"}
+          style={loginStyles.loginButton}
+          onPress={() => {
+            handleLogin();
+          }}
+        />
+      </View>
 
       {/* Register */}
       <Pressable onPress={() => navigation.navigate("Register")}>

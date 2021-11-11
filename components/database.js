@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { users, breeds, conditions, data } from "./dummy-data";
 
@@ -61,6 +62,50 @@ export default class Database {
       return user;
     } catch (e) {
       // read error
+    }
+  }
+
+  static async registerUser(username, email, password, address, phone) {
+    // Check if the username is taken
+    const taken = await this.getUser(username);
+
+    // Handle a taken username
+    // Maybe use email in the future instead?
+    if (taken) return alert("Error", "That username is already in use.");
+
+    // Construct a new user object
+    // We should encrupt the user's password
+    const user = {
+      username,
+      email,
+      password,
+      phone,
+      location: address,
+      saved: [],
+    };
+
+    // Push the new user object
+    users.push(user);
+
+    console.log(users);
+
+    try {
+      // Use AsyncStorage to update the user data stored in the users array
+      await AsyncStorage.setItem("users", JSON.stringify(users));
+
+      // Check if the user was added
+      const exists = await this.getUser(username);
+
+      // Unknown error
+      if (typeof exists !== "object")
+        Alert.alert("Error", "Unable to register your PetHub account.");
+
+      // Registered, false is handled by the alerts
+      // Not optimal
+      return true;
+    } catch (error) {
+      // Alert the error message caught
+      alert(error.message);
     }
   }
 

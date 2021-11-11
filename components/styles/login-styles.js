@@ -3,9 +3,14 @@ import colors from "../colors";
 import config from "../config";
 
 export default StyleSheet.create({
+  outerWall: {
+    margin: config.deviceHeight / 64,
+  },
   header: {
     fontSize: 18,
-    marginBottom: 10,
+    fontWeight: "bold",
+    marginBottom: config.deviceHeight / 32,
+    color: colors.pethubPink,
   },
   input: {
     backgroundColor: colors.lightGray,
