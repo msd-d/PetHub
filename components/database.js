@@ -87,8 +87,6 @@ export default class Database {
     // Push the new user object
     users.push(user);
 
-    console.log(users);
-
     try {
       // Use AsyncStorage to update the user data stored in the users array
       await AsyncStorage.setItem("users", JSON.stringify(users));

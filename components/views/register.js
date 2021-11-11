@@ -33,7 +33,7 @@ const RegisterScreen = ({ navigation }) => {
     if (password.length < 6)
       return Alert.alert(
         "Error",
-        "Your password should more than 6 characters."
+        "Your password should be more than 6 characters."
       );
 
     // Other middleware to verify the data
