@@ -19,6 +19,7 @@ import styles from "../styles/animalProfile-style";
 import config from "../config";
 import PropTypes from "prop-types";
 import GradientText from "../colors/gradient-text";
+import { getAgeFromTime } from "../util";
 
 const AnimalScreen = ({ route }) => {
   const item = route.params.item;
@@ -96,11 +97,7 @@ const AnimalScreen = ({ route }) => {
           <GradientText style={styles.subItem}>{item.gender}</GradientText>
 
           <GradientText style={styles.subItem}>
-            {Math.round(
-              Math.abs(new Date(item.birthDate) - Date.now()) /
-                (1000 * 60 * 60 * 24) /
-                365
-            )}
+            {getAgeFromTime(new Date(item.birthDate))}
             <Text> years old</Text>
           </GradientText>
         </View>
