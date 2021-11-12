@@ -6,7 +6,7 @@ import Database from "../database";
 import saveStyle from "../styles/save-style";
 import AppContext from "../AppContext";
 
-const renderSaveScreen = ({ item }) => (
+const RenderSaveScreen = ({ item, username }) => (
   <View style={saveStyle.card}>
     <Image
       source={{ uri: item.images[0] }}
@@ -17,7 +17,9 @@ const renderSaveScreen = ({ item }) => (
     <View style={saveStyle.removeBox}>
       <TouchableOpacity
         style={saveStyle.remove}
-        onPress={() => remove(item.id)}
+        onPress={() => {
+          Database.removeSaved(item.id, username)}
+        }
       />
     </View>
     <View style={saveStyle.cardContent}>
@@ -56,14 +58,19 @@ const renderSaveScreen = ({ item }) => (
   </View>
 );
 
-function remove(id) {
-  console.log("Remove");
-}
-
 export default function SavedScreen() {
   const myContext = useContext(AppContext);
   const [savedData, setSavedData] = useState([]);
   const [fetching, setFetching] = useState(false);
+
+  const RenderItem = ({ item }) => {
+    return (
+      <RenderSaveScreen
+        item={item}
+        username={myContext.userID}
+      />
+    );
+  }
 
   const getData = async () => {
     const data = await Database.getItem("data");
@@ -88,7 +95,7 @@ export default function SavedScreen() {
       data={savedData}
       extraData={savedData}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={renderSaveScreen}
+      renderItem={RenderItem}
       refreshing={fetching}
       onRefresh={() => onRefresh()}
     />
