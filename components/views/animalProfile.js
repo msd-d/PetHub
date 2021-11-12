@@ -24,6 +24,33 @@ import { getAgeFromTime } from "../util";
 const AnimalScreen = ({ route }) => {
   const item = route.params.item;
 
+  const renderBreeds = () => {
+    return item.breeds.map((breed, i) => {
+      return (
+        <View key={i} style={styles.detailValues}>
+          <Text style={styles.detailValue}>{breed}</Text>
+        </View>
+      );
+    });
+  };
+
+  const renderConditions = () => {
+    if (item.conditions.length === 0)
+      return (
+        <View style={styles.detailValues}>
+          <Text style={styles.detailValue}>None</Text>
+        </View>
+      );
+
+    return item.conditions.map((condition, i) => {
+      return (
+        <View key={i} style={styles.detailValues}>
+          <Text style={styles.detailValue}>{condition}</Text>
+        </View>
+      );
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -93,18 +120,57 @@ const AnimalScreen = ({ route }) => {
         <MyCarousel entries={item.images} />
         <Text style={styles.name}>{item.name}</Text>
 
-        <View style={generalStyles.flexRow}>
+        <View style={generalStyles.flexRowMarginTop}>
+          <GradientText style={styles.subItem}>
+            {item.breeds.length > 1 ? "Mixed" : item.breeds[0]}
+          </GradientText>
+
           <GradientText style={styles.subItem}>{item.gender}</GradientText>
 
           <GradientText style={styles.subItem}>
             {getAgeFromTime(new Date(item.birthDate))}
-            <Text> years old</Text>
+            <Text> y/o</Text>
           </GradientText>
         </View>
 
-        <Text style={styles.description}>{item.description}</Text>
+        <View style={generalStyles.marginBottom}>
+          <Text style={styles.description}>{item.description}</Text>
+        </View>
 
-        <View></View>
+        <View style={generalStyles.marginBottom}>
+          <View style={generalStyles.flexRow}>
+            <View style={styles.details}>
+              <Text style={styles.detailName}>Breed</Text>
+            </View>
+            {renderBreeds()}
+          </View>
+
+          <View style={generalStyles.flexRowMarginTop}>
+            <View style={styles.details}>
+              <Text style={styles.detailName}>Weight</Text>
+            </View>
+            <View style={styles.detailValues}>
+              <Text style={styles.detailValue}>{item.weight} kg</Text>
+            </View>
+          </View>
+
+          <View style={generalStyles.flexRowMarginTop}>
+            <View style={styles.details}>
+              <Text style={styles.detailName}>Height</Text>
+            </View>
+            <View style={styles.detailValues}>
+              <Text style={styles.detailValue}>{item.height} cm</Text>
+            </View>
+          </View>
+
+          <View style={generalStyles.flexRowMarginTop}>
+            <View style={styles.conditions}>
+              <Text style={styles.conditionName}>Conditions</Text>
+            </View>
+
+            {renderConditions()}
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

@@ -34,7 +34,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   takeAction: {
-    borderRadius: 99,
+    borderRadius: 20,
     marginLeft: scale(32),
   },
   description: {
@@ -47,9 +47,41 @@ export default StyleSheet.create({
   },
   locationName: {
     color: colors.darkGray,
-    marginTop: scale(-2.5),
   },
   subItem: {
-    margin: scale(4),
+    padding: scale(8),
+    borderWidth: scale(3),
+    borderRadius: scale(5),
+    marginRight: scale(16),
+  },
+  details: {
+    backgroundColor: colors.lightGray,
+    borderColor: colors.lightGray,
+    borderWidth: scale(3),
+    borderRadius: scale(5),
+    marginRight: scale(16),
+  },
+  detailName: {
+    padding: scale(8),
+  },
+  detailValues: {
+    borderColor: colors.darkGray,
+    borderWidth: scale(3),
+    borderRadius: scale(5),
+    marginRight: scale(16),
+  },
+  detailValue: {
+    padding: scale(8),
+  },
+  conditions: {
+    backgroundColor: colors.darkGray,
+    borderColor: colors.darkGray,
+    borderWidth: scale(3),
+    borderRadius: scale(5),
+    marginRight: scale(16),
+  },
+  conditionName: {
+    padding: scale(8),
+    color: colors.white,
   },
 });
