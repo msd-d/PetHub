@@ -5,6 +5,7 @@ import GradientText from "../colors/gradient-text";
 import Database from "../database";
 import saveStyle from "../styles/save-style";
 import AppContext from "../AppContext";
+import PropTypes from "prop-types";
 
 const RenderSaveScreen = ({ item, username }) => (
   <View style={saveStyle.card}>
@@ -58,6 +59,11 @@ const RenderSaveScreen = ({ item, username }) => (
   </View>
 );
 
+RenderSaveScreen.propTypes = {
+  item: PropTypes.object.isRequired,
+  userID: PropTypes.string.isRequired,
+};
+
 export default function SavedScreen() {
   const myContext = useContext(AppContext);
   const [savedData, setSavedData] = useState([]);
@@ -65,6 +71,10 @@ export default function SavedScreen() {
 
   const RenderItem = ({ item }) => {
     return <RenderSaveScreen item={item} username={myContext.userID} />;
+  };
+
+  RenderItem.propTypes = {
+    item: PropTypes.object.isRequired,
   };
 
   const getData = async () => {
