@@ -6,8 +6,6 @@ import tagSelectionStyle from "./styles/tag-selection-style";
 import Database from "./database";
 import PropTypes from "prop-types";
 
-const styles = StyleSheet.create({});
-
 // custom icon renderer passed to iconRenderer prop
 // see the switch for possible icon name
 // values
@@ -15,7 +13,7 @@ const icon = ({ name, size = 18, style }) => {
   // flatten the styles
   const flat = StyleSheet.flatten(style);
   // remove out the keys that aren't accepted on View
-  const { color } = flat;
+  const { color, ...styles } = flat;
 
   let iconComponent;
 
@@ -47,43 +45,49 @@ const icon = ({ name, size = 18, style }) => {
   return <View style={styles}>{iconComponent}</View>;
 };
 
-export default class Breeds extends React.Component {
+export default class MultiSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      breeds: [],
-      selectedItems: [],
+      items: [],
     };
   }
 
   componentDidMount() {
-    Database.getItem("breeds").then((data) => this.setState({ breeds: data }));
+    Database.getItem(this.props.dataName).then((data) =>
+      this.setState({ items: data })
+    );
   }
 
   render() {
     return (
       <SectionedMultiSelect
-        items={this.state.breeds}
+        items={this.state.items}
         IconRenderer={icon}
+        single={this.props.single}
         uniqueKey="id"
         subKey="children"
         showDropDowns={true}
         readOnlyHeadings={true}
         onSelectedItemsChange={(selectedItems) =>
-          this.setState({ selectedItems })
+          this.props.onSelectedChange(selectedItems)
         }
         onSelectedItemObjectsChange={(selectedItems) =>
           this.props.onItemChange(selectedItems)
         }
-        selectedItems={this.state.selectedItems}
-        searchPlaceholderText={"Search animals"}
-        selectText={"Select an animal..."}
+        selectedItems={this.props.selectedItems}
+        selectText={this.props.selectText}
         styles={tagSelectionStyle}
       />
     );
   }
 }
 
-Breeds.propTypes = {
-  onItemChange: PropTypes.func,
+MultiSelect.propTypes = {
+  onItemChange: PropTypes.func.isRequired,
+  onSelectedChange: PropTypes.func.isRequired,
+  selectedItems: PropTypes.array.isRequired,
+  dataName: PropTypes.string.isRequired,
+  selectText: PropTypes.string.isRequired,
+  single: PropTypes.bool.isRequired,
 };

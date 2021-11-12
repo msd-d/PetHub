@@ -1,7 +1,6 @@
-import { StyleSheet } from "react-native";
-import config from "../config";
+import { ScaledSheet } from "react-native-size-matters";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   flex1: {
     flex: 1,
   },
@@ -12,10 +11,10 @@ export default StyleSheet.create({
   flexRowMargin: {
     flex: 1,
     flexDirection: "row",
-    marginHorizontal: config.deviceWidth * 0.05,
+    marginHorizontal: "15@s",
   },
   margin: {
-    marginHorizontal: config.deviceWidth * 0.05,
+    marginHorizontal: "15@s",
   },
   flexRowWrap: {
     flex: 1,
@@ -30,10 +29,19 @@ export default StyleSheet.create({
   flexRowMarginCenterItems: {
     flex: 1,
     flexDirection: "row",
-    marginHorizontal: config.deviceWidth * 0.05,
+    marginHorizontal: "15@s",
     alignItems: "center",
   },
   marginBottom: {
-    marginBottom: config.deviceWidth * 0.05,
+    marginBottom: "15@s",
+  },
+  flexCenter: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  fit100HW: {
+    width: "100%",
+    height: "100%",
   },
 });

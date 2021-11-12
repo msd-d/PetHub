@@ -1,61 +1,68 @@
-import { StyleSheet } from "react-native";
+import { ScaledSheet } from "react-native-size-matters";
 import colors from "../colors";
-import config from "../config";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   scrollview: {
     flex: 1,
     backgroundColor: colors.white,
   },
   scrollviewContainer: {},
+  postButtonContainer: {
+    borderRadius: 20,
+  },
   postButton: {
-    width: config.deviceWidth * 0.4,
-    borderRadius: 99,
+    width: "140@s",
+    height: "45@vs",
   },
   cancelButton: {
-    width: config.deviceWidth * 0.4,
-    borderRadius: 99,
-    borderWidth: 2,
+    width: "140@s",
+    height: "45@vs",
+  },
+  cancelButtonContainer: {
+    borderRadius: "20@msr",
+    borderWidth: "2@msr",
     borderColor: colors.gray,
   },
   cancelButtonTitle: {
     color: colors.gray,
+    fontSize: "16@msr",
   },
   description: {
-    height: config.deviceWidth * 0.3,
-    marginHorizontal: config.deviceWidth * 0.05,
-    marginTop: 5,
+    height: "150@s",
+    marginHorizontal: "15@s",
+    marginTop: "5@msr",
     backgroundColor: colors.lightGray,
-    borderRadius: 10,
+    borderRadius: "10@msr",
     textAlignVertical: "top",
-    padding: 10,
+    padding: "10@msr",
   },
   input: {
-    marginHorizontal: config.deviceWidth * 0.05,
+    marginHorizontal: "15@s",
     backgroundColor: colors.lightGray,
-    borderRadius: 8,
-    padding: 10,
+    borderRadius: "10@msr",
+    padding: "10@msr",
   },
   input2: {
     backgroundColor: colors.lightGray,
-    padding: 10,
-    borderRadius: 8,
-    width: config.deviceWidth * 0.45,
-    marginRight: config.deviceWidth * 0.025,
-    marginBottom: config.deviceWidth * 0.025,
+    padding: "10@msr",
+    borderRadius: "10@msr",
+    marginHorizontal: "5@s",
+    marginRight: "5@s",
+    marginBottom: "10@s",
+    width: "175@s",
   },
   image: {
     width: undefined,
     height: "100%",
     overflow: "hidden",
-    borderRadius: 12,
+    borderRadius: "10@s",
   },
   button: {
-    width: config.deviceWidth * 0.3,
-    height: config.deviceWidth * 0.3,
-    borderRadius: 12,
-    marginLeft: config.deviceWidth * 0.025,
-    marginTop: config.deviceWidth * 0.025,
+    width: "105@s",
+    height: "105@s",
+    borderRadius: "10@s",
+    marginLeft: "9@s",
+    marginTop: "9@s",
     backgroundColor: colors.lightGray,
   },
   icon: {
@@ -70,14 +77,14 @@ export default StyleSheet.create({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 25,
-    marginVertical: config.deviceWidth * 0.025,
-    marginHorizontal: config.deviceWidth * 0.05,
+    fontSize: "26@msr",
+    marginVertical: "5@s",
+    marginHorizontal: "15@s",
   },
   dateButton: {
     backgroundColor: colors.lightGray,
-    borderRadius: 12,
-    width: config.deviceWidth * 0.27,
+    borderRadius: "10@msr",
+    width: "95@s",
   },
   dateTitle: {
     color: colors.gray,
@@ -87,23 +94,33 @@ export default StyleSheet.create({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
-    width: config.deviceWidth * 0.2,
+    fontSize: "15@msr",
+    width: "60@s",
   },
-  genderButton: {
-    borderRadius: 12,
-    backgroundColor: colors.pethubPink,
+  modal: {
+    margin: "20@msr",
+    backgroundColor: colors.white,
+    borderRadius: "10@s",
+    padding: "35@s",
+    alignItems: "center",
+    elevation: "5@s",
   },
-  genderContainer: {
-    marginHorizontal: config.deviceWidth * 0.05,
-    borderRadius: 12,
-    borderWidth: 0,
-  },
-  genderButtonDisabled: {
-    borderRadius: 12,
+  modalButton: {
+    borderRadius: "10@s",
+    padding: "10@s",
+    elevation: "2@s",
     backgroundColor: colors.lightGray,
   },
-  genderBorder: {
-    color: colors.transparent,
-    width: config.deviceWidth * 0.05,
+  modalInfo: {
+    color: colors.darkGray,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+  },
+  modalButtonText: {
+    color: colors.darkGray,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
   },
 });

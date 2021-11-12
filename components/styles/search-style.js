@@ -12,21 +12,6 @@ export default StyleSheet.create({
     marginTop: 15,
     borderRadius: 23,
   },
-  empty: {
-    flex: 1,
-    display: "flex",
-    width: config.deviceWidth * 0.9,
-    marginLeft: config.deviceWidth * 0.05,
-    height: config.deviceWidth * 0.9,
-    marginTop: 15,
-    borderRadius: 23,
-    backgroundColor: colors.lightGray,
-  },
-  star: {
-    position: "absolute",
-    right: 10,
-    top: 10,
-  },
   cardContent: {
     display: "flex",
     flexDirection: "column",
@@ -65,5 +50,40 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     borderRadius: 23,
+  },
+  inputContainer: {
+    marginHorizontal: config.deviceWidth * 0.05,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginBottom: 10,
+  },
+  input: {
+    backgroundColor: colors.lightGray,
+    borderRadius: 8,
+    width: config.deviceWidth * 0.45,
+    margin: 5,
+    padding: 10,
+  },
+  searchBarInput: {
+    backgroundColor: colors.lightGray,
+    color: colors.darkGray,
+  },
+  searchBarInputContainer: {
+    backgroundColor: colors.lightGray,
+    borderRadius: 12,
+  },
+  searchBarContainer: {
+    backgroundColor: colors.lightGray,
+    borderBottomColor: colors.transparent,
+    borderTopColor: colors.transparent,
+    marginHorizontal: config.deviceWidth * 0.05,
+    padding: 0,
+    borderRadius: 14,
+  },
+  searchBarLeftIconContainer: {},
+  searchBarRightIconContainer: {},
+
+  container: {
+    backgroundColor: colors.white,
   },
 });
