@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { Chip } from "react-native-elements/dist/buttons/Chip";
 import GradientText from "../colors/gradient-text";
 import Database from "../database";
 import saveStyle from "../styles/save-style";
+import AppContext from "../AppContext";
 
 const renderSaveScreen = ({ item }) => (
   <View style={saveStyle.card}>
@@ -56,45 +57,40 @@ const renderSaveScreen = ({ item }) => (
 );
 
 function remove(id) {
-  console.log("Remove " + id);
+  console.log("Remove");
 }
 
-export default class SavedScreen extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      savedData: [],
-      isFetching: false,
-    };
-  }
+export default function SavedScreen() {
+  const myContext = useContext(AppContext);
+  const [savedData, setSavedData] = useState([]);
+  const [fetching, setFetching] = useState(false);
 
-  getData() {
-    Database.getItem("data").then((data) => {
-      let filtered = data.filter((items) => items.saved);
-      this.setState({ savedData: filtered });
-    });
-  }
+  const getData = async () => {
+    const data = await Database.getItem("data");
+    const saved = await Database.getSaved(myContext.userID);
 
-  onRefresh() {
-    this.setState({ isFetching: true });
-    this.getData();
-    this.setState({ isFetching: false });
-  }
+    const filtered = data.filter(item => saved.includes(item.id));
+    setSavedData(filtered);
+  };
 
-  componentDidMount() {
-    this.getData();
-  }
+  const onRefresh = () => {
+    setFetching(true);
+    getData();
+    setFetching(false);
+  };
 
-  render() {
-    return (
-      <FlatList
-        data={this.state.savedData}
-        extraData={this.state.savedData}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderSaveScreen}
-        refreshing={this.state.isFetching}
-        onRefresh={() => this.onRefresh()}
-      />
-    );
-  }
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <FlatList
+      data={savedData}
+      extraData={savedData}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={renderSaveScreen}
+      refreshing={fetching}
+      onRefresh={() => onRefresh()}
+    />
+  );
 }
