@@ -86,7 +86,9 @@ export default class SearchScreen extends React.Component {
     Database.getItem("data").then((data) => {
       this.setState({
         homeData: data.filter((inner) => {
-          if (!inner.name.toLowerCase().includes(this.state.search.toLowerCase())) {
+          if (
+            !inner.name.toLowerCase().includes(this.state.search.toLowerCase())
+          ) {
             return false;
           }
 
