@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import { scale } from "react-native-size-matters";
+import colors from "../colors";
 import config from "../config";
 
 export default StyleSheet.create({
@@ -25,5 +27,29 @@ export default StyleSheet.create({
   name: {
     fontWeight: "bold",
     fontSize: 32,
+  },
+  actions: {
+    flexDirection: "row-reverse",
+    alignItems: "center",
+    flex: 1,
+  },
+  takeAction: {
+    borderRadius: 99,
+    marginLeft: scale(32),
+  },
+  description: {
+    fontSize: scale(18),
+    fontWeight: "400",
+    marginTop: scale(18),
+  },
+  location: {
+    display: "flex",
+  },
+  locationName: {
+    color: colors.darkGray,
+    marginTop: scale(-2.5),
+  },
+  subItem: {
+    margin: scale(4),
   },
 });
