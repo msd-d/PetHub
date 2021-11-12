@@ -40,7 +40,6 @@ const data = [
     length: 1500,
     location: "Dogburg",
     description: "A happy doggy dog",
-    saved: true,
   },
   {
     id: 1,
@@ -59,7 +58,6 @@ const data = [
     location: "Dogburg",
     description:
       "A small dog with a big temper! Likes the usual stuff walks, playing and water.",
-    saved: false,
   },
   {
     id: 2,
@@ -76,7 +74,6 @@ const data = [
     location: "Sonderborg",
     description:
       "A calm cat with a dog-like personality. It likes to hunt so you wouldn't have problems with pests again!",
-    saved: false,
   },
   {
     id: 3,
