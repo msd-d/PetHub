@@ -18,8 +18,8 @@ const RenderSaveScreen = ({ item, username }) => (
       <TouchableOpacity
         style={saveStyle.remove}
         onPress={() => {
-          Database.removeSaved(item.id, username)}
-        }
+          Database.removeSaved(item.id, username);
+        }}
       />
     </View>
     <View style={saveStyle.cardContent}>
@@ -64,19 +64,14 @@ export default function SavedScreen() {
   const [fetching, setFetching] = useState(false);
 
   const RenderItem = ({ item }) => {
-    return (
-      <RenderSaveScreen
-        item={item}
-        username={myContext.userID}
-      />
-    );
-  }
+    return <RenderSaveScreen item={item} username={myContext.userID} />;
+  };
 
   const getData = async () => {
     const data = await Database.getItem("data");
     const saved = await Database.getSaved(myContext.userID);
 
-    const filtered = data.filter(item => saved.includes(item.id));
+    const filtered = data.filter((item) => saved.includes(item.id));
     setSavedData(filtered);
   };
 
