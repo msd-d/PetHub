@@ -61,7 +61,7 @@ const RenderSaveScreen = ({ item, username }) => (
 
 RenderSaveScreen.propTypes = {
   item: PropTypes.object.isRequired,
-  userID: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 };
 
 export default function SavedScreen() {
