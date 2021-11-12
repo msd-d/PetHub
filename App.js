@@ -113,7 +113,7 @@ export default function App() {
   const updateData = () => {
     setDataChanged(true);
     setDataChanged(false);
-  }
+  };
 
   const userSettings = {
     userID: userID,

@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {},
   buttonTextBold: {
     color: colors.darkGray,
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
   },

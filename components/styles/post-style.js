@@ -74,7 +74,7 @@ export default ScaledSheet.create({
     justifyContent: "center",
   },
   chipText: {
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: "26@msr",
@@ -91,7 +91,7 @@ export default ScaledSheet.create({
   },
   whl: {
     color: colors.darkGray,
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: "15@msr",
@@ -113,13 +113,13 @@ export default ScaledSheet.create({
   },
   modalInfo: {
     color: colors.darkGray,
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
   },
   modalButtonText: {
     color: colors.darkGray,
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
   },
