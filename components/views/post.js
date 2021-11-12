@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, ScrollView, Modal, Alert, Pressable } from "react-native";
 import { Button, ButtonGroup } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
-
 import { TextInput } from "react-native";
-
 import DateTimePicker from "@react-native-community/datetimepicker";
-
 import generelPositioning from "../styles/general-positioning";
 import postStyle from "../styles/post-style";
 import standardStyle from "../styles/standard-style";
@@ -15,6 +12,7 @@ import Database from "../database";
 import MultiSelect from "../multi-select";
 import ImageBoxes from "../image-boxes";
 import PropTypes from "prop-types";
+import AppContext from "../AppContext";
 
 const viewText = {
   images: "Images",
@@ -44,6 +42,7 @@ const data = {
 };
 
 function PostScreen({ navigation }) {
+  const myContext = useContext(AppContext);
   const genderButtons = ["Male", "Female"];
 
   const [animalData, setAnimalData] = useState({ ...data });
@@ -112,7 +111,13 @@ function PostScreen({ navigation }) {
       setSelectedConditions([]);
       // get persistence data and set last data
       Database.getItem("data").then((data) =>
-        Database.setItem([...data, { ...animalData, id: data.length }], "data")
+        Database.setItem(
+          [
+            ...data,
+            { ...animalData, id: data.length, postedBy: myContext.userID },
+          ],
+          "data"
+        )
       );
       // clear data
       setAnimalData({ ...data });
