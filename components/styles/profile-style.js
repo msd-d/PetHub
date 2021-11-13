@@ -38,7 +38,6 @@ export default ScaledSheet.create({
   button: {
     borderRadius: 99,
   },
-  // TODO: refactor this, right now it's duplicated in three files (home, search and here)
   card: {
     flex: 1,
     display: "flex",
@@ -58,7 +57,12 @@ export default ScaledSheet.create({
     borderRadius: 23,
     backgroundColor: colors.lightGray,
   },
-  star: {
+  delete: {
+    position: "absolute",
+    left: 10,
+    top: 10,
+  },
+  edit: {
     position: "absolute",
     right: 10,
     top: 10,

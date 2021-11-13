@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, Image, FlatList, TextInput } from "react-native";
+import { Text, View, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import AppContext from "../AppContext";
@@ -45,7 +45,6 @@ const ProfileScreen = ({ navigation }) => {
     setIsFetching(false);
   };
 
-  // TODO: refactor to it's own component
   const renderItem = ({ item }) => (
     <View style={profileStyle.card}>
       <Image
@@ -54,6 +53,20 @@ const ProfileScreen = ({ navigation }) => {
         overflow="hidden"
         style={profileStyle.image}
       />
+      <TouchableOpacity
+        style={profileStyle.delete}
+        onPress={() => alert("Not supported yet")}
+      >
+        <Ionicons name={"trash"} size={30} color={colors.red} />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+            style={profileStyle.edit}
+            onPress={() => alert("Not supported yet")}
+          >
+            <Ionicons name={"create"} size={30} color={colors.white} />
+      </TouchableOpacity>
+
       <View style={profileStyle.cardContent}>
         <Text style={profileStyle.name}>{item.name}</Text>
         <View style={profileStyle.chipBox}>
@@ -116,7 +129,7 @@ const ProfileScreen = ({ navigation }) => {
             <Button
               title={
                 <Ionicons
-                  name={"log-out-outline"}
+                  name={"create-outline"}
                   size={40}
                   color={colors.pethubPink}
                 />
@@ -133,17 +146,14 @@ const ProfileScreen = ({ navigation }) => {
             <View style={profileStyle.row}>
               <Ionicons name={"call"} size={30} color={colors.darkGray} />
               <Text style={profileStyle.infoText}> {phone} </Text>
-              <Ionicons name={"create-outline"} size={30} color={colors.darkGray} />
             </View>
             <View style={profileStyle.row}>
               <Ionicons name={"at"} size={30} color={colors.darkGray} />
               <Text style={profileStyle.infoText}>{email} </Text>
-              <Ionicons name={"create-outline"} size={30} color={colors.darkGray} />
             </View>
             <View style={profileStyle.row}>
               <Ionicons name={"pin"} size={30} color={colors.darkGray} />
               <Text style={profileStyle.infoText}>{location} </Text>
-              <Ionicons name={"create-outline"} size={30} color={colors.darkGray} />
             </View>
           </View>
         </View>
