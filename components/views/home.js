@@ -48,6 +48,10 @@ export default function HomeScreen({ navigation }) {
     getData();
   }, []);
 
+  useEffect(() => {
+    getData();
+  }, [myContext.dataChanged]);
+
   return (
     <View>
       <FlatList

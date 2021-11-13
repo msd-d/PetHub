@@ -21,6 +21,7 @@ const LoginScreen = ({ navigation }) => {
         Alert.alert("Wrong username or password, please try again");
       } else {
         myContext.updateUserID(username);
+        myContext.updateData();
         navigation.navigate("Profile");
       }
     });

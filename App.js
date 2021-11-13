@@ -99,6 +99,7 @@ export default function App() {
   Database.setup();
 
   const [userID, setuserID] = React.useState(null);
+  const [dataChanged, setDataChanged] = React.useState(false);
 
   const updateUserID = (id) => {
     setuserID(id);
@@ -109,9 +110,16 @@ export default function App() {
     }
   };
 
+  const updateData = () => {
+    setDataChanged(true);
+    setDataChanged(false);
+  };
+
   const userSettings = {
     userID: userID,
     updateUserID,
+    dataChanged: dataChanged,
+    updateData,
   };
 
   let [fontsLoaded] = useFonts({

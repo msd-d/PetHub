@@ -85,7 +85,7 @@ export default ScaledSheet.create({
     borderRadius: 8,
   },
   chipText: {
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 6,

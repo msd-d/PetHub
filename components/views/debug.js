@@ -41,6 +41,7 @@ function DebugScreen({ navigation }) {
         title={"Debug clear"}
         onPress={async () => {
           await Database.clearData();
+          myContext.updateData();
         }}
       ></Button>
       <Text>Toggle debug output</Text>

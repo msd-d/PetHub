@@ -8,7 +8,7 @@ import { moderateScale } from "react-native-size-matters";
 const styles = StyleSheet.create({
   text: {
     textAlign: "center",
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: moderateScale(16),

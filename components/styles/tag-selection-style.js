@@ -10,7 +10,7 @@ export default StyleSheet.create({
     marginHorizontal: config.deviceWidth * 0.05,
   },
   selectToggleText: {
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontWeight: "bold",
     color: colors.gray,
   },
@@ -18,11 +18,11 @@ export default StyleSheet.create({
     backgroundColor: colors.pethubPink,
   },
   subItemText: {
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontWeight: "bold",
   },
   itemText: {
-    fontFamily: "Roboto",
+    fontFamily: "Inter_700Bold",
     fontWeight: "bold",
     fontSize: 16,
   },
