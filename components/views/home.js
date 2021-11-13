@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
   const [fetching, setFetching] = useState(false);
 
   const RenderItem = ({ item }) => {
-    const starIcon = savedData.includes(item.id) ? "star" : "star-outline"; // todo: check if saved has it.
+    const starIcon = savedData.includes(item.id) ? "star" : "star-outline";
     return (
       <Card
         navigation={navigation}
