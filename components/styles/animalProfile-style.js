@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { scale } from "react-native-size-matters";
+import { moderateScale } from "react-native-size-matters";
 import colors from "../colors";
 import config from "../config";
 
@@ -34,13 +34,16 @@ export default StyleSheet.create({
     flex: 1,
   },
   takeAction: {
-    borderRadius: 20,
-    marginLeft: scale(32),
+    padding: moderateScale(8),
+    backgroundColor: colors.pethubPink,
+    marginLeft: moderateScale(8),
+    marginRight: moderateScale(8),
+    borderRadius: 50,
   },
   description: {
-    fontSize: scale(18),
+    fontSize: moderateScale(18),
     fontWeight: "400",
-    marginTop: scale(18),
+    marginTop: moderateScale(18),
   },
   location: {
     display: "flex",
@@ -49,39 +52,39 @@ export default StyleSheet.create({
     color: colors.darkGray,
   },
   subItem: {
-    padding: scale(8),
-    borderWidth: scale(3),
-    borderRadius: scale(5),
-    marginRight: scale(16),
+    padding: moderateScale(8),
+    borderWidth: moderateScale(3),
+    borderRadius: moderateScale(5),
+    marginRight: moderateScale(16),
   },
   details: {
     backgroundColor: colors.lightGray,
     borderColor: colors.lightGray,
-    borderWidth: scale(3),
-    borderRadius: scale(5),
-    marginRight: scale(16),
+    borderWidth: moderateScale(3),
+    borderRadius: moderateScale(5),
+    marginRight: moderateScale(16),
   },
   detailName: {
-    padding: scale(8),
+    padding: moderateScale(8),
   },
   detailValues: {
     borderColor: colors.darkGray,
-    borderWidth: scale(3),
-    borderRadius: scale(5),
-    marginRight: scale(16),
+    borderWidth: moderateScale(3),
+    borderRadius: moderateScale(5),
+    marginRight: moderateScale(16),
   },
   detailValue: {
-    padding: scale(8),
+    padding: moderateScale(8),
   },
   conditions: {
     backgroundColor: colors.darkGray,
     borderColor: colors.darkGray,
-    borderWidth: scale(3),
-    borderRadius: scale(5),
-    marginRight: scale(16),
+    borderWidth: moderateScale(3),
+    borderRadius: moderateScale(5),
+    marginRight: moderateScale(16),
   },
   conditionName: {
-    padding: scale(8),
+    padding: moderateScale(8),
     color: colors.white,
   },
 });

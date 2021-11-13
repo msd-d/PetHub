@@ -9,9 +9,7 @@ import {
   Alert,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { LinearGradient } from "expo-linear-gradient";
 import Carousel from "react-native-snap-carousel";
-import { Button } from "react-native-elements/dist/buttons/Button";
 import Database from "../database";
 import colors from "../colors";
 import generalStyles from "../styles/general-positioning";
@@ -20,6 +18,7 @@ import config from "../config";
 import PropTypes from "prop-types";
 import GradientText from "../colors/gradient-text";
 import { getAgeFromTime } from "../util";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AnimalScreen = ({ route }) => {
   const item = route.params.item;
@@ -64,8 +63,8 @@ const AnimalScreen = ({ route }) => {
           </View>
 
           <View style={styles.actions}>
-            <Button
-              buttonStyle={styles.takeAction}
+            <TouchableOpacity
+              style={styles.takeAction}
               onPress={async () => {
                 const user = await Database.getUser(item.postedBy);
 
@@ -80,19 +79,12 @@ const AnimalScreen = ({ route }) => {
                   );
                 }
               }}
-              ViewComponent={LinearGradient}
-              linearGradientProps={{
-                colors: ["rgba(223, 122, 153, 1)", "rgba(232, 193, 171, 1)"],
-                start: { x: -1, y: -1 },
-                end: { x: 1, y: 3 },
-              }}
-              icon={
-                <Ionicons name={"at-circle"} size={36} color={colors.white} />
-              }
-            ></Button>
+            >
+              <Ionicons name="mail" size={36} color={colors.white} />
+            </TouchableOpacity>
 
-            <Button
-              buttonStyle={styles.takeAction}
+            <TouchableOpacity
+              style={styles.takeAction}
               onPress={async () => {
                 const user = await Database.getUser(item.postedBy);
 
@@ -107,14 +99,9 @@ const AnimalScreen = ({ route }) => {
                   );
                 }
               }}
-              ViewComponent={LinearGradient}
-              linearGradientProps={{
-                colors: ["rgba(223, 122, 153, 1)", "rgba(232, 193, 171, 1)"],
-                start: { x: -1, y: -1 },
-                end: { x: 1, y: 3 },
-              }}
-              icon={<Ionicons name={"call"} size={36} color={colors.white} />}
-            ></Button>
+            >
+              <Ionicons name={"call"} size={36} color={colors.white} />
+            </TouchableOpacity>
           </View>
         </View>
         <MyCarousel entries={item.images} />
