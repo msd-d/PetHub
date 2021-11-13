@@ -9,6 +9,7 @@ import ProfileScreen from "components/views/profile";
 import LoginScreen from "components/views/login";
 import RegisterScreen from "components/views/register";
 import AnimalScreen from "components/views/animalProfile";
+import SettingsScreen from "components/views/settings";
 
 import AppLoading from "expo-app-loading";
 import { useFonts, Inter_700Bold } from "@expo-google-fonts/inter";
@@ -140,6 +141,7 @@ export default function App() {
             />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="AnimalProfile" component={AnimalScreen} />
           </Stack.Navigator>
         </NavigationContainer>

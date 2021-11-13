@@ -9,8 +9,9 @@ import { Button } from "react-native-elements/dist/buttons/Button";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getAgeFromTime } from "../util";
 import colors from "../colors";
+import PropTypes from "prop-types";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -103,7 +104,7 @@ const ProfileScreen = () => {
                 />
               }
               style={profileStyle.button}
-              onPress={() => alert("Not yet supported")}
+              onPress={() => navigation.navigate("Settings")}
             />
 
             {/* TODO: Insert actual profile picture */}
@@ -153,6 +154,10 @@ const ProfileScreen = () => {
       onRefresh={() => onRefresh}
     />
   );
+};
+
+ProfileScreen.propTypes = {
+  navigation: PropTypes.object,
 };
 
 export default ProfileScreen;
