@@ -75,7 +75,18 @@ function Tabs() {
           },
         })}
       />
-      <Tab.Screen name="Save" component={SaveScreen} />
+      <Tab.Screen
+        name="Save"
+        component={SaveScreen}
+        listeners={({ navigation }) => ({
+          tabPress: (event) => {
+            event.preventDefault();
+            global.loggedIn
+              ? navigation.navigate("Save")
+              : navigation.navigate("Login");
+          },
+        })}
+      />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
