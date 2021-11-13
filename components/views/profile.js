@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, Image, FlatList } from "react-native";
+import { Text, View, Image, FlatList, TextInput } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import AppContext from "../AppContext";
@@ -133,14 +133,17 @@ const ProfileScreen = ({ navigation }) => {
             <View style={profileStyle.row}>
               <Ionicons name={"call"} size={30} color={colors.darkGray} />
               <Text style={profileStyle.infoText}> {phone} </Text>
+              <Ionicons name={"create-outline"} size={30} color={colors.darkGray} />
             </View>
             <View style={profileStyle.row}>
               <Ionicons name={"at"} size={30} color={colors.darkGray} />
               <Text style={profileStyle.infoText}>{email} </Text>
+              <Ionicons name={"create-outline"} size={30} color={colors.darkGray} />
             </View>
             <View style={profileStyle.row}>
               <Ionicons name={"pin"} size={30} color={colors.darkGray} />
               <Text style={profileStyle.infoText}>{location} </Text>
+              <Ionicons name={"create-outline"} size={30} color={colors.darkGray} />
             </View>
           </View>
         </View>
