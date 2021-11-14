@@ -1,6 +1,7 @@
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { users, breeds, conditions, data } from "./dummy-data";
+import { element } from "prop-types";
 
 export default class Database {
   static async setup() {
@@ -172,6 +173,24 @@ export default class Database {
 
     if (await this.isDebug()) {
       console.log("Set key: " + key + " with value: " + value);
+    }
+  }
+
+  static async removePost(id) {
+    let newData = [];
+    try {
+      await this.getItem("data").then((oldData) => {
+        oldData.forEach((post) => {
+          if (post.id != id) {
+            newData.push(post);
+          }
+        });
+      });
+
+      this.setItem(newData, "data");
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 

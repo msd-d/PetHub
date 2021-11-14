@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
+import { Text, View, Image, FlatList, TouchableOpacity, Alert, TextInput } from "react-native";
 import { Chip } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import AppContext from "../AppContext";
@@ -25,13 +25,19 @@ const ProfileScreen = ({ navigation }) => {
       setPhone(user.phone);
       setEmail(user.email);
       setLocation(user.location);
-      getData();
+      onRefresh();
     });
-  }, [myContext]);
+  }, [myContext.userID]);
 
-  const getData = () => {
+  const onRefresh = async () => {
+    setIsFetching(true);
+    getData();
+    setIsFetching(false);
+  };
+  
+  const getData = async () => {
     let temp;
-    Database.getItem("data").then((data) => {
+    await Database.getItem("data").then((data) => {
       temp = data.filter((object) => {
         return object.postedBy === myContext.userID;
       });
@@ -39,11 +45,30 @@ const ProfileScreen = ({ navigation }) => {
     });
   };
 
-  const onRefresh = () => {
-    setIsFetching(true);
-    getData();
-    setIsFetching(false);
-  };
+  const removePost = async (id, name) => {
+    Alert.alert(
+      "Confirm deletion of post",
+      "Are you sure that you want to delete " + name + "?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => (console.log("Cancelled")),
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            if (await Database.removePost(id)) {
+              onRefresh();
+              myContext.updateData();
+            } else {
+              alert("Sorry, an error happended when trying to delete the post. Please try again.")
+            }
+          }
+        }
+      ]
+    );
+  }
 
   const renderItem = ({ item }) => (
     <View style={profileStyle.card}>
@@ -55,16 +80,16 @@ const ProfileScreen = ({ navigation }) => {
       />
       <TouchableOpacity
         style={profileStyle.delete}
-        onPress={() => alert("Not supported yet")}
+        onPress={() => removePost(item.id, item.name)}
       >
         <Ionicons name={"trash"} size={30} color={colors.red} />
       </TouchableOpacity>
 
       <TouchableOpacity
-            style={profileStyle.edit}
-            onPress={() => alert("Not supported yet")}
-          >
-            <Ionicons name={"create"} size={30} color={colors.white} />
+        style={profileStyle.edit}
+        onPress={() => alert("Not supported yet")}
+      >
+        <Ionicons name={"create"} size={30} color={colors.white} />
       </TouchableOpacity>
 
       <View style={profileStyle.cardContent}>
@@ -164,7 +189,7 @@ const ProfileScreen = ({ navigation }) => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderItem}
       refreshing={isFetching}
-      onRefresh={() => onRefresh}
+      onRefresh={() => onRefresh()}
     />
   );
 };
