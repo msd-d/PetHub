@@ -175,6 +175,24 @@ export default class Database {
     }
   }
 
+  static async removePost(id) {
+    let newData = [];
+    try {
+      await this.getItem("data").then((oldData) => {
+        oldData.forEach((post) => {
+          if (post.id != id) {
+            newData.push(post);
+          }
+        });
+      });
+
+      this.setItem(newData, "data");
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   static async isDebug() {
     return await this.getItem("debug");
   }
