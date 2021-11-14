@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { Button } from "react-native-elements/dist/buttons/Button";
-import settingsStyle from "components/styles/settings-style";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import PropTypes from "prop-types";
+import AppContext from "../AppContext";
+import settingsStyle from "components/styles/settings-style";
 import colors from "../colors";
 
-function SettingsScreen() {
+function SettingsScreen({ navigation }) {
+  const myContext = useContext(AppContext);
+
+  const logout = () => {
+    console.log(myContext.userID + " logged out");
+    myContext.updateUserID(null);
+    navigation.navigate("Home");
+  };
+
   return (
     <View style={settingsStyle.container}>
       <Button
@@ -20,7 +30,7 @@ function SettingsScreen() {
           </View>
         }
         style={settingsStyle.button}
-        onPress={() => alert("Not yet supported")}
+        onPress={() => logout()}
       />
       <Button
         title={
@@ -39,5 +49,9 @@ function SettingsScreen() {
     </View>
   );
 }
+
+SettingsScreen.propTypes = {
+  navigation: PropTypes.object,
+};
 
 export default SettingsScreen;

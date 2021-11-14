@@ -1,5 +1,13 @@
 const users = [
   {
+    username: null,
+    password: "",
+    phone: "",
+    email: "",
+    location: "",
+    saved: [],
+  },
+  {
     username: "admin",
     password: "admin",
     phone: "88888888",

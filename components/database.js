@@ -186,7 +186,7 @@ export default class Database {
         });
       });
 
-      this.setItem(newData, "data");
+      await this.setItem(newData, "data");
       return true;
     } catch (e) {
       return false;
