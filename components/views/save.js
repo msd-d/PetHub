@@ -60,8 +60,8 @@ const RenderSaveScreen = ({ item, username }) => (
 );
 
 RenderSaveScreen.propTypes = {
-  item: PropTypes.object.isRequired,
-  username: PropTypes.string.isRequired,
+  item: PropTypes.object,
+  username: PropTypes.string,
 };
 
 export default function SavedScreen() {
@@ -74,7 +74,7 @@ export default function SavedScreen() {
   };
 
   RenderItem.propTypes = {
-    item: PropTypes.object.isRequired,
+    item: PropTypes.object,
   };
 
   const getData = async () => {

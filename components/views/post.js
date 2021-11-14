@@ -1,5 +1,13 @@
-import React, { useContext, useState } from "react";
-import { View, Text, ScrollView, Modal, Alert, Pressable } from "react-native";
+import React, { useCallback, useContext, useState } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Modal,
+  Alert,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import { Button, ButtonGroup } from "react-native-elements";
 import GradientText from "../colors/gradient-text";
 import { TextInput } from "react-native";
@@ -13,6 +21,8 @@ import MultiSelect from "../multi-select";
 import ImageBoxes from "../image-boxes";
 import PropTypes from "prop-types";
 import AppContext from "../AppContext";
+import { useFocusEffect } from "@react-navigation/core";
+import colors from "../colors";
 
 const viewText = {
   images: "Images",
@@ -41,13 +51,24 @@ const data = {
   breeds: [],
 };
 
-function PostScreen({ navigation }) {
+function PostScreen({ navigation, route }) {
+  const item = route.params.item;
+
+  useFocusEffect(
+    useCallback(() => {
+      if (route.params.update) {
+        setAnimalData({ ...item, birthDate: new Date(item.birthDate) });
+      }
+    }, [route])
+  );
+
   const myContext = useContext(AppContext);
   const genderButtons = ["Male", "Female"];
 
   const [animalData, setAnimalData] = useState({ ...data });
   const [gender, setGender] = useState(0);
   const [show, setShow] = useState(false);
+  const [proccessing, setProccessing] = useState(false);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedBreeds, setSelectedBreeds] = useState([]);
   const [requiredModal, setRequiredModal] = useState(false);
@@ -121,6 +142,29 @@ function PostScreen({ navigation }) {
       );
       // clear data
       setAnimalData({ ...data });
+      myContext.updateData();
+      navigation.navigate("Home");
+    } else {
+      setRequiredModal(!requiredModal);
+    }
+  };
+
+  const updateData = async () => {
+    if (dataCheck()) {
+      setProccessing(true);
+      setSelectedBreeds([]);
+      setSelectedConditions([]);
+      // get persistence data and set last data
+      await Database.getItem("data").then((data) => {
+        Database.setItem(
+          data.map((obj) => (obj.id === item.id ? animalData : obj)),
+          "data"
+        );
+      });
+      // clear data
+      setAnimalData({ ...data });
+      myContext.updateData();
+      setProccessing(false);
       navigation.navigate("Home");
     } else {
       setRequiredModal(!requiredModal);
@@ -129,6 +173,11 @@ function PostScreen({ navigation }) {
 
   return (
     <View style={generelPositioning.fit100HW}>
+      {proccessing && (
+        <View style={generelPositioning.activityIndicator}>
+          <ActivityIndicator size="large" color={colors.pethubPink} />
+        </View>
+      )}
       <Modal
         animationType="fade"
         transparent={true}
@@ -320,7 +369,9 @@ function PostScreen({ navigation }) {
             title={"Post animal"}
             buttonStyle={postStyle.postButton}
             containerStyle={postStyle.postButtonContainer}
-            onPress={postData}
+            onPress={async () => {
+              route.params.update ? updateData() : postData();
+            }}
           />
           <Button
             title={"Cancel"}
@@ -337,6 +388,7 @@ function PostScreen({ navigation }) {
 
 PostScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
 };
 
 export default PostScreen;

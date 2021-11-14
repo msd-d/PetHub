@@ -49,4 +49,12 @@ export default ScaledSheet.create({
     width: "100%",
     height: "100%",
   },
+  activityIndicator: {
+    position: "absolute",
+    elevation: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+  },
 });
