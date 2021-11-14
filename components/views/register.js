@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Text, TextInput, View, Pressable, Alert } from "react-native";
-import { Standard } from "components/styles/save-style";
 import registerStyles from "../styles/register-styles";
 import GradientButton from "../colors/gradient-button";
 import PropTypes from "prop-types";
@@ -62,7 +61,7 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={Standard.container}>
+    <View style={registerStyles.container}>
       <Text style={registerStyles.header}>Register an account today!</Text>
 
       <TextInput

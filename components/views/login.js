@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Alert, Pressable, Text, TextInput, View } from "react-native";
-import { Standard } from "components/styles/save-style";
 import colors from "../colors";
 import loginStyles from "../styles/login-styles";
 import GradientButton from "../colors/gradient-button";
@@ -28,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={Standard.container}>
+    <View style={loginStyles.container}>
       <Text style={loginStyles.header}>Login to PetHub</Text>
 
       {/* Username input */}
