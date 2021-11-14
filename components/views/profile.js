@@ -96,7 +96,7 @@ const ProfileScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={profileStyle.edit}
-        onPress={() => alert("Not supported yet")}
+        onPress={() => navigation.navigate("Post", { item, update: true })}
       >
         <Ionicons name={"create"} size={30} color={colors.white} />
       </TouchableOpacity>

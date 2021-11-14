@@ -71,7 +71,7 @@ function Tabs() {
           tabPress: (event) => {
             event.preventDefault();
             global.loggedIn
-              ? navigation.navigate("Post")
+              ? navigation.navigate("Post", { update: false })
               : navigation.navigate("Login");
           },
         })}
