@@ -6,6 +6,11 @@ export default StyleSheet.create({
   outerWall: {
     margin: config.deviceHeight / 64,
   },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   header: {
     fontSize: 18,
     fontWeight: "bold",
