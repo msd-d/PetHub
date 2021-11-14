@@ -15,8 +15,8 @@ function SettingsScreen() {
               name={"log-out-outline"}
               size={40}
               color={colors.pethubPink}
-              />
-              <Text style={settingsStyle.text}>Log out</Text>
+            />
+            <Text style={settingsStyle.text}>Log out</Text>
           </View>
         }
         style={settingsStyle.button}
@@ -29,8 +29,8 @@ function SettingsScreen() {
               name={"trash-outline"}
               size={40}
               color={colors.pethubPink}
-              />
-              <Text style={settingsStyle.text}>Delete account</Text>
+            />
+            <Text style={settingsStyle.text}>Delete account</Text>
           </View>
         }
         style={settingsStyle.button}

@@ -1,7 +1,6 @@
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { users, breeds, conditions, data } from "./dummy-data";
-import { element } from "prop-types";
 
 export default class Database {
   static async setup() {

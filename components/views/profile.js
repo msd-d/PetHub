@@ -1,15 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, Image, FlatList, TouchableOpacity, Alert, TextInput } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { Chip } from "react-native-elements";
-import GradientText from "../colors/gradient-text";
-import AppContext from "../AppContext";
-import Database from "../database";
-import profileStyle from "../styles/profile-style";
 import { Button } from "react-native-elements/dist/buttons/Button";
+import PropTypes from "prop-types";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getAgeFromTime } from "../util";
+import Database from "../database";
+import AppContext from "../AppContext";
 import colors from "../colors";
-import PropTypes from "prop-types";
+import GradientText from "../colors/gradient-text";
+import profileStyle from "../styles/profile-style";
 
 const ProfileScreen = ({ navigation }) => {
   const [isFetching, setIsFetching] = useState(false);
@@ -29,12 +36,12 @@ const ProfileScreen = ({ navigation }) => {
     });
   }, [myContext.userID]);
 
-  const onRefresh = async () => {
+  const onRefresh = () => {
     setIsFetching(true);
     getData();
     setIsFetching(false);
   };
-  
+
   const getData = async () => {
     let temp;
     await Database.getItem("data").then((data) => {
@@ -45,15 +52,15 @@ const ProfileScreen = ({ navigation }) => {
     });
   };
 
-  const removePost = async (id, name) => {
+  const removePost = (id, name) => {
     Alert.alert(
       "Confirm deletion of post",
       "Are you sure that you want to delete " + name + "?",
       [
         {
           text: "Cancel",
-          onPress: () => (console.log("Cancelled")),
-          style: "cancel"
+          onPress: () => console.log("Cancelled"),
+          style: "cancel",
         },
         {
           text: "Delete",
@@ -62,13 +69,15 @@ const ProfileScreen = ({ navigation }) => {
               onRefresh();
               myContext.updateData();
             } else {
-              alert("Sorry, an error happended when trying to delete the post. Please try again.")
+              alert(
+                "Sorry, an error happended when trying to delete the post. Please try again."
+              );
             }
-          }
-        }
+          },
+        },
       ]
     );
-  }
+  };
 
   const renderItem = ({ item }) => (
     <View style={profileStyle.card}>
