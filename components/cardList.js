@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { View, FlatList } from "react-native";
 import PropTypes from "prop-types";
-import postStyle from "./styles/home-style";
+import cardListStyle from "./styles/cardList-style";
 import Card from "./card";
 import AppContext from "./AppContext";
 import Database from "./database";
 
-const ListEmptyComponent = () => <View style={postStyle.empty}></View>;
+const ListEmptyComponent = () => <View style={cardListStyle.empty}></View>;
 
 export default function CardList({
   navigation,
@@ -70,6 +70,7 @@ export default function CardList({
       refreshing={refreshing}
       onRefresh={() => onRefresh()}
       ListEmptyComponent={ListEmptyComponent}
+      style={cardListStyle.background}
     />
   );
 }
