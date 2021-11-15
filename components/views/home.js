@@ -5,6 +5,7 @@ import AppContext from "../AppContext";
 import PropTypes from "prop-types";
 import postStyle from "../styles/post-style";
 import Card from "../card";
+import homeStyle from "../styles/home-style";
 
 const ListEmptyComponent = () => <View style={postStyle.empty}></View>;
 
@@ -62,6 +63,7 @@ export default function HomeScreen({ navigation }) {
         refreshing={fetching}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={ListEmptyComponent}
+        style={homeStyle.background}
       />
     </View>
   );

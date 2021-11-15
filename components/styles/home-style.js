@@ -1,60 +1,57 @@
-import { StyleSheet } from "react-native";
+import { color } from "react-native-elements/dist/helpers";
+import { ScaledSheet } from "react-native-size-matters";
 import colors from "../colors";
-import config from "../config";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   card: {
     flex: 1,
     display: "flex",
-    width: config.deviceWidth * 0.9,
-    marginLeft: config.deviceWidth * 0.05,
-    height: config.deviceWidth * 0.9,
-    marginTop: 15,
-    borderRadius: 23,
+    width: "315@s",
+    height: "315@s",
+    marginTop: "15@msr",
+    borderRadius: "20@msr",
+    alignSelf: "center",
   },
   empty: {
     flex: 1,
     display: "flex",
-    width: config.deviceWidth * 0.9,
-    marginLeft: config.deviceWidth * 0.05,
-    height: config.deviceWidth * 0.9,
-    marginTop: 15,
-    borderRadius: 23,
+    width: "315@s",
+    height: "315@s",
+    marginTop: "15@msr",
+    borderRadius: "20@msr",
     backgroundColor: colors.lightGray,
+    alignSelf: "center",
   },
   star: {
     position: "absolute",
-    right: 10,
-    top: 10,
+    right: "10@s",
+    top: "10@vs",
   },
   cardContent: {
     display: "flex",
     flexDirection: "column",
     position: "absolute",
-    bottom: 1,
-    alignSelf: "center",
-    width: config.deviceWidth * 0.8,
-    height: 100,
+    bottom: "25@vs",
+    left: "25@s",
   },
   name: {
     fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 22,
+    fontSize: "23@msr",
     color: colors.white,
-    marginBottom: 10,
+    marginBottom: "8@msr",
   },
   chip: {
     backgroundColor: colors.white,
-    marginRight: 10,
-    borderRadius: 8,
+    marginRight: "8@s",
+    borderRadius: "10@msr",
   },
   chipText: {
     fontFamily: "Inter_700Bold",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 12,
-    height: 20,
+    fontSize: "12@msr",
   },
   chipBox: {
     display: "flex",
@@ -64,6 +61,10 @@ export default StyleSheet.create({
     width: undefined,
     height: "100%",
     overflow: "hidden",
-    borderRadius: 23,
+    borderRadius: "20@msr",
+  },
+  background: {
+    backgroundColor: colors.white,
+    color: color.white,
   },
 });
