@@ -1,4 +1,4 @@
-import { scale, ScaledSheet } from "react-native-size-matters";
+import { ScaledSheet } from "react-native-size-matters";
 
 export default ScaledSheet.create({
   flex1: {
@@ -16,7 +16,7 @@ export default ScaledSheet.create({
   flexRowMarginTop: {
     flex: 1,
     flexDirection: "row",
-    marginTop: scale(16),
+    marginTop: "16@vs",
   },
   margin: {
     marginHorizontal: "15@s",

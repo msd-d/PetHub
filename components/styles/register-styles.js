@@ -1,10 +1,9 @@
-import { StyleSheet } from "react-native";
+import { ScaledSheet } from "react-native-size-matters";
 import colors from "../colors";
-import config from "../config";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   outerWall: {
-    margin: config.deviceHeight / 64,
+    margin: "30@msr",
   },
   container: {
     flex: 1,
@@ -12,24 +11,24 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   header: {
-    fontSize: 18,
+    fontSize: "20@msr",
     fontWeight: "bold",
-    marginBottom: config.deviceHeight / 32,
+    marginBottom: "20@vs",
     color: colors.pethubPink,
   },
   input: {
     backgroundColor: colors.lightGray,
     borderRadius: 8,
-    width: config.deviceWidth * 0.8,
-    margin: 5,
-    padding: 10,
+    width: "280@s",
+    margin: "5@msr",
+    padding: "8@msr",
   },
   registerButton: {
-    width: config.deviceWidth * 0.5,
+    width: "100@s",
     borderRadius: 99,
   },
   pressableText: {
-    margin: config.deviceHeight / 32,
+    margin: "5@msr",
     color: colors.pethubPink,
   },
 });

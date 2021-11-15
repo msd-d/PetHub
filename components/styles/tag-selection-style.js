@@ -1,13 +1,12 @@
-import { StyleSheet } from "react-native";
+import { ScaledSheet } from "react-native-size-matters";
 import colors from "../colors";
-import config from "../config";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   selectToggle: {
     backgroundColor: colors.lightGray,
-    borderRadius: 12,
-    padding: 10,
-    marginHorizontal: config.deviceWidth * 0.05,
+    borderRadius: "10@msr",
+    padding: "10@msr",
+    marginHorizontal: "15@s",
   },
   selectToggleText: {
     fontFamily: "Inter_700Bold",
@@ -24,13 +23,13 @@ export default StyleSheet.create({
   itemText: {
     fontFamily: "Inter_700Bold",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: "16@msr",
   },
   chipContainer: {
     borderWidth: 1,
     backgroundColor: colors.lightGray,
   },
   chipsWrapper: {
-    marginHorizontal: config.deviceWidth * 0.05,
+    marginHorizontal: "15@s",
   },
 });

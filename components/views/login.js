@@ -49,7 +49,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={loginStyles.outerWall}>
         <GradientButton
           title={"Sign in"}
-          style={loginStyles.loginButton}
+          buttonStyle={loginStyles.loginButton}
           onPress={() => {
             handleLogin();
           }}

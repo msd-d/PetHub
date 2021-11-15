@@ -105,7 +105,7 @@ const RegisterScreen = ({ navigation }) => {
       <View style={registerStyles.outerWall}>
         <GradientButton
           title={"Register"}
-          style={registerStyles.registerButton}
+          buttonStyle={registerStyles.registerButton}
           onPress={() => handleRegister()}
         />
       </View>
