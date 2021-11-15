@@ -171,6 +171,12 @@ function PostScreen({ navigation, route }) {
     }
   };
 
+  const clearData = () => {
+    setSelectedBreeds([]);
+    setSelectedConditions([]);
+    setAnimalData({ ...data });
+  };
+
   return (
     <View style={generelPositioning.fit100HW}>
       {proccessing && (
@@ -379,6 +385,10 @@ function PostScreen({ navigation, route }) {
             buttonStyle={postStyle.cancelButton}
             titleStyle={postStyle.cancelButtonTitle}
             type={"outline"}
+            onPress={() => {
+              clearData();
+              navigation.navigate("Home");
+            }}
           />
         </View>
       </ScrollView>
