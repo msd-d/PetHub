@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { View, FlatList } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import PropTypes from "prop-types";
 import cardListStyle from "./styles/cardList-style";
 import Card from "./card";
@@ -17,6 +18,7 @@ export default function CardList({
   const [savedData, setSavedData] = useState([]);
   const [cardListData, setCardListData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const context = useContext(AppContext);
 
   const getData = async () => {
     const saved = await Database.getSaved(context.userID);
@@ -34,12 +36,13 @@ export default function CardList({
     }
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
+  useFocusEffect(
+    React.useCallback(() => {
       onRefresh();
-    });
-    return unsubscribe;
-  }, [navigation]);
+
+      return () => onRefresh();
+    }, [context.userID])
+  );
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -50,8 +53,6 @@ export default function CardList({
   useEffect(() => {
     getData();
   }, [searchItem]);
-
-  const context = useContext(AppContext);
 
   return (
     <FlatList
