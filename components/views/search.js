@@ -1,190 +1,122 @@
-import React from "react";
-import { FlatList, Image, Text, TextInput, View } from "react-native";
-import { ButtonGroup, Chip, SearchBar } from "react-native-elements";
+import React, { useState } from "react";
+import { TextInput, View } from "react-native";
+import { ButtonGroup, SearchBar } from "react-native-elements";
+import PropTypes from "prop-types";
 
-import GradientText from "../colors/gradient-text";
-import Database from "../database";
 import colors from "../colors";
 import standardStyle from "../styles/standard-style";
 import searchStyle from "../styles/search-style";
 import { getAgeFromTime } from "../util";
+import CardList from "../cardList";
 
-const renderItem = ({ item }) => (
-  <View style={searchStyle.card}>
-    <Image
-      source={{ uri: item.images[0] }}
-      resizeMode="cover"
-      overflow="hidden"
-      style={searchStyle.image}
-    />
-    <View style={searchStyle.cardContent}>
-      <Text style={searchStyle.name}>{item.name}</Text>
-      <View style={searchStyle.chipBox}>
-        <Chip
-          title={
-            <GradientText style={searchStyle.chipText}>
-              {item.breeds.length > 1 ? "Mixed" : item.breeds[0]}
-            </GradientText>
-          }
-          titleStyle={searchStyle.chipText}
-          buttonStyle={searchStyle.chip}
-        />
-        <Chip
-          title={
-            <GradientText style={searchStyle.chipText}>
-              {item.gender}
-            </GradientText>
-          }
-          titleStyle={searchStyle.chipText}
-          buttonStyle={searchStyle.chip}
-        />
-        <Chip
-          title={
-            <GradientText style={searchStyle.chipText}>
-              {getAgeFromTime(new Date(item.birthDate)) + " y/o"}
-            </GradientText>
-          }
-          titleStyle={searchStyle.chipText}
-          buttonStyle={searchStyle.chip}
-        />
-      </View>
-    </View>
-  </View>
-);
+export default function SearchScreen({ navigation }) {
+  const genderButtons = ["Any", "Male", "Female"];
+  const [search, setSearch] = useState({
+    search: "",
+    yearMin: "",
+    yearMax: "",
+    selectedGender: "Any",
+  });
+  const [yearMin, setYearMin] = useState("");
+  const [yearMax, setYearMax] = useState("");
+  const [selectedGender, setSelectedGender] = useState(0);
 
-const genderButtons = ["Any", "Male", "Female"];
-export default class SearchScreen extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      homeData: [],
-      isFetching: false,
-      selectedIndex: 0,
-      search: "",
-      yearMin: "",
-      yearMax: "",
-    };
-  }
+  const filterList = [
+    // Name search.  TODO: A better version more fuzzy is needed.
+    (item, search) => {
+      return item.name.toLowerCase().includes(search.search.toLowerCase());
+    },
+    // Gender search
+    (item, search) => {
+      const gender = item.gender.toLowerCase();
+      const searchGender = search.selectedGender.toLowerCase();
 
-  checkIsInsideAge(age) {
-    let returnVal = false;
+      if (searchGender === "any") {
+        return true;
+      }
+      return gender === searchGender;
+    },
+    // Search Minimum years
+    (item, search) => {
+      if (search.yearMin === "") {
+        return true;
+      }
+      return search.yearMin <= getAgeFromTime(new Date(item.birthDate));
+    },
+    // Search Maximum years
+    (item, search) => {
+      if (search.yearMax === "") {
+        return true;
+      }
+      return search.yearMax >= getAgeFromTime(new Date(item.birthDate));
+    },
+  ];
 
-    if (this.state.yearMin === "") {
-      returnVal = true;
-    } else {
-      returnVal = this.state.yearMin <= age;
-    }
-
-    if (this.state.yearMax === "") {
-      return returnVal && true;
-    } else {
-      return returnVal && this.state.yearMax >= age;
-    }
-  }
-
-  getData() {
-    Database.getItem("data").then((data) => {
-      this.setState({
-        homeData: data.filter((inner) => {
-          if (
-            !inner.name.toLowerCase().includes(this.state.search.toLowerCase())
-          ) {
-            return false;
-          }
-
-          if (this.getSelectedGender() !== "any") {
-            if (!(inner.gender.toLowerCase() === this.getSelectedGender())) {
-              return false;
-            }
-          }
-
-          return this.checkIsInsideAge(
-            getAgeFromTime(new Date(inner.birthDate))
-          );
-        }),
-      });
-    });
-  }
-
-  getSelectedGender() {
-    return genderButtons[this.state.selectedIndex].toLowerCase();
-  }
-
-  componentDidMount() {
-    this.getData();
-  }
-
-  Refresh() {
-    this.setState({ isFetching: true });
-    this.getData();
-    this.setState({ isFetching: false });
-  }
-
-  render() {
-    return (
-      <FlatList
-        ListHeaderComponent={
-          <View style={searchStyle.container}>
-            <SearchBar
-              placeholder={"Search"}
-              value={this.state.search}
-              onChangeText={(search) => {
-                this.setState({ search });
-                this.Refresh();
+  return (
+    <CardList
+      navigation={navigation}
+      filterList={filterList}
+      searchItem={search}
+      listHeaderComponent={
+        <View style={searchStyle.container}>
+          <SearchBar
+            placeholder={"Search"}
+            value={search.search}
+            onChangeText={(input) => {
+              setSearch({ ...search, search: input });
+            }}
+            searchIcon={{ color: colors.pethubPink }}
+            clearIcon={{ color: colors.pethubPink }}
+            inputStyle={searchStyle.searchBarInput}
+            containerStyle={searchStyle.searchBarContainer}
+            inputContainerStyle={searchStyle.searchBarInputContainer}
+            leftIconContainerStyle={searchStyle.searchBarLeftIconContainer}
+            rightIconContainerStyle={searchStyle.searchBarRightIconContainer}
+          />
+          <ButtonGroup
+            selectedIndex={selectedGender}
+            onPress={(selectedIndex) => {
+              setSelectedGender(selectedIndex);
+              setSearch({
+                ...search,
+                selectedGender: genderButtons[selectedIndex],
+              });
+            }}
+            buttons={genderButtons}
+            containerStyle={standardStyle.genderContainer}
+            buttonStyle={standardStyle.genderButtonDisabled}
+            innerBorderStyle={standardStyle.genderBorder}
+            selectedButtonStyle={standardStyle.genderButton}
+            textStyle={standardStyle.buttonTextBold}
+          />
+          <View style={searchStyle.inputContainer}>
+            <TextInput
+              style={searchStyle.input}
+              value={yearMin}
+              placeholder="Minimum age (in years) "
+              onChangeText={(yearMin) => {
+                setYearMin(yearMin);
+                setSearch({ ...search, yearMin });
               }}
-              searchIcon={{ color: colors.pethubPink }}
-              clearIcon={{ color: colors.pethubPink }}
-              inputStyle={searchStyle.searchBarInput}
-              containerStyle={searchStyle.searchBarContainer}
-              inputContainerStyle={searchStyle.searchBarInputContainer}
-              leftIconContainerStyle={searchStyle.searchBarLeftIconContainer}
-              rightIconContainerStyle={searchStyle.searchBarRightIconContainer}
+              keyboardType="numeric"
             />
-            <ButtonGroup
-              selectedIndex={this.state.selectedIndex}
-              onPress={(selectedIndex) => {
-                this.setState({ selectedIndex });
-                this.Refresh();
+            <TextInput
+              style={searchStyle.input}
+              value={yearMax}
+              placeholder="Maximum age (in years) "
+              onChangeText={(yearMax) => {
+                setYearMax(yearMax);
+                setSearch({ ...search, yearMax });
               }}
-              buttons={genderButtons}
-              containerStyle={standardStyle.genderContainer}
-              buttonStyle={standardStyle.genderButtonDisabled}
-              innerBorderStyle={standardStyle.genderBorder}
-              selectedButtonStyle={standardStyle.genderButton}
-              textStyle={standardStyle.buttonTextBold}
+              keyboardType="numeric"
             />
-            <View style={searchStyle.inputContainer}>
-              <TextInput
-                style={searchStyle.input}
-                value={this.state.yearMin}
-                placeholder="Minimum age (in years) "
-                onChangeText={(yearMin) => {
-                  this.setState({ yearMin });
-                  this.Refresh();
-                }}
-                keyboardType="numeric"
-              />
-              <TextInput
-                style={searchStyle.input}
-                value={this.state.yearMax}
-                placeholder="Maximum age (in years) "
-                onChangeText={(yearMax) => {
-                  this.setState({ yearMax });
-                  this.Refresh();
-                }}
-                keyboardType="numeric"
-              />
-            </View>
           </View>
-        }
-        style={searchStyle.container}
-        data={this.state.homeData}
-        extraData={this.state.homeData}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        refreshing={this.state.isFetching}
-        onRefresh={() => this.Refresh()}
-      />
-    );
-  }
+        </View>
+      }
+    />
+  );
 }
+
+SearchScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

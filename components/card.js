@@ -9,71 +9,65 @@ import {
 import { Chip } from "react-native-elements";
 import GradientText from "./colors/gradient-text";
 import Database from "./database";
-import homeStyle from "./styles/home-style";
+import cardStyle from "./styles/card-style";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import colors from "./colors";
 import PropTypes from "prop-types";
 import { getAgeFromTime } from "./util";
 
-export default function Card({
-  navigation,
-  item,
-  starIcon,
-  username,
-  getData,
-}) {
+export default function Card({ navigation, item, starIcon, userID, refresh }) {
   return (
     <TouchableHighlight
       activeOpacity={0.9}
       underlayColor={colors.white}
       onPress={() => navigation.navigate("AnimalProfile", { item })}
     >
-      <View style={homeStyle.card}>
+      <View style={cardStyle.card}>
         <Image
           source={{ uri: item.images[0] }}
           resizeMode="cover"
           overflow="hidden"
-          style={homeStyle.image}
+          style={cardStyle.image}
         />
         <TouchableOpacity
-          style={homeStyle.star}
+          style={cardStyle.star}
           onPress={() =>
             starIcon === "star"
-              ? Database.removeSaved(item.id, username).then(getData())
-              : Database.setSaved(item.id, username).then(getData())
+              ? Database.removeSaved(item.id, userID).then(refresh)
+              : Database.setSaved(item.id, userID).then(refresh)
           }
         >
           <Ionicons name={starIcon} size={45} color={colors.starYellow} />
         </TouchableOpacity>
-        <View style={homeStyle.cardContent}>
-          <Text style={homeStyle.name}>{item.name}</Text>
-          <View style={homeStyle.chipBox}>
+        <View style={cardStyle.cardContent}>
+          <Text style={cardStyle.name}>{item.name}</Text>
+          <View style={cardStyle.chipBox}>
             <Chip
               title={
-                <GradientText style={homeStyle.chipText}>
+                <GradientText style={cardStyle.chipText}>
                   {item.breeds.length > 1 ? "Mixed" : item.breeds[0]}
                 </GradientText>
               }
-              titleStyle={homeStyle.chipText}
-              buttonStyle={homeStyle.chip}
+              titleStyle={cardStyle.chipText}
+              buttonStyle={cardStyle.chip}
             />
             <Chip
               title={
-                <GradientText style={homeStyle.chipText}>
+                <GradientText style={cardStyle.chipText}>
                   {item.gender}
                 </GradientText>
               }
-              titleStyle={homeStyle.chipText}
-              buttonStyle={homeStyle.chip}
+              titleStyle={cardStyle.chipText}
+              buttonStyle={cardStyle.chip}
             />
             <Chip
               title={
-                <GradientText style={homeStyle.chipText}>
+                <GradientText style={cardStyle.chipText}>
                   {getAgeFromTime(new Date(item.birthDate)) + " y/o"}
                 </GradientText>
               }
-              titleStyle={homeStyle.chipText}
-              buttonStyle={homeStyle.chip}
+              titleStyle={cardStyle.chipText}
+              buttonStyle={cardStyle.chip}
             />
           </View>
         </View>
@@ -84,8 +78,8 @@ export default function Card({
 
 Card.propTypes = {
   navigation: PropTypes.object.isRequired,
-  item: PropTypes.object,
-  starIcon: PropTypes.string,
-  username: PropTypes.string,
-  getData: PropTypes.func,
+  item: PropTypes.object.isRequired,
+  starIcon: PropTypes.string.isRequired,
+  userID: PropTypes.string,
+  refresh: PropTypes.func.isRequired,
 };

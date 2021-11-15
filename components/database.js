@@ -209,7 +209,7 @@ export default class Database {
       }
     }
 
-    if (await this.isDebug()) {
+    if (debug) {
       console.log("Removed key: " + key);
     }
   }
