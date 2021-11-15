@@ -5,7 +5,7 @@ const StandardBar = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom: 36,
+    marginBottom: "36@msr",
     backgroundColor: color.white,
   },
 });

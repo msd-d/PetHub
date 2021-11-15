@@ -1,8 +1,7 @@
-import { StyleSheet } from "react-native";
+import { ScaledSheet } from "react-native-size-matters";
 import colors from "../colors";
-import config from "../config";
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   container: {},
   buttonTextBold: {
     color: colors.darkGray,
@@ -11,20 +10,20 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   genderButton: {
-    borderRadius: 20,
+    borderRadius: "20@msr",
     backgroundColor: colors.pethubPink,
   },
   genderBorder: {
     color: colors.transparent,
-    width: config.deviceWidth * 0.03,
+    width: "10@s",
   },
   genderButtonDisabled: {
-    borderRadius: 20,
+    borderRadius: "20@msr",
     backgroundColor: colors.lightGray,
   },
   genderContainer: {
-    marginHorizontal: config.deviceWidth * 0.05,
-    borderRadius: 20,
+    marginHorizontal: "20@s",
+    borderRadius: "20@msr",
     borderWidth: 0,
   },
 });
