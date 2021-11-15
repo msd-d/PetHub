@@ -8,7 +8,7 @@ export default ScaledSheet.create({
   },
   scrollviewContainer: {},
   postButtonContainer: {
-    borderRadius: 20,
+    borderRadius: "20@msr",
   },
   postButton: {
     width: "140@s",
@@ -16,7 +16,7 @@ export default ScaledSheet.create({
   },
   cancelButton: {
     width: "140@s",
-    height: "45@vs",
+    height: "42@vs",
   },
   cancelButtonContainer: {
     borderRadius: "20@msr",
