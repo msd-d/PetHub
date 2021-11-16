@@ -52,7 +52,7 @@ const AnimalScreen = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={generalStyles.flexRowMarginTop}>
           <View>
             <Text style={styles.name}>{item.postedBy}</Text>
