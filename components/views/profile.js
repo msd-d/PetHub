@@ -130,11 +130,20 @@ const ProfileScreen = ({ navigation }) => {
             }
             titleStyle={profileStyle.chipText}
             buttonStyle={profileStyle.chip}
-          />
+            />
         </View>
       </View>
     </View>
   );
+  
+  function infoText(icon, info) {
+    return (
+      <View style={profileStyle.row}>
+        <Ionicons name={icon} size={30} color={colors.darkGray} />
+        <Text style={profileStyle.infoText}>{info} </Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList
@@ -173,22 +182,11 @@ const ProfileScreen = ({ navigation }) => {
             />
           </View>
 
-          {/* User info
-           *   TODO: Make component, scale icons
-           */}
+          {/* User info */}
           <View style={profileStyle.infoView}>
-            <View style={profileStyle.row}>
-              <Ionicons name={"call"} size={30} color={colors.darkGray} />
-              <Text style={profileStyle.infoText}> {phone} </Text>
-            </View>
-            <View style={profileStyle.row}>
-              <Ionicons name={"at"} size={30} color={colors.darkGray} />
-              <Text style={profileStyle.infoText}>{email} </Text>
-            </View>
-            <View style={profileStyle.row}>
-              <Ionicons name={"pin"} size={30} color={colors.darkGray} />
-              <Text style={profileStyle.infoText}>{location} </Text>
-            </View>
+            {infoText("call", phone)}
+            {infoText("at", email)}
+            {infoText("pin", location)}
           </View>
         </View>
       }
@@ -201,6 +199,7 @@ const ProfileScreen = ({ navigation }) => {
       onRefresh={() => onRefresh()}
     />
   );
+
 };
 
 ProfileScreen.propTypes = {
