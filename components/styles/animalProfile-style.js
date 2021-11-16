@@ -17,7 +17,6 @@ export default StyleSheet.create({
     marginBottom: 15,
     borderRadius: 23,
   },
-  scrollView: {},
   image: {
     width: undefined,
     height: "100%",
