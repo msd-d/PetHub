@@ -130,12 +130,12 @@ const ProfileScreen = ({ navigation }) => {
             }
             titleStyle={profileStyle.chipText}
             buttonStyle={profileStyle.chip}
-            />
+          />
         </View>
       </View>
     </View>
   );
-  
+
   function infoText(icon, info) {
     return (
       <View style={profileStyle.row}>
@@ -199,7 +199,6 @@ const ProfileScreen = ({ navigation }) => {
       onRefresh={() => onRefresh()}
     />
   );
-
 };
 
 ProfileScreen.propTypes = {
