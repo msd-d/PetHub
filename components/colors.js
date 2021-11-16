@@ -8,5 +8,5 @@ export default {
   pethubPink: "rgba(223, 122, 153, 1)",
   pethubLemon: "rgba(232, 193, 171, 1)",
   transparent: "transparent",
-  starGrey: "rgba(234,234,234,1)",
+  starGrey: "rgba(234,234,234,0.8)",
 };
