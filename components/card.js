@@ -37,7 +37,7 @@ export default function Card({ navigation, item, starIcon, userID, refresh }) {
               : Database.setSaved(item.id, userID).then(refresh)
           }
         >
-          <Ionicons name={starIcon} size={45} color={colors.starYellow} />
+          <Ionicons name={starIcon} size={35} color={colors.starGrey} />
         </TouchableOpacity>
         <View style={cardStyle.cardContent}>
           <Text style={cardStyle.name}>{item.name}</Text>

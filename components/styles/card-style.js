@@ -23,8 +23,8 @@ export default ScaledSheet.create({
   },
   star: {
     position: "absolute",
-    right: "10@s",
-    top: "10@vs",
+    right: "15@s",
+    top: "15@vs",
   },
   cardContent: {
     display: "flex",
