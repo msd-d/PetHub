@@ -254,10 +254,12 @@ function PostScreen({ navigation, route }) {
               title={animalData.birthDate.getFullYear()}
             />
             {show && (
-              <DateTimePicker
-                value={animalData.birthDate}
-                onChange={onChange}
-              />
+              <View style={{ opacity: 0, position: "absolute" }}>
+                <DateTimePicker
+                  value={animalData.birthDate}
+                  onChange={onChange}
+                />
+              </View>
             )}
           </View>
         </View>
